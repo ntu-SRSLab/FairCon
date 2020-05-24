@@ -58,9 +58,9 @@ RUN \
     mkdir  -p /home/fairness
 
 WORKDIR /home/fairness
-COPY   program program
-COPY   smartcontract smartcontract
-COPY   source source 
+COPY  fse2020-fairness/program program
+COPY  fse2020-fairness/smartcontract smartcontract
+COPY  fse2020-fairness/source source 
 RUN \
    cd source/faircon &&\
    mkdir -p build && cd build &&\
