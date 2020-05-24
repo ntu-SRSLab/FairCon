@@ -58,9 +58,13 @@ RUN \
     mkdir  -p /home/fairness
 
 WORKDIR /home/fairness
-COPY   program program
-COPY   smartcontract smartcontract
-COPY   source source 
+RUN \
+    git clone https://github.com/Franklinliu/Artifacts.git &&\
+    mv Artifacts/fse2020-fairness/program program &&\
+    mv Artifacts/fse2020-fairness/smartcontract smartcontract &&\
+    mv Artifacts/fse2020-fairness/source source &&\
+    rm -rf Artifacts
+
 RUN \
    cd source/faircon &&\
    mkdir -p build && cd build &&\
