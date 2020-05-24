@@ -1,5 +1,5 @@
 # rm temporary files
 .*.sw*
-*.swp
-*.swo
+.*.*.sw*
+*.sw*
 *~
