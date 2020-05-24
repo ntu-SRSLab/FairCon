@@ -63,13 +63,16 @@ RUN \
     mv Artifacts/fse2020-fairness/program program &&\
     mv Artifacts/fse2020-fairness/smartcontract smartcontract &&\
     mv Artifacts/fse2020-fairness/source source &&\
+    mv Artifacts/fse2020-fairness/script script &&\
     rm -rf Artifacts
 
 RUN \
    cd source/faircon &&\
    mkdir -p build && cd build &&\
    rm -rf * &&\
-   cmake .. && make 
+   cmake .. && make &&\
+   ln -s /home/fairness/source/faircon/build/solse/faircon /usr/bin/faircon 
+  
 # remove preinstalled softwares
 RUN \
    apt -y purge \
