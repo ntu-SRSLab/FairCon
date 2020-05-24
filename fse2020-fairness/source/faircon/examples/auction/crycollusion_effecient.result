@@ -1,0 +1,128 @@
+analyzing contract [ CryptoRomeAuction ]
+analyzing function [  ]
+analyzing function [ bid ]
+analyzing function [ sse_trustful_violate_check ]
+analyzing function [ sse_winner ]
+analyzing function [ sse_revenue ]
+analyzing function [ sse_utility ]
+analyzing function [ sse_maximize ]
+analyzing function [ sse_minimize ]
+analyzing function [ sse_efficient_violate_check ]
+analyzing function [ _Main_ ]
+exit contract [ CryptoRomeAuction ]
+analyzing contract [ CryptoRomeAuction ]
+exit contract [ CryptoRomeAuction ]
+state variables: 
+	varName: benefits@36, value: benefits@36_0_, sort: (Array String Int)
+	varName: utilities@32, value: utilities@32_0_, sort: (Array String Int)
+	varName: refunds@28, value: refunds@28_0_, sort: (Array String Int)
+	varName: ended@24, value: ended@24_0_, sort: Bool
+	varName: tokenId@22, value: tokenId@22_0_, sort: Int
+	varName: highestBidIsCC@18, value: highestBidIsCC@18_0_, sort: Bool
+	varName: highestBidderCC@16, value: highestBidderCC@16_0_, sort: (Array Int Int)
+	varName: highestBidder@14, value: highestBidder@14_0_, sort: String
+	varName: paymentAddress@20, value: paymentAddress@20_0_, sort: String
+	varName: auctionStart@2, value: auctionStart@2_0_, sort: Int
+	varName: endingPrice@6, value: endingPrice@6_0_, sort: Int
+	varName: payments@40, value: payments@40_0_, sort: (Array String Int)
+	varName: auctionEnd@8, value: auctionEnd@8_0_, sort: Int
+	varName: startingPrice@4, value: startingPrice@4_0_, sort: Int
+	varName: extensionTime@10, value: extensionTime@10_0_, sort: Int
+	varName: highestBid@12, value: highestBid@12_0_, sort: Int
+local variables: 
+	varName: block_timestamp3@210, value: block_timestamp3@210_0_, sort: Int
+	varName: msg_gas3@208, value: msg_gas3@208_0_, sort: Int
+	varName: p3@204, value: p3@204_0_, sort: Int
+	varName: msg_value3@206, value: msg_value3@206_0_, sort: Int
+	varName: msg_gas2@198, value: msg_gas2@198_0_, sort: Int
+	varName: msg_value2@196, value: msg_value2@196_0_, sort: Int
+	varName: p2@194, value: p2@194_0_, sort: Int
+	varName: block_timestamp1@190, value: block_timestamp1@190_0_, sort: Int
+	varName: msg_value1@186, value: msg_value1@186_0_, sort: Int
+	varName: block_timestamp2@200, value: block_timestamp2@200_0_, sort: Int
+	varName: expr@136, value: expr@136_0_, sort: Bool
+	varName: msg_sender2@192, value: msg_sender2@192_0_, sort: String
+	varName: duration@76, value: duration@76_0_, sort: Int
+	varName: other_allocation@176, value: other_allocation@176_0_, sort: String
+	varName: block_timestamp@58, value: block_timestamp@58_0_, sort: Int
+	varName: msg_sender1@182, value: msg_sender1@182_0_, sort: String
+	varName: msg_sender3@202, value: msg_sender3@202_0_, sort: String
+	varName: msg_gas@56, value: msg_gas@56_0_, sort: Int
+	varName: msg_sender@52, value: msg_sender@52_0_, sort: String
+	varName: msg_value@54, value: msg_value@54_0_, sort: Int
+	varName: a@142, value: a@142_0_, sort: String
+	varName: a@160, value: a@160_0_, sort: Int
+	varName: p1@184, value: p1@184_0_, sort: Int
+	varName: msg_gas1@188, value: msg_gas1@188_0_, sort: Int
+	varName: a@148, value: a@148_0_, sort: Int
+	varName: a@154, value: a@154_0_, sort: Int
+	varName: winners_count@373, value: winners_count@373_0_, sort: Int
+	varName: a@166, value: a@166_0_, sort: Int
+	varName: benefit@172, value: benefit@172_0_, sort: Int
+	varName: allocation@174, value: allocation@174_0_, sort: String
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+symbolically execute function [_Main_]
+CHECK PASS FAILED 0
+CHECK PASS FAILED 1
+CHECK PASS FAILED 2
+CHECK PASS FAILED 3
+CHECK PASS FAILED 4
+CHECK PASS FAILED 5
+CHECK PASS FAILED 6
+CHECK PASS FAILED 7
+CHECK PASS FAILED 8
+CHECK PASS FAILED 9
+result context [1]: 
+Using Z3 solver to optimize value expression
+-------------------------------------------------------------------------
+|max expression                                    |value               |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2] + highestBid*winners_count|199999999999        |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2]     |0                   |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+--------------------------------OUTCOME-------------------------------------
+|truthful violate check        |value                                   |
+-------------------------------------------------------------------------
+|collusion violate check       |value                                   |
+-------------------------------------------------------------------------
+|effecient violate check       |value                                   |
+-------------------------------------------------------------------------
+|benefits[msg_sender1]+benefits[msg_sender2]+benefits[msg_sender3]|(+ (select (store benefits@36_0_ msg_sender1@182_0_ p1@184_0_)  msg_sender1@182_0_)  (select (store benefits@36_0_ msg_sender1@182_0_ p1@184_0_)  msg_sender2@192_0_)  (select (store benefits@36_0_ msg_sender1@182_0_ p1@184_0_)  msg_sender3@202_0_))|
+|benefits[msg_sender1]+benefits[msg_sender2]+benefits[msg_sender3]|Effecient                               |
+-------------------------------------------------------------------------
+|benefits[msg_sender1]+benefits[msg_sender2]+benefits[msg_sender3]|(+ (select (store benefits@36_0_ msg_sender1@182_0_ p1@184_0_)  msg_sender1@182_0_)  (select (store benefits@36_0_ msg_sender1@182_0_ p1@184_0_)  msg_sender2@192_0_)  (select (store benefits@36_0_ msg_sender1@182_0_ p1@184_0_)  msg_sender3@202_0_))|
+|benefits[msg_sender1]+benefits[msg_sender2]+benefits[msg_sender3]|Effecient                               |
+-------------------------------------------------------------------------
+|benefits[msg_sender1]+benefits[msg_sender2]+benefits[msg_sender3]|(+ (select (store benefits@36_0_ msg_sender1@182_0_ p1@184_0_)  msg_sender1@182_0_)  (select (store benefits@36_0_ msg_sender1@182_0_ p1@184_0_)  msg_sender2@192_0_)  (select (store benefits@36_0_ msg_sender1@182_0_ p1@184_0_)  msg_sender3@202_0_))|
+|benefits[msg_sender1]+benefits[msg_sender2]+benefits[msg_sender3]|Effecient                               |
+-------------------------------------------------------------------------
+|optimal violate check         |value                                   |
+result context [2]: 
+Using Z3 solver to optimize value expression
+-------------------------------------------------------------------------
+|max expression                                    |value               |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2] + highestBid*winners_count|199999999999        |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2]     |0                   |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+--------------------------------OUTCOME-------------------------------------
+|truthful violate check        |value                                   |
+-------------------------------------------------------------------------
+|collusion violate check       |value                                   |
+-------------------------------------------------------------------------
+|effecient violate check       |value                                   |
+-------------------------------------------------------------------------
+|benefits[msg_sender1]+benefits[msg_sender2]+benefits[msg_sender3]|(+ (select (store benefits@36_0_ msg_sender1@182_0_ p1@184_0_)  msg_sender1@182_0_)  (select (store benefits@36_0_ msg_sender1@182_0_ p1@184_0_)  msg_sender2@192_0_)  (select (store benefits@36_0_ msg_sender1@182_0_ p1@184_0_)  msg_sender3@202_0_))|
+|benefits[msg_sender1]+benefits[msg_sender2]+benefits[msg_sender3]|Effecient                               |
+-------------------------------------------------------------------------
+|benefits[msg_sender1]+benefits[msg_sender2]+benefits[msg_sender3]|(+ (select (store benefits@36_0_ msg_sender1@182_0_ p1@184_0_)  msg_sender1@182_0_)  (select (store benefits@36_0_ msg_sender1@182_0_ p1@184_0_)  msg_sender2@192_0_)  (select (store benefits@36_0_ msg_sender1@182_0_ p1@184_0_)  msg_sender3@202_0_))|
+|benefits[msg_sender1]+benefits[msg_sender2]+benefits[msg_sender3]|Effecient                               |
+-------------------------------------------------------------------------
+|benefits[msg_sender1]+benefits[msg_sender2]+benefits[msg_sender3]|(+ (select (store benefits@36_0_ msg_sender1@182_0_ p1@184_0_)  msg_sender1@182_0_)  (select (store benefits@36_0_ msg_sender1@182_0_ p1@184_0_)  msg_sender2@192_0_)  (select (store benefits@36_0_ msg_sender1@182_0_ p1@184_0_)  msg_sender3@202_0_))|
+|benefits[msg_sender1]+benefits[msg_sender2]+benefits[msg_sender3]|Effecient                               |
+-------------------------------------------------------------------------
+|optimal violate check         |value                                   |

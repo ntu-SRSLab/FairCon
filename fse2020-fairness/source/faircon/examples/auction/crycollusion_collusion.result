@@ -1,0 +1,1222 @@
+analyzing contract [ CryptoRomeAuction ]
+analyzing function [  ]
+analyzing function [ bid ]
+analyzing function [ sse_trustful_violate_check ]
+analyzing function [ sse_winner ]
+analyzing function [ sse_revenue ]
+analyzing function [ sse_utility ]
+analyzing function [ sse_maximize ]
+analyzing function [ sse_minimize ]
+analyzing function [ sse_truthful_violate_check ]
+analyzing function [ sse_collusion_violate_check ]
+analyzing function [ _Main_ ]
+exit contract [ CryptoRomeAuction ]
+analyzing contract [ CryptoRomeAuction ]
+exit contract [ CryptoRomeAuction ]
+state variables: 
+	varName: utilities@32, value: utilities@32_0_, sort: (Array String Int)
+	varName: refunds@28, value: refunds@28_0_, sort: (Array String Int)
+	varName: ended@24, value: ended@24_0_, sort: Bool
+	varName: tokenId@22, value: tokenId@22_0_, sort: Int
+	varName: highestBidIsCC@18, value: highestBidIsCC@18_0_, sort: Bool
+	varName: highestBidderCC@16, value: highestBidderCC@16_0_, sort: (Array Int Int)
+	varName: highestBidder@14, value: highestBidder@14_0_, sort: String
+	varName: paymentAddress@20, value: paymentAddress@20_0_, sort: String
+	varName: auctionStart@2, value: auctionStart@2_0_, sort: Int
+	varName: endingPrice@6, value: endingPrice@6_0_, sort: Int
+	varName: auctionEnd@8, value: auctionEnd@8_0_, sort: Int
+	varName: startingPrice@4, value: startingPrice@4_0_, sort: Int
+	varName: extensionTime@10, value: extensionTime@10_0_, sort: Int
+	varName: highestBid@12, value: highestBid@12_0_, sort: Int
+local variables: 
+	varName: winners_count@333, value: winners_count@333_0_, sort: Int
+	varName: block_timestamp3@216, value: block_timestamp3@216_0_, sort: Int
+	varName: msg_sender3@208, value: msg_sender3@208_0_, sort: String
+	varName: block_timestamp2@206, value: block_timestamp2@206_0_, sort: Int
+	varName: p2@200, value: p2@200_0_, sort: Int
+	varName: msg_sender2@198, value: msg_sender2@198_0_, sort: String
+	varName: msg_gas3@214, value: msg_gas3@214_0_, sort: Int
+	varName: block_timestamp1@196, value: block_timestamp1@196_0_, sort: Int
+	varName: msg_gas1@194, value: msg_gas1@194_0_, sort: Int
+	varName: msg_gas2@204, value: msg_gas2@204_0_, sort: Int
+	varName: p1@190, value: p1@190_0_, sort: Int
+	varName: v_2@182, value: v_2@182_0_, sort: Int
+	varName: v2@180, value: v2@180_0_, sort: Int
+	varName: v_1@178, value: v_1@178_0_, sort: Int
+	varName: msg_value2@202, value: msg_value2@202_0_, sort: Int
+	varName: expr@128, value: expr@128_0_, sort: Bool
+	varName: block_timestamp@50, value: block_timestamp@50_0_, sort: Int
+	varName: msg_gas@48, value: msg_gas@48_0_, sort: Int
+	varName: duration@68, value: duration@68_0_, sort: Int
+	varName: v1@176, value: v1@176_0_, sort: Int
+	varName: a@152, value: a@152_0_, sort: Int
+	varName: msg_value@46, value: msg_value@46_0_, sort: Int
+	varName: a@158, value: a@158_0_, sort: Int
+	varName: msg_value1@192, value: msg_value1@192_0_, sort: Int
+	varName: msg_sender1@188, value: msg_sender1@188_0_, sort: String
+	varName: a@134, value: a@134_0_, sort: String
+	varName: p3@210, value: p3@210_0_, sort: Int
+	varName: a@140, value: a@140_0_, sort: Int
+	varName: a@146, value: a@146_0_, sort: Int
+	varName: msg_value3@212, value: msg_value3@212_0_, sort: Int
+	varName: u@164, value: u@164_0_, sort: Int
+	varName: msg_sender@44, value: msg_sender@44_0_, sort: String
+	varName: a@166, value: a@166_0_, sort: Int
+	varName: u12@174, value: u12@174_0_, sort: Int
+	varName: b@168, value: b@168_0_, sort: Int
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+symbolically execute function [_Main_]
+CHECK PASS FAILED 0
+CHECK PASS FAILED 1
+CHECK PASS FAILED 2
+CHECK PASS FAILED 3
+CHECK PASS FAILED 4
+CHECK PASS FAILED 5
+CHECK PASS FAILED 6
+CHECK PASS FAILED 7
+CHECK PASS FAILED 8
+CHECK PASS FAILED 9
+CHECK PASS FAILED 10
+CHECK PASS FAILED 11
+CHECK PASS FAILED 12
+CHECK PASS FAILED 13
+CHECK PASS FAILED 14
+CHECK PASS FAILED 15
+CHECK PASS FAILED 16
+CHECK PASS FAILED 17
+CHECK PASS FAILED 18
+CHECK PASS FAILED 19
+CHECK PASS FAILED 20
+CHECK PASS FAILED 21
+CHECK PASS FAILED 22
+CHECK PASS FAILED 23
+CHECK PASS FAILED 24
+CHECK PASS FAILED 25
+result context [1]: 
+Using Z3 solver to optimize value expression
+-------------------------------------------------------------------------
+|max expression                                    |value               |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2]     |0                   |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+--------------------------------OUTCOME-------------------------------------
+|truthful violate check        |value                                   |
+-------------------------------------------------------------------------
+|collusion violate check       |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1] + utilities[msg_sender2]|(+ (select (store utilities@32_0_ msg_sender3@208_0_ (- p3@210_0_ msg_value3@212_0_))  msg_sender1@188_0_)  (select (store utilities@32_0_ msg_sender3@208_0_ (- p3@210_0_ msg_value3@212_0_))  msg_sender2@198_0_))|
+|utilities[msg_sender1] + utilities[msg_sender2]|Noncolluded                             |
+-------------------------------------------------------------------------
+|effecient violate check       |value                                   |
+-------------------------------------------------------------------------
+|optimal violate check         |value                                   |
+result context [2]: 
+Using Z3 solver to optimize value expression
+-------------------------------------------------------------------------
+|max expression                                    |value               |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2]     |0                   |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+--------------------------------OUTCOME-------------------------------------
+|truthful violate check        |value                                   |
+-------------------------------------------------------------------------
+|collusion violate check       |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1] + utilities[msg_sender2]|(+ (select (store utilities@32_0_ msg_sender3@208_0_ (- p3@210_0_ msg_value3@212_0_))  msg_sender1@188_0_)  (select (store utilities@32_0_ msg_sender3@208_0_ (- p3@210_0_ msg_value3@212_0_))  msg_sender2@198_0_))|
+|utilities[msg_sender1] + utilities[msg_sender2]|Noncolluded                             |
+-------------------------------------------------------------------------
+|effecient violate check       |value                                   |
+-------------------------------------------------------------------------
+|optimal violate check         |value                                   |
+result context [3]: 
+Using Z3 solver to optimize value expression
+-------------------------------------------------------------------------
+|max expression                                    |value               |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2]     |99999999998         |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+--------------------------------OUTCOME-------------------------------------
+|truthful violate check        |value                                   |
+-------------------------------------------------------------------------
+|collusion violate check       |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1] + utilities[msg_sender2]|(let ((a!1 (store (store utilities@32_0_  msg_sender2@198_0_  (- p2@200_0_ msg_value2@202_0_)) msg_sender3@208_0_ (- p3@210_0_ msg_value3@212_0_)))) (+ (select a!1 msg_sender1@188_0_) (select a!1 msg_sender2@198_0_)))|
+|utilities[msg_sender1] + utilities[msg_sender2]|Colluded                                |
+-------------------------------------------
+|Colluded Case                            |
+-------------------------------------------
+|name                |value               |
+-------------------------------------------
+|p1                  |  100000000001      |
+-------------------------------------------
+|p3                  |  100000000001      |
+-------------------------------------------
+|msg_value2          |  100000000001      |
+-------------------------------------------
+|msg_value1          |  0                 |
+-------------------------------------------
+|msg_sender1         |  "!0!"             |
+-------------------------------------------
+|block_timestamp2    |                    |
+-------------------------------------------
+|extensionTime       |  2                 |
+-------------------------------------------
+|utilities           |                    |
+-------------------------------------------
+|msg_value3          |  100000000001      |
+-------------------------------------------
+|auctionStart        |                    |
+-------------------------------------------
+|msg_sender2         |  "!1!"             |
+-------------------------------------------
+|msg_sender3         |  "!2!"             |
+-------------------------------------------
+|block_timestamp3    |  0                 |
+-------------------------------------------
+|highestBid          |  0                 |
+-------------------------------------------
+|auctionEnd          |  0                 |
+-------------------------------------------
+|block_timestamp1    |                    |
+-------------------------------------------
+|p2                  |  100000000002      |
+-------------------------------------------
+
+|utilities                     |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]        |(select utilities@32_0_ msg_sender1@188_0_)|
+|utilities[msg_sender1]        |0                                       |
+-------------------------------------------------------------------------
+|utilities[msg_sender2]        |(select (store utilities@32_0_  msg_sender2@198_0_  (- p2@200_0_ msg_value2@202_0_)) msg_sender2@198_0_)|
+|utilities[msg_sender2]        |1                                       |
+-------------------------------------------------------------------------
+|utilities[msg_sender3]        |(select (store (store utilities@32_0_ msg_sender2@198_0_ (- p2@200_0_ msg_value2@202_0_))  msg_sender3@208_0_  (- p3@210_0_ msg_value3@212_0_)) msg_sender3@208_0_)|
+|utilities[msg_sender3]        |0                                       |
+-------------------------------------------------------------------------
+|revenue                       |value                                   |
+-------------------------------------------------------------------------
+|highestBid*winners_count      |(* msg_value2@202_0_ (+ 0 1 1))         |
+|highestBid*winners_count      |200000000002                            |
+-------------------------------------------------------------------------
+
+|winner                        |value                                   |
+-------------------------------------------------------------------------
+|msg_sender2                   |msg_sender2@198_0_                      |
+|msg_sender2                   |"!1!"                                   |
+-------------------------------------------------------------------------
+|msg_sender3                   |msg_sender3@208_0_                      |
+|msg_sender3                   |"!2!"                                   |
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+|effecient violate check       |value                                   |
+-------------------------------------------------------------------------
+|optimal violate check         |value                                   |
+result context [4]: 
+Using Z3 solver to optimize value expression
+-------------------------------------------------------------------------
+|max expression                                    |value               |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2]     |99999999999         |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+--------------------------------OUTCOME-------------------------------------
+|truthful violate check        |value                                   |
+-------------------------------------------------------------------------
+|collusion violate check       |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1] + utilities[msg_sender2]|(+ (select (store utilities@32_0_ msg_sender2@198_0_ (- p2@200_0_ msg_value2@202_0_))  msg_sender1@188_0_)  (select (store utilities@32_0_ msg_sender2@198_0_ (- p2@200_0_ msg_value2@202_0_))  msg_sender2@198_0_))|
+|utilities[msg_sender1] + utilities[msg_sender2]|Colluded                                |
+-------------------------------------------
+|Colluded Case                            |
+-------------------------------------------
+|name                |value               |
+-------------------------------------------
+|p1                  |  100000000001      |
+-------------------------------------------
+|p3                  |  100000000001      |
+-------------------------------------------
+|msg_value1          |  0                 |
+-------------------------------------------
+|msg_value2          |  100000000000      |
+-------------------------------------------
+|msg_sender1         |  "!0!"             |
+-------------------------------------------
+|block_timestamp2    |                    |
+-------------------------------------------
+|extensionTime       |  2                 |
+-------------------------------------------
+|utilities           |                    |
+-------------------------------------------
+|msg_value3          |  100000000001      |
+-------------------------------------------
+|auctionStart        |                    |
+-------------------------------------------
+|msg_sender2         |  "!1!"             |
+-------------------------------------------
+|msg_sender3         |  "!2!"             |
+-------------------------------------------
+|block_timestamp3    |  0                 |
+-------------------------------------------
+|highestBid          |  0                 |
+-------------------------------------------
+|auctionEnd          |  0                 |
+-------------------------------------------
+|block_timestamp1    |                    |
+-------------------------------------------
+|p2                  |  100000000001      |
+-------------------------------------------
+
+|utilities                     |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]        |(select utilities@32_0_ msg_sender1@188_0_)|
+|utilities[msg_sender1]        |0                                       |
+-------------------------------------------------------------------------
+|utilities[msg_sender2]        |(select (store utilities@32_0_  msg_sender2@198_0_  (- p2@200_0_ msg_value2@202_0_)) msg_sender2@198_0_)|
+|utilities[msg_sender2]        |1                                       |
+-------------------------------------------------------------------------
+|utilities[msg_sender3]        |(select (store utilities@32_0_  msg_sender2@198_0_  (- p2@200_0_ msg_value2@202_0_)) msg_sender3@208_0_)|
+|utilities[msg_sender3]        |0                                       |
+-------------------------------------------------------------------------
+|revenue                       |value                                   |
+-------------------------------------------------------------------------
+|highestBid*winners_count      |(* msg_value2@202_0_ (+ 0 1))           |
+|highestBid*winners_count      |100000000000                            |
+-------------------------------------------------------------------------
+
+|winner                        |value                                   |
+-------------------------------------------------------------------------
+|msg_sender2                   |msg_sender2@198_0_                      |
+|msg_sender2                   |"!1!"                                   |
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+|effecient violate check       |value                                   |
+-------------------------------------------------------------------------
+|optimal violate check         |value                                   |
+result context [5]: 
+Using Z3 solver to optimize value expression
+-------------------------------------------------------------------------
+|max expression                                    |value               |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2]     |99999999998         |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+--------------------------------OUTCOME-------------------------------------
+|truthful violate check        |value                                   |
+-------------------------------------------------------------------------
+|collusion violate check       |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1] + utilities[msg_sender2]|(let ((a!1 (store (store utilities@32_0_  msg_sender2@198_0_  (- p2@200_0_ msg_value2@202_0_)) msg_sender3@208_0_ (- p3@210_0_ msg_value3@212_0_)))) (+ (select a!1 msg_sender1@188_0_) (select a!1 msg_sender2@198_0_)))|
+|utilities[msg_sender1] + utilities[msg_sender2]|Colluded                                |
+-------------------------------------------
+|Colluded Case                            |
+-------------------------------------------
+|name                |value               |
+-------------------------------------------
+|p1                  |  100000000001      |
+-------------------------------------------
+|p3                  |  100000000001      |
+-------------------------------------------
+|msg_value2          |  100000000001      |
+-------------------------------------------
+|msg_value1          |  0                 |
+-------------------------------------------
+|msg_sender1         |  "!0!"             |
+-------------------------------------------
+|block_timestamp2    |                    |
+-------------------------------------------
+|extensionTime       |  1                 |
+-------------------------------------------
+|utilities           |                    |
+-------------------------------------------
+|msg_value3          |  100000000001      |
+-------------------------------------------
+|auctionStart        |                    |
+-------------------------------------------
+|msg_sender2         |  "!1!"             |
+-------------------------------------------
+|msg_sender3         |  "!2!"             |
+-------------------------------------------
+|block_timestamp3    |                    |
+-------------------------------------------
+|highestBid          |  0                 |
+-------------------------------------------
+|auctionEnd          |  0                 |
+-------------------------------------------
+|block_timestamp1    |                    |
+-------------------------------------------
+|p2                  |  100000000002      |
+-------------------------------------------
+
+|utilities                     |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]        |(select utilities@32_0_ msg_sender1@188_0_)|
+|utilities[msg_sender1]        |0                                       |
+-------------------------------------------------------------------------
+|utilities[msg_sender2]        |(select (store utilities@32_0_  msg_sender2@198_0_  (- p2@200_0_ msg_value2@202_0_)) msg_sender2@198_0_)|
+|utilities[msg_sender2]        |1                                       |
+-------------------------------------------------------------------------
+|utilities[msg_sender3]        |(select (store (store utilities@32_0_ msg_sender2@198_0_ (- p2@200_0_ msg_value2@202_0_))  msg_sender3@208_0_  (- p3@210_0_ msg_value3@212_0_)) msg_sender3@208_0_)|
+|utilities[msg_sender3]        |0                                       |
+-------------------------------------------------------------------------
+|revenue                       |value                                   |
+-------------------------------------------------------------------------
+|highestBid*winners_count      |(* msg_value2@202_0_ (+ 0 1 1))         |
+|highestBid*winners_count      |200000000002                            |
+-------------------------------------------------------------------------
+
+|winner                        |value                                   |
+-------------------------------------------------------------------------
+|msg_sender2                   |msg_sender2@198_0_                      |
+|msg_sender2                   |"!1!"                                   |
+-------------------------------------------------------------------------
+|msg_sender3                   |msg_sender3@208_0_                      |
+|msg_sender3                   |"!2!"                                   |
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+|effecient violate check       |value                                   |
+-------------------------------------------------------------------------
+|optimal violate check         |value                                   |
+result context [6]: 
+Using Z3 solver to optimize value expression
+-------------------------------------------------------------------------
+|max expression                                    |value               |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2]     |99999999999         |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+--------------------------------OUTCOME-------------------------------------
+|truthful violate check        |value                                   |
+-------------------------------------------------------------------------
+|collusion violate check       |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1] + utilities[msg_sender2]|(+ (select (store utilities@32_0_ msg_sender2@198_0_ (- p2@200_0_ msg_value2@202_0_))  msg_sender1@188_0_)  (select (store utilities@32_0_ msg_sender2@198_0_ (- p2@200_0_ msg_value2@202_0_))  msg_sender2@198_0_))|
+|utilities[msg_sender1] + utilities[msg_sender2]|Colluded                                |
+-------------------------------------------
+|Colluded Case                            |
+-------------------------------------------
+|name                |value               |
+-------------------------------------------
+|p1                  |  100000000001      |
+-------------------------------------------
+|p3                  |  100000000001      |
+-------------------------------------------
+|msg_value1          |  0                 |
+-------------------------------------------
+|msg_value2          |  100000000000      |
+-------------------------------------------
+|msg_sender1         |  "!0!"             |
+-------------------------------------------
+|block_timestamp2    |                    |
+-------------------------------------------
+|extensionTime       |  1                 |
+-------------------------------------------
+|utilities           |                    |
+-------------------------------------------
+|msg_value3          |  100000000001      |
+-------------------------------------------
+|auctionStart        |                    |
+-------------------------------------------
+|msg_sender2         |  "!1!"             |
+-------------------------------------------
+|msg_sender3         |  "!2!"             |
+-------------------------------------------
+|block_timestamp3    |                    |
+-------------------------------------------
+|highestBid          |  0                 |
+-------------------------------------------
+|auctionEnd          |  0                 |
+-------------------------------------------
+|block_timestamp1    |                    |
+-------------------------------------------
+|p2                  |  100000000001      |
+-------------------------------------------
+
+|utilities                     |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]        |(select utilities@32_0_ msg_sender1@188_0_)|
+|utilities[msg_sender1]        |0                                       |
+-------------------------------------------------------------------------
+|utilities[msg_sender2]        |(select (store utilities@32_0_  msg_sender2@198_0_  (- p2@200_0_ msg_value2@202_0_)) msg_sender2@198_0_)|
+|utilities[msg_sender2]        |1                                       |
+-------------------------------------------------------------------------
+|utilities[msg_sender3]        |(select (store utilities@32_0_  msg_sender2@198_0_  (- p2@200_0_ msg_value2@202_0_)) msg_sender3@208_0_)|
+|utilities[msg_sender3]        |0                                       |
+-------------------------------------------------------------------------
+|revenue                       |value                                   |
+-------------------------------------------------------------------------
+|highestBid*winners_count      |(* msg_value2@202_0_ (+ 0 1))           |
+|highestBid*winners_count      |100000000000                            |
+-------------------------------------------------------------------------
+
+|winner                        |value                                   |
+-------------------------------------------------------------------------
+|msg_sender2                   |msg_sender2@198_0_                      |
+|msg_sender2                   |"!1!"                                   |
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+|effecient violate check       |value                                   |
+-------------------------------------------------------------------------
+|optimal violate check         |value                                   |
+result context [7]: 
+Using Z3 solver to optimize value expression
+-------------------------------------------------------------------------
+|max expression                                    |value               |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2]     |199999999996        |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+--------------------------------OUTCOME-------------------------------------
+|truthful violate check        |value                                   |
+-------------------------------------------------------------------------
+|collusion violate check       |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1] + utilities[msg_sender2]|(let ((a!1 (store (store (store utilities@32_0_ msg_sender1@188_0_ (- p1@190_0_ msg_value1@192_0_))  msg_sender2@198_0_  (- p2@200_0_ msg_value2@202_0_)) msg_sender3@208_0_ (- p3@210_0_ msg_value3@212_0_)))) (+ (select a!1 msg_sender1@188_0_) (select a!1 msg_sender2@198_0_)))|
+|utilities[msg_sender1] + utilities[msg_sender2]|Colluded                                |
+-------------------------------------------
+|Colluded Case                            |
+-------------------------------------------
+|name                |value               |
+-------------------------------------------
+|p1                  |  100000000001      |
+-------------------------------------------
+|p3                  |  100000000002      |
+-------------------------------------------
+|msg_value1          |  100000000002      |
+-------------------------------------------
+|msg_value2          |  100000000002      |
+-------------------------------------------
+|msg_sender1         |  "!0!"             |
+-------------------------------------------
+|block_timestamp2    |  0                 |
+-------------------------------------------
+|extensionTime       |  2                 |
+-------------------------------------------
+|utilities           |                    |
+-------------------------------------------
+|msg_value3          |  100000000002      |
+-------------------------------------------
+|auctionStart        |  0                 |
+-------------------------------------------
+|msg_sender2         |  "!1!"             |
+-------------------------------------------
+|msg_sender3         |  "!2!"             |
+-------------------------------------------
+|block_timestamp3    |  0                 |
+-------------------------------------------
+|highestBid          |  0                 |
+-------------------------------------------
+|auctionEnd          |  1                 |
+-------------------------------------------
+|block_timestamp1    |  0                 |
+-------------------------------------------
+|p2                  |  100000000004      |
+-------------------------------------------
+
+|utilities                     |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]        |(select (store utilities@32_0_  msg_sender1@188_0_  (- p1@190_0_ msg_value1@192_0_)) msg_sender1@188_0_)|
+|utilities[msg_sender1]        |(- 1)                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender2]        |(select (store (store utilities@32_0_ msg_sender1@188_0_ (- p1@190_0_ msg_value1@192_0_))  msg_sender2@198_0_  (- p2@200_0_ msg_value2@202_0_)) msg_sender2@198_0_)|
+|utilities[msg_sender2]        |2                                       |
+-------------------------------------------------------------------------
+|utilities[msg_sender3]        |(let ((a!1 (store (store (store utilities@32_0_ msg_sender1@188_0_ (- p1@190_0_ msg_value1@192_0_))  msg_sender2@198_0_  (- p2@200_0_ msg_value2@202_0_)) msg_sender3@208_0_ (- p3@210_0_ msg_value3@212_0_)))) (select a!1 msg_sender3@208_0_))|
+|utilities[msg_sender3]        |0                                       |
+-------------------------------------------------------------------------
+|revenue                       |value                                   |
+-------------------------------------------------------------------------
+|highestBid*winners_count      |(* msg_value1@192_0_ (+ 0 1 1 1))       |
+|highestBid*winners_count      |300000000006                            |
+-------------------------------------------------------------------------
+
+|winner                        |value                                   |
+-------------------------------------------------------------------------
+|msg_sender1                   |msg_sender1@188_0_                      |
+|msg_sender1                   |"!0!"                                   |
+-------------------------------------------------------------------------
+|msg_sender2                   |msg_sender2@198_0_                      |
+|msg_sender2                   |"!1!"                                   |
+-------------------------------------------------------------------------
+|msg_sender3                   |msg_sender3@208_0_                      |
+|msg_sender3                   |"!2!"                                   |
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+|effecient violate check       |value                                   |
+-------------------------------------------------------------------------
+|optimal violate check         |value                                   |
+result context [8]: 
+Using Z3 solver to optimize value expression
+-------------------------------------------------------------------------
+|max expression                                    |value               |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2]     |199999999998        |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+--------------------------------OUTCOME-------------------------------------
+|truthful violate check        |value                                   |
+-------------------------------------------------------------------------
+|collusion violate check       |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1] + utilities[msg_sender2]|(let ((a!1 (store (store utilities@32_0_  msg_sender1@188_0_  (- p1@190_0_ msg_value1@192_0_)) msg_sender2@198_0_ (- p2@200_0_ msg_value2@202_0_)))) (+ (select a!1 msg_sender1@188_0_) (select a!1 msg_sender2@198_0_)))|
+|utilities[msg_sender1] + utilities[msg_sender2]|Colluded                                |
+-------------------------------------------
+|Colluded Case                            |
+-------------------------------------------
+|name                |value               |
+-------------------------------------------
+|p1                  |  100000000001      |
+-------------------------------------------
+|p3                  |  100000000003      |
+-------------------------------------------
+|msg_value1          |  100000000002      |
+-------------------------------------------
+|msg_value2          |  100000000002      |
+-------------------------------------------
+|msg_sender1         |  "!0!"             |
+-------------------------------------------
+|block_timestamp2    |  0                 |
+-------------------------------------------
+|extensionTime       |  2                 |
+-------------------------------------------
+|utilities           |                    |
+-------------------------------------------
+|msg_value3          |  100000000003      |
+-------------------------------------------
+|auctionStart        |  0                 |
+-------------------------------------------
+|msg_sender2         |  "!1!"             |
+-------------------------------------------
+|msg_sender3         |  "!2!"             |
+-------------------------------------------
+|block_timestamp3    |  0                 |
+-------------------------------------------
+|highestBid          |  0                 |
+-------------------------------------------
+|auctionEnd          |  1                 |
+-------------------------------------------
+|block_timestamp1    |  0                 |
+-------------------------------------------
+|p2                  |  100000000004      |
+-------------------------------------------
+
+|utilities                     |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]        |(select (store utilities@32_0_  msg_sender1@188_0_  (- p1@190_0_ msg_value1@192_0_)) msg_sender1@188_0_)|
+|utilities[msg_sender1]        |(- 1)                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender2]        |(select (store (store utilities@32_0_ msg_sender1@188_0_ (- p1@190_0_ msg_value1@192_0_))  msg_sender2@198_0_  (- p2@200_0_ msg_value2@202_0_)) msg_sender2@198_0_)|
+|utilities[msg_sender2]        |2                                       |
+-------------------------------------------------------------------------
+|utilities[msg_sender3]        |(select (store (store utilities@32_0_ msg_sender1@188_0_ (- p1@190_0_ msg_value1@192_0_))  msg_sender2@198_0_  (- p2@200_0_ msg_value2@202_0_)) msg_sender3@208_0_)|
+|utilities[msg_sender3]        |0                                       |
+-------------------------------------------------------------------------
+|revenue                       |value                                   |
+-------------------------------------------------------------------------
+|highestBid*winners_count      |(* msg_value1@192_0_ (+ 0 1 1))         |
+|highestBid*winners_count      |200000000004                            |
+-------------------------------------------------------------------------
+
+|winner                        |value                                   |
+-------------------------------------------------------------------------
+|msg_sender1                   |msg_sender1@188_0_                      |
+|msg_sender1                   |"!0!"                                   |
+-------------------------------------------------------------------------
+|msg_sender2                   |msg_sender2@198_0_                      |
+|msg_sender2                   |"!1!"                                   |
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+|effecient violate check       |value                                   |
+-------------------------------------------------------------------------
+|optimal violate check         |value                                   |
+result context [9]: 
+Using Z3 solver to optimize value expression
+-------------------------------------------------------------------------
+|max expression                                    |value               |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2]     |99999999998         |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+--------------------------------OUTCOME-------------------------------------
+|truthful violate check        |value                                   |
+-------------------------------------------------------------------------
+|collusion violate check       |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1] + utilities[msg_sender2]|(let ((a!1 (store (store utilities@32_0_  msg_sender1@188_0_  (- p1@190_0_ msg_value1@192_0_)) msg_sender3@208_0_ (- p3@210_0_ msg_value3@212_0_)))) (+ (select a!1 msg_sender1@188_0_) (select a!1 msg_sender2@198_0_)))|
+|utilities[msg_sender1] + utilities[msg_sender2]|Colluded                                |
+-------------------------------------------
+|Colluded Case                            |
+-------------------------------------------
+|name                |value               |
+-------------------------------------------
+|p1                  |  100000000002      |
+-------------------------------------------
+|p3                  |  100000000001      |
+-------------------------------------------
+|msg_value1          |  100000000001      |
+-------------------------------------------
+|msg_value2          |  100000000002      |
+-------------------------------------------
+|msg_sender1         |  "!0!"             |
+-------------------------------------------
+|block_timestamp2    |  0                 |
+-------------------------------------------
+|extensionTime       |  2                 |
+-------------------------------------------
+|utilities           |                    |
+-------------------------------------------
+|msg_value3          |  100000000001      |
+-------------------------------------------
+|auctionStart        |  0                 |
+-------------------------------------------
+|msg_sender2         |  "!1!"             |
+-------------------------------------------
+|msg_sender3         |  "!2!"             |
+-------------------------------------------
+|block_timestamp3    |  0                 |
+-------------------------------------------
+|highestBid          |  0                 |
+-------------------------------------------
+|auctionEnd          |  1                 |
+-------------------------------------------
+|block_timestamp1    |  0                 |
+-------------------------------------------
+|p2                  |  100000000001      |
+-------------------------------------------
+
+|utilities                     |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]        |(select (store utilities@32_0_  msg_sender1@188_0_  (- p1@190_0_ msg_value1@192_0_)) msg_sender1@188_0_)|
+|utilities[msg_sender1]        |1                                       |
+-------------------------------------------------------------------------
+|utilities[msg_sender2]        |(select (store utilities@32_0_  msg_sender1@188_0_  (- p1@190_0_ msg_value1@192_0_)) msg_sender2@198_0_)|
+|utilities[msg_sender2]        |0                                       |
+-------------------------------------------------------------------------
+|utilities[msg_sender3]        |(select (store (store utilities@32_0_ msg_sender1@188_0_ (- p1@190_0_ msg_value1@192_0_))  msg_sender3@208_0_  (- p3@210_0_ msg_value3@212_0_)) msg_sender3@208_0_)|
+|utilities[msg_sender3]        |0                                       |
+-------------------------------------------------------------------------
+|revenue                       |value                                   |
+-------------------------------------------------------------------------
+|highestBid*winners_count      |(* msg_value1@192_0_ (+ 0 1 1))         |
+|highestBid*winners_count      |200000000002                            |
+-------------------------------------------------------------------------
+
+|winner                        |value                                   |
+-------------------------------------------------------------------------
+|msg_sender1                   |msg_sender1@188_0_                      |
+|msg_sender1                   |"!0!"                                   |
+-------------------------------------------------------------------------
+|msg_sender3                   |msg_sender3@208_0_                      |
+|msg_sender3                   |"!2!"                                   |
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+|effecient violate check       |value                                   |
+-------------------------------------------------------------------------
+|optimal violate check         |value                                   |
+result context [10]: 
+Using Z3 solver to optimize value expression
+-------------------------------------------------------------------------
+|max expression                                    |value               |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2]     |99999999999         |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+--------------------------------OUTCOME-------------------------------------
+|truthful violate check        |value                                   |
+-------------------------------------------------------------------------
+|collusion violate check       |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1] + utilities[msg_sender2]|(+ (select (store utilities@32_0_ msg_sender1@188_0_ (- p1@190_0_ msg_value1@192_0_))  msg_sender1@188_0_)  (select (store utilities@32_0_ msg_sender1@188_0_ (- p1@190_0_ msg_value1@192_0_))  msg_sender2@198_0_))|
+|utilities[msg_sender1] + utilities[msg_sender2]|Colluded                                |
+-------------------------------------------
+|Colluded Case                            |
+-------------------------------------------
+|name                |value               |
+-------------------------------------------
+|p1                  |  100000000001      |
+-------------------------------------------
+|p3                  |  100000000001      |
+-------------------------------------------
+|msg_value1          |  100000000000      |
+-------------------------------------------
+|msg_value2          |  100000000001      |
+-------------------------------------------
+|msg_sender1         |  "!0!"             |
+-------------------------------------------
+|block_timestamp2    |  0                 |
+-------------------------------------------
+|extensionTime       |  2                 |
+-------------------------------------------
+|utilities           |                    |
+-------------------------------------------
+|msg_value3          |  100000000001      |
+-------------------------------------------
+|auctionStart        |  0                 |
+-------------------------------------------
+|msg_sender2         |  "!1!"             |
+-------------------------------------------
+|msg_sender3         |  "!2!"             |
+-------------------------------------------
+|block_timestamp3    |  0                 |
+-------------------------------------------
+|highestBid          |  0                 |
+-------------------------------------------
+|auctionEnd          |  1                 |
+-------------------------------------------
+|block_timestamp1    |  0                 |
+-------------------------------------------
+|p2                  |  100000000002      |
+-------------------------------------------
+
+|utilities                     |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]        |(select (store utilities@32_0_  msg_sender1@188_0_  (- p1@190_0_ msg_value1@192_0_)) msg_sender1@188_0_)|
+|utilities[msg_sender1]        |1                                       |
+-------------------------------------------------------------------------
+|utilities[msg_sender2]        |(select (store utilities@32_0_  msg_sender1@188_0_  (- p1@190_0_ msg_value1@192_0_)) msg_sender2@198_0_)|
+|utilities[msg_sender2]        |0                                       |
+-------------------------------------------------------------------------
+|utilities[msg_sender3]        |(select (store utilities@32_0_  msg_sender1@188_0_  (- p1@190_0_ msg_value1@192_0_)) msg_sender3@208_0_)|
+|utilities[msg_sender3]        |0                                       |
+-------------------------------------------------------------------------
+|revenue                       |value                                   |
+-------------------------------------------------------------------------
+|highestBid*winners_count      |(* msg_value1@192_0_ (+ 0 1))           |
+|highestBid*winners_count      |100000000000                            |
+-------------------------------------------------------------------------
+
+|winner                        |value                                   |
+-------------------------------------------------------------------------
+|msg_sender1                   |msg_sender1@188_0_                      |
+|msg_sender1                   |"!0!"                                   |
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+|effecient violate check       |value                                   |
+-------------------------------------------------------------------------
+|optimal violate check         |value                                   |
+result context [11]: 
+Using Z3 solver to optimize value expression
+-------------------------------------------------------------------------
+|max expression                                    |value               |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2]     |(- 1)               |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+--------------------------------OUTCOME-------------------------------------
+|truthful violate check        |value                                   |
+-------------------------------------------------------------------------
+|collusion violate check       |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1] + utilities[msg_sender2]|(+ (select (store utilities@32_0_ msg_sender2@198_0_ (- p2@200_0_ msg_value2@202_0_))  msg_sender1@188_0_)  (select (store utilities@32_0_ msg_sender2@198_0_ (- p2@200_0_ msg_value2@202_0_))  msg_sender2@198_0_))|
+|utilities[msg_sender1] + utilities[msg_sender2]|Noncolluded                             |
+-------------------------------------------------------------------------
+|effecient violate check       |value                                   |
+-------------------------------------------------------------------------
+|optimal violate check         |value                                   |
+result context [12]: 
+Using Z3 solver to optimize value expression
+-------------------------------------------------------------------------
+|max expression                                    |value               |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2]     |(- 1)               |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+--------------------------------OUTCOME-------------------------------------
+|truthful violate check        |value                                   |
+-------------------------------------------------------------------------
+|collusion violate check       |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1] + utilities[msg_sender2]|(+ (select (store utilities@32_0_ msg_sender2@198_0_ (- p2@200_0_ msg_value2@202_0_))  msg_sender1@188_0_)  (select (store utilities@32_0_ msg_sender2@198_0_ (- p2@200_0_ msg_value2@202_0_))  msg_sender2@198_0_))|
+|utilities[msg_sender1] + utilities[msg_sender2]|Noncolluded                             |
+-------------------------------------------------------------------------
+|effecient violate check       |value                                   |
+-------------------------------------------------------------------------
+|optimal violate check         |value                                   |
+result context [13]: 
+Using Z3 solver to optimize value expression
+-------------------------------------------------------------------------
+|max expression                                    |value               |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2]     |199999999996        |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+--------------------------------OUTCOME-------------------------------------
+|truthful violate check        |value                                   |
+-------------------------------------------------------------------------
+|collusion violate check       |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1] + utilities[msg_sender2]|(let ((a!1 (store (store (store utilities@32_0_ msg_sender1@188_0_ (- p1@190_0_ msg_value1@192_0_))  msg_sender2@198_0_  (- p2@200_0_ msg_value2@202_0_)) msg_sender3@208_0_ (- p3@210_0_ msg_value3@212_0_)))) (+ (select a!1 msg_sender1@188_0_) (select a!1 msg_sender2@198_0_)))|
+|utilities[msg_sender1] + utilities[msg_sender2]|Colluded                                |
+-------------------------------------------
+|Colluded Case                            |
+-------------------------------------------
+|name                |value               |
+-------------------------------------------
+|p1                  |  100000000001      |
+-------------------------------------------
+|p3                  |  100000000002      |
+-------------------------------------------
+|msg_value1          |  100000000002      |
+-------------------------------------------
+|msg_value2          |  100000000002      |
+-------------------------------------------
+|msg_sender1         |  "!0!"             |
+-------------------------------------------
+|block_timestamp2    |                    |
+-------------------------------------------
+|extensionTime       |  1                 |
+-------------------------------------------
+|utilities           |                    |
+-------------------------------------------
+|msg_value3          |  100000000002      |
+-------------------------------------------
+|auctionStart        |                    |
+-------------------------------------------
+|msg_sender2         |  "!1!"             |
+-------------------------------------------
+|msg_sender3         |  "!2!"             |
+-------------------------------------------
+|block_timestamp3    |                    |
+-------------------------------------------
+|highestBid          |  0                 |
+-------------------------------------------
+|auctionEnd          |  0                 |
+-------------------------------------------
+|block_timestamp1    |                    |
+-------------------------------------------
+|p2                  |  100000000004      |
+-------------------------------------------
+
+|utilities                     |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]        |(select (store utilities@32_0_  msg_sender1@188_0_  (- p1@190_0_ msg_value1@192_0_)) msg_sender1@188_0_)|
+|utilities[msg_sender1]        |(- 1)                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender2]        |(select (store (store utilities@32_0_ msg_sender1@188_0_ (- p1@190_0_ msg_value1@192_0_))  msg_sender2@198_0_  (- p2@200_0_ msg_value2@202_0_)) msg_sender2@198_0_)|
+|utilities[msg_sender2]        |2                                       |
+-------------------------------------------------------------------------
+|utilities[msg_sender3]        |(let ((a!1 (store (store (store utilities@32_0_ msg_sender1@188_0_ (- p1@190_0_ msg_value1@192_0_))  msg_sender2@198_0_  (- p2@200_0_ msg_value2@202_0_)) msg_sender3@208_0_ (- p3@210_0_ msg_value3@212_0_)))) (select a!1 msg_sender3@208_0_))|
+|utilities[msg_sender3]        |0                                       |
+-------------------------------------------------------------------------
+|revenue                       |value                                   |
+-------------------------------------------------------------------------
+|highestBid*winners_count      |(* msg_value1@192_0_ (+ 0 1 1 1))       |
+|highestBid*winners_count      |300000000006                            |
+-------------------------------------------------------------------------
+
+|winner                        |value                                   |
+-------------------------------------------------------------------------
+|msg_sender1                   |msg_sender1@188_0_                      |
+|msg_sender1                   |"!0!"                                   |
+-------------------------------------------------------------------------
+|msg_sender2                   |msg_sender2@198_0_                      |
+|msg_sender2                   |"!1!"                                   |
+-------------------------------------------------------------------------
+|msg_sender3                   |msg_sender3@208_0_                      |
+|msg_sender3                   |"!2!"                                   |
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+|effecient violate check       |value                                   |
+-------------------------------------------------------------------------
+|optimal violate check         |value                                   |
+result context [14]: 
+Using Z3 solver to optimize value expression
+-------------------------------------------------------------------------
+|max expression                                    |value               |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2]     |199999999998        |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+--------------------------------OUTCOME-------------------------------------
+|truthful violate check        |value                                   |
+-------------------------------------------------------------------------
+|collusion violate check       |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1] + utilities[msg_sender2]|(let ((a!1 (store (store utilities@32_0_  msg_sender1@188_0_  (- p1@190_0_ msg_value1@192_0_)) msg_sender2@198_0_ (- p2@200_0_ msg_value2@202_0_)))) (+ (select a!1 msg_sender1@188_0_) (select a!1 msg_sender2@198_0_)))|
+|utilities[msg_sender1] + utilities[msg_sender2]|Colluded                                |
+-------------------------------------------
+|Colluded Case                            |
+-------------------------------------------
+|name                |value               |
+-------------------------------------------
+|p1                  |  100000000001      |
+-------------------------------------------
+|p3                  |  100000000003      |
+-------------------------------------------
+|msg_value1          |  100000000002      |
+-------------------------------------------
+|msg_value2          |  100000000002      |
+-------------------------------------------
+|msg_sender1         |  "!0!"             |
+-------------------------------------------
+|block_timestamp2    |                    |
+-------------------------------------------
+|extensionTime       |  1                 |
+-------------------------------------------
+|utilities           |                    |
+-------------------------------------------
+|msg_value3          |  100000000003      |
+-------------------------------------------
+|auctionStart        |                    |
+-------------------------------------------
+|msg_sender2         |  "!1!"             |
+-------------------------------------------
+|msg_sender3         |  "!2!"             |
+-------------------------------------------
+|block_timestamp3    |                    |
+-------------------------------------------
+|highestBid          |  0                 |
+-------------------------------------------
+|auctionEnd          |  0                 |
+-------------------------------------------
+|block_timestamp1    |                    |
+-------------------------------------------
+|p2                  |  100000000004      |
+-------------------------------------------
+
+|utilities                     |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]        |(select (store utilities@32_0_  msg_sender1@188_0_  (- p1@190_0_ msg_value1@192_0_)) msg_sender1@188_0_)|
+|utilities[msg_sender1]        |(- 1)                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender2]        |(select (store (store utilities@32_0_ msg_sender1@188_0_ (- p1@190_0_ msg_value1@192_0_))  msg_sender2@198_0_  (- p2@200_0_ msg_value2@202_0_)) msg_sender2@198_0_)|
+|utilities[msg_sender2]        |2                                       |
+-------------------------------------------------------------------------
+|utilities[msg_sender3]        |(select (store (store utilities@32_0_ msg_sender1@188_0_ (- p1@190_0_ msg_value1@192_0_))  msg_sender2@198_0_  (- p2@200_0_ msg_value2@202_0_)) msg_sender3@208_0_)|
+|utilities[msg_sender3]        |0                                       |
+-------------------------------------------------------------------------
+|revenue                       |value                                   |
+-------------------------------------------------------------------------
+|highestBid*winners_count      |(* msg_value1@192_0_ (+ 0 1 1))         |
+|highestBid*winners_count      |200000000004                            |
+-------------------------------------------------------------------------
+
+|winner                        |value                                   |
+-------------------------------------------------------------------------
+|msg_sender1                   |msg_sender1@188_0_                      |
+|msg_sender1                   |"!0!"                                   |
+-------------------------------------------------------------------------
+|msg_sender2                   |msg_sender2@198_0_                      |
+|msg_sender2                   |"!1!"                                   |
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+|effecient violate check       |value                                   |
+-------------------------------------------------------------------------
+|optimal violate check         |value                                   |
+result context [15]: 
+Using Z3 solver to optimize value expression
+-------------------------------------------------------------------------
+|max expression                                    |value               |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2]     |99999999998         |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+--------------------------------OUTCOME-------------------------------------
+|truthful violate check        |value                                   |
+-------------------------------------------------------------------------
+|collusion violate check       |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1] + utilities[msg_sender2]|(let ((a!1 (store (store utilities@32_0_  msg_sender1@188_0_  (- p1@190_0_ msg_value1@192_0_)) msg_sender3@208_0_ (- p3@210_0_ msg_value3@212_0_)))) (+ (select a!1 msg_sender1@188_0_) (select a!1 msg_sender2@198_0_)))|
+|utilities[msg_sender1] + utilities[msg_sender2]|Colluded                                |
+-------------------------------------------
+|Colluded Case                            |
+-------------------------------------------
+|name                |value               |
+-------------------------------------------
+|p1                  |  100000000002      |
+-------------------------------------------
+|p3                  |  100000000001      |
+-------------------------------------------
+|msg_value1          |  100000000001      |
+-------------------------------------------
+|msg_value2          |  100000000002      |
+-------------------------------------------
+|msg_sender1         |  "!0!"             |
+-------------------------------------------
+|block_timestamp2    |                    |
+-------------------------------------------
+|extensionTime       |  1                 |
+-------------------------------------------
+|utilities           |                    |
+-------------------------------------------
+|msg_value3          |  100000000001      |
+-------------------------------------------
+|auctionStart        |                    |
+-------------------------------------------
+|msg_sender2         |  "!1!"             |
+-------------------------------------------
+|msg_sender3         |  "!2!"             |
+-------------------------------------------
+|block_timestamp3    |                    |
+-------------------------------------------
+|highestBid          |  0                 |
+-------------------------------------------
+|auctionEnd          |  0                 |
+-------------------------------------------
+|block_timestamp1    |                    |
+-------------------------------------------
+|p2                  |  100000000001      |
+-------------------------------------------
+
+|utilities                     |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]        |(select (store utilities@32_0_  msg_sender1@188_0_  (- p1@190_0_ msg_value1@192_0_)) msg_sender1@188_0_)|
+|utilities[msg_sender1]        |1                                       |
+-------------------------------------------------------------------------
+|utilities[msg_sender2]        |(select (store utilities@32_0_  msg_sender1@188_0_  (- p1@190_0_ msg_value1@192_0_)) msg_sender2@198_0_)|
+|utilities[msg_sender2]        |0                                       |
+-------------------------------------------------------------------------
+|utilities[msg_sender3]        |(select (store (store utilities@32_0_ msg_sender1@188_0_ (- p1@190_0_ msg_value1@192_0_))  msg_sender3@208_0_  (- p3@210_0_ msg_value3@212_0_)) msg_sender3@208_0_)|
+|utilities[msg_sender3]        |0                                       |
+-------------------------------------------------------------------------
+|revenue                       |value                                   |
+-------------------------------------------------------------------------
+|highestBid*winners_count      |(* msg_value1@192_0_ (+ 0 1 1))         |
+|highestBid*winners_count      |200000000002                            |
+-------------------------------------------------------------------------
+
+|winner                        |value                                   |
+-------------------------------------------------------------------------
+|msg_sender1                   |msg_sender1@188_0_                      |
+|msg_sender1                   |"!0!"                                   |
+-------------------------------------------------------------------------
+|msg_sender3                   |msg_sender3@208_0_                      |
+|msg_sender3                   |"!2!"                                   |
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+|effecient violate check       |value                                   |
+-------------------------------------------------------------------------
+|optimal violate check         |value                                   |
+result context [16]: 
+Using Z3 solver to optimize value expression
+-------------------------------------------------------------------------
+|max expression                                    |value               |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2]     |99999999999         |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+--------------------------------OUTCOME-------------------------------------
+|truthful violate check        |value                                   |
+-------------------------------------------------------------------------
+|collusion violate check       |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1] + utilities[msg_sender2]|(+ (select (store utilities@32_0_ msg_sender1@188_0_ (- p1@190_0_ msg_value1@192_0_))  msg_sender1@188_0_)  (select (store utilities@32_0_ msg_sender1@188_0_ (- p1@190_0_ msg_value1@192_0_))  msg_sender2@198_0_))|
+|utilities[msg_sender1] + utilities[msg_sender2]|Colluded                                |
+-------------------------------------------
+|Colluded Case                            |
+-------------------------------------------
+|name                |value               |
+-------------------------------------------
+|p1                  |  100000000001      |
+-------------------------------------------
+|p3                  |  100000000001      |
+-------------------------------------------
+|msg_value1          |  100000000000      |
+-------------------------------------------
+|msg_value2          |  100000000001      |
+-------------------------------------------
+|msg_sender1         |  "!0!"             |
+-------------------------------------------
+|block_timestamp2    |                    |
+-------------------------------------------
+|extensionTime       |  1                 |
+-------------------------------------------
+|utilities           |                    |
+-------------------------------------------
+|msg_value3          |  100000000001      |
+-------------------------------------------
+|auctionStart        |                    |
+-------------------------------------------
+|msg_sender2         |  "!1!"             |
+-------------------------------------------
+|msg_sender3         |  "!2!"             |
+-------------------------------------------
+|block_timestamp3    |                    |
+-------------------------------------------
+|highestBid          |  0                 |
+-------------------------------------------
+|auctionEnd          |  0                 |
+-------------------------------------------
+|block_timestamp1    |                    |
+-------------------------------------------
+|p2                  |  100000000002      |
+-------------------------------------------
+
+|utilities                     |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]        |(select (store utilities@32_0_  msg_sender1@188_0_  (- p1@190_0_ msg_value1@192_0_)) msg_sender1@188_0_)|
+|utilities[msg_sender1]        |1                                       |
+-------------------------------------------------------------------------
+|utilities[msg_sender2]        |(select (store utilities@32_0_  msg_sender1@188_0_  (- p1@190_0_ msg_value1@192_0_)) msg_sender2@198_0_)|
+|utilities[msg_sender2]        |0                                       |
+-------------------------------------------------------------------------
+|utilities[msg_sender3]        |(select (store utilities@32_0_  msg_sender1@188_0_  (- p1@190_0_ msg_value1@192_0_)) msg_sender3@208_0_)|
+|utilities[msg_sender3]        |0                                       |
+-------------------------------------------------------------------------
+|revenue                       |value                                   |
+-------------------------------------------------------------------------
+|highestBid*winners_count      |(* msg_value1@192_0_ (+ 0 1))           |
+|highestBid*winners_count      |100000000000                            |
+-------------------------------------------------------------------------
+
+|winner                        |value                                   |
+-------------------------------------------------------------------------
+|msg_sender1                   |msg_sender1@188_0_                      |
+|msg_sender1                   |"!0!"                                   |
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+|effecient violate check       |value                                   |
+-------------------------------------------------------------------------
+|optimal violate check         |value                                   |
+result context [17]: 
+Using Z3 solver to optimize value expression
+-------------------------------------------------------------------------
+|max expression                                    |value               |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2]     |(- 1)               |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+--------------------------------OUTCOME-------------------------------------
+|truthful violate check        |value                                   |
+-------------------------------------------------------------------------
+|collusion violate check       |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1] + utilities[msg_sender2]|(+ (select (store utilities@32_0_ msg_sender2@198_0_ (- p2@200_0_ msg_value2@202_0_))  msg_sender1@188_0_)  (select (store utilities@32_0_ msg_sender2@198_0_ (- p2@200_0_ msg_value2@202_0_))  msg_sender2@198_0_))|
+|utilities[msg_sender1] + utilities[msg_sender2]|Noncolluded                             |
+-------------------------------------------------------------------------
+|effecient violate check       |value                                   |
+-------------------------------------------------------------------------
+|optimal violate check         |value                                   |
+result context [18]: 
+Using Z3 solver to optimize value expression
+-------------------------------------------------------------------------
+|max expression                                    |value               |
+-------------------------------------------------------------------------
+|utilities[msg_sender1]+utilities[msg_sender2]     |(- 1)               |
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+--------------------------------OUTCOME-------------------------------------
+|truthful violate check        |value                                   |
+-------------------------------------------------------------------------
+|collusion violate check       |value                                   |
+-------------------------------------------------------------------------
+|utilities[msg_sender1] + utilities[msg_sender2]|(+ (select (store utilities@32_0_ msg_sender2@198_0_ (- p2@200_0_ msg_value2@202_0_))  msg_sender1@188_0_)  (select (store utilities@32_0_ msg_sender2@198_0_ (- p2@200_0_ msg_value2@202_0_))  msg_sender2@198_0_))|
+|utilities[msg_sender1] + utilities[msg_sender2]|Noncolluded                             |
+-------------------------------------------------------------------------
+|effecient violate check       |value                                   |
+-------------------------------------------------------------------------
+|optimal violate check         |value                                   |
