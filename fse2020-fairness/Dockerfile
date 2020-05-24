@@ -84,3 +84,5 @@ RUN \
 	  gcc \
           g++ \
           python 
+#entrypoint
+CMD["bash", "./script/demo.sh"]
