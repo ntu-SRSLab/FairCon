@@ -63,7 +63,7 @@ COPY   smartcontract smartcontract
 COPY   source source 
 RUN \
    cd source/faircon &&\
-   cd build &&\
+   mkdir -p build && cd build &&\
    rm -rf * &&\
    cmake .. && make 
 # remove preinstalled softwares
