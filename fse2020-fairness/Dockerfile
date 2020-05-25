@@ -60,10 +60,10 @@ RUN \
 WORKDIR /home/fairness
 RUN \
     git clone https://github.com/Franklinliu/Artifacts.git &&\
-    mv Artifacts/fse2020-fairness/program program &&\
-    mv Artifacts/fse2020-fairness/smartcontract smartcontract &&\
-    mv Artifacts/fse2020-fairness/source source &&\
-    mv Artifacts/fse2020-fairness/script script &&\
+    cp -rf Artifacts/fse2020-fairness/program program &&\
+    cp -rf Artifacts/fse2020-fairness/smartcontract smartcontract &&\
+    cp -rf Artifacts/fse2020-fairness/source source &&\
+    cp -rf Artifacts/fse2020-fairness/script script &&\
     rm -rf Artifacts
 
 RUN \
