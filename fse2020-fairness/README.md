@@ -1,11 +1,13 @@
-###Quick Start
+### Quick Start
 
-# pull docker
-```
- sudo docker pull liuyedocker/fse2020-faircon
+#### pull docker
+
+```bash
+docker pull liuyedocker/fse2020-faircon
 ```
 
-# run demo case
-```
- sudo docker run --name faircon -it liuyedocker/fse2020-faircon
+#### run demo case
+
+```bash
+docker run --name faircon -it liuyedocker/fse2020-faircon
 ```
