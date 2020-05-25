@@ -62,8 +62,8 @@ RUN \
     git clone https://github.com/Franklinliu/Artifacts.git &&\
     cp -rf Artifacts/fse2020-fairness/program program &&\
     cp -rf Artifacts/fse2020-fairness/smartcontract smartcontract &&\
-    cp -rf Artifacts/fse2020-fairness/source source &&\
     cp -rf Artifacts/fse2020-fairness/script script &&\
+    cp -rf Artifacts/fse2020-fairness/source source &&\
     rm -rf Artifacts
 
 RUN \
