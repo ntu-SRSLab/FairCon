@@ -1,4 +1,5 @@
 # rm temporary files
+.DS_Store
 .*.sw*
 .*.*.sw*
 *.sw*
