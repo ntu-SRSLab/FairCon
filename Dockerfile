@@ -76,7 +76,7 @@ COPY --from=0 /home/fairness /home/fairness
 RUN \
    ln -s /home/fairness/source/build/solse/faircon /usr/bin/faircon &&\
    rm -rf /home/fairness/source
-
+WORKDIR /home/fairness
 #entrypoint
 CMD ["bash", "./scripts/demo.sh"]
 
