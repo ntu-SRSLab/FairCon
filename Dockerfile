@@ -67,16 +67,9 @@ RUN \
     cd source &&\
     mkdir -p build && cd build &&\
     rm -rf * &&\
-    cmake .. && make 
+    cmake .. && make  &&
+   ln -s /home/fairness/source/build/solse/faircon /usr/bin/faircon 
 
-# minimize the docker image size
-FROM ubuntu:bionic
-
-COPY --from=0 /home/fairness /home/fairness
-RUN \
-   ln -s /home/fairness/source/build/solse/faircon /usr/bin/faircon &&\
-   rm -rf /home/fairness/source
-WORKDIR /home/fairness
 #entrypoint
 CMD ["bash", "./scripts/demo.sh"]
 
