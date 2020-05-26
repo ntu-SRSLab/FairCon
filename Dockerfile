@@ -63,14 +63,11 @@ RUN \
     cp -rf FairCon/contracts contract &&\
     cp -rf FairCon/scripts script &&\
     cp -rf FairCon/src source &&\
-    rm -rf FairCon 
-
-RUN \
-   cd source &&\
-   mkdir -p build && cd build &&\
-   rm -rf * &&\
-   cmake .. && make &&\
-   ln -s /home/fairness/source/build/solse/faircon /usr/bin/faircon 
+    rm -rf FairCon &&\
+    cd source &&\
+    mkdir -p build && cd build &&\
+    rm -rf * &&\
+    cmake .. && make 
 
 # minimize the docker image size
 FROM ubuntu:bionic
