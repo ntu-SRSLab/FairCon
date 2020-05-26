@@ -67,7 +67,7 @@ RUN \
     cd source &&\
     mkdir -p build && cd build &&\
     rm -rf * &&\
-    cmake .. && make  &&
+    cmake .. && make  &&\
    ln -s /home/fairness/source/build/solse/faircon /usr/bin/faircon 
 
 #entrypoint
