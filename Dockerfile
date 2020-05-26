@@ -61,7 +61,7 @@ WORKDIR /home/fairness
 RUN \
     git clone https://github.com/Franklinliu/FairCon.git &&\
     cp -rf FairCon/contracts contract &&\
-    cp -rf FairCon/script script &&\
+    cp -rf FairCon/scripts script &&\
     cp -rf FairCon/src source &&\
     rm -rf FairCon 
 
