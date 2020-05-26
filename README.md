@@ -61,7 +61,25 @@ to
 docker run --name faircon -it liuyedocker/fse2020-faircon
 ```
 The log would be :
-![Drag Racing](fullpropertychecking.png)
-![Drag Racing](time.png)
+![Drag Racing](CryptoRomeLog.png)
+![Drag Racing](CryptoRomeLogReport.png)
 
 Aboved shows the sample output: four counterexamples are found against the Truthfulness, Collusion-freeness, Optimality and Efficiency.  The time spent on model extraction and property checking are also included in the report.
+
+#### 3. analyze the truthfulness property shown in log
+
+__truthfulness : NO__
+```
+   bidder "" can get more utility by cheating in the auction
+```
+|bidder|truthful bid|truthful utility|untruthful bid|untruthful utility|
+|----------------------|-----------------|-------------|----------|---------|
+|""| 100000000001| 0| 100000000000| 1|
+
+
+__existing  truthful scenario__:
+| bidder   |    bid      | valuation    | utility  | price        | allocation |
+|----|----|----|----|--|---|
+|""  | 100000000001 | 100000000001 | 0       | 100000000001 | true       |
+|"\x10" | 109999999999 | 109999999999 |  0       | 100000000001 | false      |
+| "\x00" | 109999999999 | 109999999999 | 0       | 100000000001 | false   |
