@@ -1,0 +1,11 @@
+name,construction_time,checking_time,truth_violate,collusion_violate,efficient_violate
+"/home/liuye/fairness/voting-0-1/Association-0xd20a1225cf7410616a5a826bffbef4cd22019030.sol
+",64.96,0.37,0,0,0
+"/home/liuye/fairness/voting-0-1/Ballot-0xfce2e88f90927d5e5a539f1c223a6c6eeadb6cff.sol
+",69.73,0.81,0,0,0,0
+"/home/liuye/fairness/voting-0-1/Ballot.sol
+",126.14, 0.48,0,0,0
+"/home/liuye/fairness/voting-0-1/HIDERA-0x96906c50c41b3252279c3e2cddc4a59493aadace.sol
+",52.23,0.15,0,0,0
+"/home/liuye/fairness/voting-0-1/SBIBank-0x28aC77611bf3ae7B776AC7ecd79119D3C161574D.sol
+",56.59,0.64,0,0,0

@@ -60,8 +60,8 @@ RUN \
 WORKDIR /home/fairness
 RUN \
     git clone https://github.com/Franklinliu/FairCon.git &&\
-    cp -rf FairCon/contracts contract &&\
-    cp -rf FairCon/scripts script &&\
+    cp -rf FairCon/contracts contracts &&\
+    cp -rf FairCon/scripts scripts &&\
     cp -rf FairCon/src source &&\
     rm -rf FairCon 
 
@@ -81,5 +81,5 @@ RUN \
    rm -rf /home/fairness/source
 
 #entrypoint
-CMD ["bash", "./script/demo.sh"]
+CMD ["bash", "./scripts/demo.sh"]
 
