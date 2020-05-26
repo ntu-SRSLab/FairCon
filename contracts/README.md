@@ -1,4 +1,6 @@
 
+# README
+
 #### 1. Smart contract used on the experiment 
 
 
@@ -20,3 +22,12 @@
 | |Ballot                    | [0xfce2e88f90927d5e5a539f1c223a6c6eeadb6cff](https://etherscan.io/address/0xfce2e88f90927d5e5a539f1c223a6c6eeadb6cff#code) |
 | |SBIBank                   | [0x28aC77611bf3ae7B776AC7ecd79119D3C161574D](https://etherscan.io/address/0x28aC77611bf3ae7B776AC7ecd79119D3C161574D#code) |
 | |Ballot-doc                | [Solidity Official Documentation](https://solidity.readthedocs.io/en/v0.6.3/solidity-by-example.html#voting)     others    
+
+
+#### 2 Dataset description
+
+```
+contracts
+            > dataset-fse2020-log           (the dataset used in experiments presented in fse2020, containing test cases and runtime log)
+            > experiment                            (contain the test cases )
+```

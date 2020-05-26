@@ -1,0 +1,99 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{+WhiteSpace}{    }\PYG{k}{contract}\PYG{+WhiteSpace}{ }\PYG{n+ni}{CryptoRomeAuction}\PYG{+WhiteSpace}{ }\PYG{p}{\PYGZob{}}
+\PYG{+WhiteSpace}{          }\PYG{c+c1}{// ...}
+\PYG{+WhiteSpace}{          }\PYG{c+c1}{// highestBidder =  msg_sender}
+\PYG{+WhiteSpace}{         }\PYG{k+kt}{function}\PYG{+WhiteSpace}{ }\PYG{n+nv}{bid}\PYG{p}{(}\PYG{k+kt}{address}\PYG{+WhiteSpace}{ }\PYG{n+nv}{payable}\PYG{+WhiteSpace}{ }msg\PYGZus{}sender\PYG{p}{,}\PYG{+WhiteSpace}{ }\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{msg\PYGZus{}value}\PYG{p}{,}\PYG{+WhiteSpace}{ }\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{msg\PYGZus{}gas}\PYG{p}{,}\PYG{+WhiteSpace}{ }\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{block\PYGZus{}timestamp}\PYG{p}{)}\PYG{+WhiteSpace}{ }\PYG{k+kt}{public}\PYG{+WhiteSpace}{ }\PYG{k+kt}{payable}\PYG{p}{\PYGZob{}}
+\PYG{+WhiteSpace}{            }\PYG{k+kt}{require}\PYG{p}{(}block\PYGZus{}timestamp\PYG{+WhiteSpace}{ }\PYG{o}{\PYGZgt{}=}\PYG{+WhiteSpace}{ }auctionStart\PYG{p}{);}
+\PYG{+WhiteSpace}{            }\PYG{k+kt}{require}\PYG{p}{(}block\PYGZus{}timestamp\PYG{+WhiteSpace}{ }\PYG{o}{\PYGZlt{}}\PYG{+WhiteSpace}{ }auctionEnd\PYG{p}{);}
+\PYG{+WhiteSpace}{            }\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{duration}\PYG{+WhiteSpace}{ }\PYG{o}{=}\PYG{+WhiteSpace}{ }\PYG{l+m+mDecimal}{10000000000}\PYG{p}{;}
+\PYG{+WhiteSpace}{            }\PYG{k+kt}{if}\PYG{+WhiteSpace}{ }\PYG{p}{(}msg\PYGZus{}value\PYG{+WhiteSpace}{ }\PYG{o}{\PYGZlt{}}\PYG{+WhiteSpace}{ }\PYG{p}{(}highestBid\PYG{+WhiteSpace}{ }\PYG{o}{+}\PYG{+WhiteSpace}{ }duration\PYG{p}{))\PYGZob{}}
+\PYG{+WhiteSpace}{                }\PYG{k+kt}{return}\PYG{p}{;}
+\PYG{+WhiteSpace}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+WhiteSpace}{            }\PYG{k+kt}{if}\PYG{+WhiteSpace}{ }\PYG{p}{(}highestBid\PYG{+WhiteSpace}{ }\PYG{o}{!=}\PYG{+WhiteSpace}{ }\PYG{l+m+mDecimal}{0}\PYG{p}{)}\PYG{+WhiteSpace}{ }\PYG{p}{\PYGZob{}}
+\PYG{+WhiteSpace}{                }refunds\PYG{p}{[}highestBidder\PYG{p}{]}\PYG{+WhiteSpace}{ }\PYG{o}{+=}\PYG{+WhiteSpace}{ }highestBid\PYG{p}{;}
+\PYG{+WhiteSpace}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+WhiteSpace}{            }\PYG{k+kt}{if}\PYG{+WhiteSpace}{ }\PYG{p}{(}block\PYGZus{}timestamp\PYG{+WhiteSpace}{ }\PYG{o}{\PYGZgt{}}\PYG{+WhiteSpace}{ }auctionEnd\PYG{+WhiteSpace}{ }\PYG{o}{\PYGZhy{}}\PYG{+WhiteSpace}{ }extensionTime\PYG{p}{)}\PYG{+WhiteSpace}{ }\PYG{p}{\PYGZob{}}
+\PYG{+WhiteSpace}{                }auctionEnd\PYG{+WhiteSpace}{ }\PYG{o}{=}\PYG{+WhiteSpace}{ }block\PYGZus{}timestamp\PYG{+WhiteSpace}{ }\PYG{o}{+}\PYG{+WhiteSpace}{ }extensionTime\PYG{p}{;}
+\PYG{+WhiteSpace}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+WhiteSpace}{            }highestBidder\PYG{+WhiteSpace}{ }\PYG{o}{=}\PYG{+WhiteSpace}{ }msg\PYGZus{}sender\PYG{p}{;}
+\PYG{+WhiteSpace}{            }highestBid\PYG{+WhiteSpace}{ }\PYG{o}{=}\PYG{+WhiteSpace}{ }msg\PYGZus{}value\PYG{p}{;}
+\PYG{+WhiteSpace}{            }highestBidIsCC\PYG{+WhiteSpace}{ }\PYG{o}{=}\PYG{+WhiteSpace}{ }\PYG{k+kt}{false}\PYG{p}{;}
+\PYG{+WhiteSpace}{            }highestBidderCC\PYG{+WhiteSpace}{ }\PYG{o}{=}\PYG{+WhiteSpace}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{;}
+\PYG{+WhiteSpace}{            }emit\PYG{+WhiteSpace}{ }Bid\PYG{p}{(}msg\PYGZus{}sender\PYG{p}{,}\PYG{+WhiteSpace}{ }msg\PYGZus{}value\PYG{p}{);}
+\PYG{+WhiteSpace}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+WhiteSpace}{        }\PYG{k+kt}{mapping}\PYG{p}{(}\PYG{k+kt}{address}\PYG{o}{=\PYGZgt{}}\PYG{k+kt}{uint}\PYG{p}{)}\PYG{+WhiteSpace}{ }utilities\PYG{p}{;}
+\PYG{+WhiteSpace}{        }\PYG{k+kt}{mapping}\PYG{p}{(}\PYG{k+kt}{address}\PYG{o}{=\PYGZgt{}}\PYG{k+kt}{uint}\PYG{p}{)}\PYG{+WhiteSpace}{ }benefits\PYG{p}{;}
+\PYG{+WhiteSpace}{        }\PYG{k+kt}{mapping}\PYG{p}{(}\PYG{k+kt}{address}\PYG{o}{=\PYGZgt{}}\PYG{k+kt}{uint}\PYG{p}{)}\PYG{+WhiteSpace}{ }payments\PYG{p}{;}
+\PYG{+WhiteSpace}{        }\PYG{c+c1}{// succinct rule}
+\PYG{+WhiteSpace}{        }\PYG{k+kt}{function}\PYG{+WhiteSpace}{ }\PYG{n+nv}{declare\PYGZus{}bidder}\PYG{p}{(}\PYG{k+kt}{address}\PYG{+WhiteSpace}{ }\PYG{n+nv}{bidder}\PYG{p}{,}\PYG{+WhiteSpace}{ }\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{bid\PYGZus{}price}\PYG{p}{,}\PYG{+WhiteSpace}{ }\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{valuation}\PYG{p}{)}\PYG{+WhiteSpace}{ }\PYG{k+kt}{public}\PYG{+WhiteSpace}{ }\PYG{p}{\PYGZob{}\PYGZcb{}}
+\PYG{+WhiteSpace}{        }\PYG{k+kt}{function}\PYG{+WhiteSpace}{ }\PYG{n+nv}{declare\PYGZus{}clearprice}\PYG{p}{(}\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{price}\PYG{p}{)}\PYG{+WhiteSpace}{ }\PYG{k+kt}{public}\PYG{+WhiteSpace}{ }\PYG{p}{\PYGZob{}\PYGZcb{}}
+\PYG{+WhiteSpace}{        }\PYG{k+kt}{function}\PYG{+WhiteSpace}{ }\PYG{n+nv}{declare\PYGZus{}allocation}\PYG{p}{(}\PYG{k+kt}{address}\PYG{+WhiteSpace}{ }\PYG{n+nv}{winner}\PYG{p}{)}\PYG{+WhiteSpace}{ }\PYG{k+kt}{public}\PYG{+WhiteSpace}{ }\PYG{p}{\PYGZob{}\PYGZcb{}}
+\PYG{+WhiteSpace}{        }\PYG{k+kt}{function}\PYG{+WhiteSpace}{ }\PYG{n+nv}{declare\PYGZus{}utility}\PYG{p}{(}\PYG{k+kt}{address}\PYG{+WhiteSpace}{ }\PYG{n+nv}{bidder}\PYG{p}{,}\PYG{+WhiteSpace}{ }\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{utility}\PYG{p}{)}\PYG{+WhiteSpace}{ }\PYG{k+kt}{public}\PYG{+WhiteSpace}{ }\PYG{p}{\PYGZob{}\PYGZcb{}}
+\PYG{+WhiteSpace}{        }\PYG{k+kt}{function}\PYG{+WhiteSpace}{ }\PYG{n+nv}{declare\PYGZus{}assumption}\PYG{p}{(}\PYG{k+kt}{bool}\PYG{+WhiteSpace}{ }\PYG{n+nv}{assump}\PYG{p}{)}\PYG{+WhiteSpace}{ }\PYG{k+kt}{public}\PYG{+WhiteSpace}{ }\PYG{p}{\PYGZob{}\PYGZcb{}}
+\PYG{+WhiteSpace}{        }\PYG{c+c1}{// type // - 0: truthful}
+\PYG{+WhiteSpace}{        }\PYG{c+c1}{// - 1: collusion-free}
+\PYG{+WhiteSpace}{        }\PYG{c+c1}{// - 2: efficient}
+\PYG{+WhiteSpace}{        }\PYG{c+c1}{// - 3: optimal}
+\PYG{+WhiteSpace}{        }\PYG{k+kt}{function}\PYG{+WhiteSpace}{ }\PYG{n+nv}{declare\PYGZus{}check}\PYG{p}{(}\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{check\PYGZus{}type}\PYG{p}{)}\PYG{+WhiteSpace}{ }\PYG{k+kt}{public}\PYG{+WhiteSpace}{ }\PYG{p}{\PYGZob{}\PYGZcb{}}
+\PYG{+WhiteSpace}{        }\PYG{c+c1}{// type}
+\PYG{+WhiteSpace}{        }\PYG{c+c1}{//  - 0 :  auction}
+\PYG{+WhiteSpace}{        }\PYG{c+c1}{//  - 1 :  voting}
+\PYG{+WhiteSpace}{        }\PYG{k+kt}{function}\PYG{+WhiteSpace}{ }\PYG{n+nv}{declare\PYGZus{}type}\PYG{p}{(}\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{check\PYGZus{}type}\PYG{p}{)}\PYG{+WhiteSpace}{ }\PYG{k+kt}{public}\PYG{+WhiteSpace}{ }\PYG{p}{\PYGZob{}\PYGZcb{}}
+\PYG{+WhiteSpace}{        }\PYG{c+c1}{// type}
+\PYG{+WhiteSpace}{        }\PYG{c+c1}{// - 0: Allocation -> Top bidder}
+\PYG{+WhiteSpace}{        }\PYG{c+c1}{// - 1: Transfer -> 1st-Price}
+\PYG{+WhiteSpace}{        }\PYG{c+c1}{// - 2: Transfer -> 2nd-Price}
+\PYG{+WhiteSpace}{        }\PYG{k+kt}{function}\PYG{+WhiteSpace}{ }\PYG{n+nv}{declare\PYGZus{}invariant}\PYG{p}{(}\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{check\PYGZus{}type}\PYG{p}{)}\PYG{+WhiteSpace}{ }\PYG{k+kt}{public}\PYG{p}{\PYGZob{}\PYGZcb{}}
+\PYG{+WhiteSpace}{        }\PYG{k+kt}{function}\PYG{+WhiteSpace}{ }\PYG{n+nv}{declare\PYGZus{}variable\PYGZus{}addr}\PYG{p}{(}\PYG{k+kt}{address}\PYG{+WhiteSpace}{ }\PYG{n+nv}{addr}\PYG{p}{)}\PYG{+WhiteSpace}{ }\PYG{k+kt}{public}\PYG{p}{\PYGZob{}\PYGZcb{}}
+\PYG{+WhiteSpace}{        }\PYG{k+kt}{function}\PYG{+WhiteSpace}{ }\PYG{n+nv}{declare\PYGZus{}variable\PYGZus{}uint}\PYG{p}{(}\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{n}\PYG{p}{)}\PYG{+WhiteSpace}{ }\PYG{k+kt}{public}\PYG{p}{\PYGZob{}\PYGZcb{}}
+\PYG{+WhiteSpace}{        }\PYG{k+kt}{function}\PYG{+WhiteSpace}{ }\PYG{n+nv}{declare\PYGZus{}smt\PYGZus{}uint}\PYG{p}{(}\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{n}\PYG{p}{)}\PYG{+WhiteSpace}{ }\PYG{k+kt}{public}\PYG{p}{\PYGZob{}\PYGZcb{}}
+
+\PYG{+WhiteSpace}{       }\PYG{k+kt}{function}\PYG{+WhiteSpace}{ }\PYG{n+nv}{\PYGZus{}Main\PYGZus{}}\PYG{p}{(}\PYG{k+kt}{address}\PYG{+WhiteSpace}{ }\PYG{n+nv}{payable}\PYG{+WhiteSpace}{ }msg\PYGZus{}sender1\PYG{p}{,}\PYG{+WhiteSpace}{ }\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{p1}\PYG{p}{,}\PYG{+WhiteSpace}{ }\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{msg\PYGZus{}value1}\PYG{p}{,}\PYG{+WhiteSpace}{ }\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{msg\PYGZus{}gas1}\PYG{p}{,}\PYG{+WhiteSpace}{ }\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{block\PYGZus{}timestamp1}\PYG{p}{,}\PYG{+WhiteSpace}{ }\PYG{k+kt}{address}\PYG{+WhiteSpace}{ }\PYG{n+nv}{payable}\PYG{+WhiteSpace}{ }msg\PYGZus{}sender2\PYG{p}{,}\PYG{+WhiteSpace}{ }\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{p2}\PYG{p}{,}\PYG{+WhiteSpace}{ }\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{msg\PYGZus{}value2}\PYG{p}{,}\PYG{+WhiteSpace}{ }\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{msg\PYGZus{}gas2}\PYG{p}{,}\PYG{+WhiteSpace}{ }\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{block\PYGZus{}timestamp2}\PYG{p}{,}\PYG{k+kt}{address}\PYG{+WhiteSpace}{ }\PYG{n+nv}{payable}\PYG{+WhiteSpace}{ }msg\PYGZus{}sender3\PYG{p}{,}\PYG{+WhiteSpace}{ }\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{p3}\PYG{p}{,}\PYG{+WhiteSpace}{ }\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{msg\PYGZus{}value3}\PYG{p}{,}\PYG{+WhiteSpace}{ }\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{msg\PYGZus{}gas3}\PYG{p}{,}\PYG{+WhiteSpace}{ }\PYG{k+kt}{uint}\PYG{+WhiteSpace}{ }\PYG{n+nv}{block\PYGZus{}timestamp3}\PYG{p}{)}\PYG{+WhiteSpace}{ }\PYG{k+kt}{public}\PYG{+WhiteSpace}{ }\PYG{p}{\PYGZob{}}
+\PYG{+WhiteSpace}{               }\PYG{k+kt}{require}\PYG{p}{(}\PYG{o}{!}\PYG{p}{(}msg\PYGZus{}sender1\PYG{o}{==}highestBidder\PYG{+WhiteSpace}{ }\PYG{err}{||}\PYG{+WhiteSpace}{ }msg\PYGZus{}sender2\PYG{+WhiteSpace}{ }\PYG{o}{==}\PYG{+WhiteSpace}{ }highestBidder\PYG{+WhiteSpace}{ }\PYG{err}{||}\PYG{+WhiteSpace}{ }msg\PYGZus{}sender3\PYG{+WhiteSpace}{ }\PYG{o}{==}\PYG{+WhiteSpace}{ }highestBidder\PYG{p}{));}
+\PYG{+WhiteSpace}{               }\PYG{k+kt}{require}\PYG{p}{(}\PYG{o}{!}\PYG{p}{(}msg\PYGZus{}sender1\PYG{o}{==}msg\PYGZus{}sender2\PYG{+WhiteSpace}{ }\PYG{err}{||}\PYG{+WhiteSpace}{ }msg\PYGZus{}sender1\PYG{+WhiteSpace}{ }\PYG{o}{==}\PYG{+WhiteSpace}{ }msg\PYGZus{}sender3\PYG{+WhiteSpace}{ }\PYG{err}{||}\PYG{+WhiteSpace}{ }msg\PYGZus{}sender2\PYG{+WhiteSpace}{ }\PYG{o}{==}\PYG{+WhiteSpace}{ }msg\PYGZus{}sender3\PYG{p}{));}
+\PYG{+WhiteSpace}{               }declare\PYGZus{}assumption\PYG{p}{(}extensionTime\PYG{+WhiteSpace}{ }\PYG{o}{\PYGZgt{}}\PYG{+WhiteSpace}{ }\PYG{l+m+mDecimal}{0}\PYG{p}{);}
+\PYG{+WhiteSpace}{               }declare\PYGZus{}assumption\PYG{p}{(}highestBid\PYG{o}{==}\PYG{l+m+mDecimal}{0}\PYG{p}{);}
+
+\PYG{+WhiteSpace}{               }declare\PYGZus{}assumption\PYG{p}{(}p1\PYG{o}{\PYGZgt{}}\PYG{l+m+mDecimal}{100000000000}\PYG{+WhiteSpace}{ }\PYG{err}{\PYGZam{}\PYGZam{}}\PYG{+WhiteSpace}{ }p1\PYG{o}{\PYGZlt{}}\PYG{+WhiteSpace}{ }\PYG{l+m+mDecimal}{200000000000}\PYG{p}{);}
+\PYG{+WhiteSpace}{               }declare\PYGZus{}assumption\PYG{p}{(}p2\PYG{o}{\PYGZgt{}}\PYG{l+m+mDecimal}{100000000000}\PYG{+WhiteSpace}{ }\PYG{err}{\PYGZam{}\PYGZam{}}\PYG{+WhiteSpace}{ }p2\PYG{o}{\PYGZlt{}}\PYG{+WhiteSpace}{ }\PYG{l+m+mDecimal}{200000000000}\PYG{p}{);}
+\PYG{+WhiteSpace}{               }declare\PYGZus{}assumption\PYG{p}{(}p3\PYG{o}{\PYGZgt{}}\PYG{l+m+mDecimal}{100000000000}\PYG{+WhiteSpace}{ }\PYG{err}{\PYGZam{}\PYGZam{}}\PYG{+WhiteSpace}{ }p3\PYG{o}{\PYGZlt{}}\PYG{+WhiteSpace}{ }\PYG{l+m+mDecimal}{200000000000}\PYG{p}{);}
+\PYG{+WhiteSpace}{               }declare\PYGZus{}assumption\PYG{p}{(}msg\PYGZus{}value1\PYG{o}{\PYGZgt{}}\PYG{l+m+mDecimal}{100000000000}\PYG{+WhiteSpace}{ }\PYG{err}{\PYGZam{}\PYGZam{}}\PYG{+WhiteSpace}{ }msg\PYGZus{}value1\PYG{o}{\PYGZlt{}}\PYG{+WhiteSpace}{ }\PYG{l+m+mDecimal}{200000000000}\PYG{p}{);}
+\PYG{+WhiteSpace}{               }declare\PYGZus{}assumption\PYG{p}{(}msg\PYGZus{}value2\PYG{o}{\PYGZgt{}}\PYG{l+m+mDecimal}{100000000000}\PYG{+WhiteSpace}{ }\PYG{err}{\PYGZam{}\PYGZam{}}\PYG{+WhiteSpace}{ }msg\PYGZus{}value2\PYG{o}{\PYGZlt{}}\PYG{+WhiteSpace}{ }\PYG{l+m+mDecimal}{200000000000}\PYG{p}{);}
+\PYG{+WhiteSpace}{               }declare\PYGZus{}assumption\PYG{p}{(}msg\PYGZus{}value3\PYG{o}{\PYGZgt{}}\PYG{l+m+mDecimal}{100000000000}\PYG{+WhiteSpace}{ }\PYG{err}{\PYGZam{}\PYGZam{}}\PYG{+WhiteSpace}{ }msg\PYGZus{}value3\PYG{o}{\PYGZlt{}}\PYG{+WhiteSpace}{ }\PYG{l+m+mDecimal}{200000000000}\PYG{p}{);}
+
+\PYG{+WhiteSpace}{               }declare\PYGZus{}assumption\PYG{p}{(}utilities\PYG{p}{[}msg\PYGZus{}sender1\PYG{p}{]}\PYG{+WhiteSpace}{ }\PYG{o}{==}\PYG{+WhiteSpace}{ }\PYG{l+m+mDecimal}{0}\PYG{p}{);}
+\PYG{+WhiteSpace}{               }declare\PYGZus{}assumption\PYG{p}{(}utilities\PYG{p}{[}msg\PYGZus{}sender2\PYG{p}{]}\PYG{+WhiteSpace}{ }\PYG{o}{==}\PYG{+WhiteSpace}{ }\PYG{l+m+mDecimal}{0}\PYG{p}{);}
+\PYG{+WhiteSpace}{               }declare\PYGZus{}assumption\PYG{p}{(}utilities\PYG{p}{[}msg\PYGZus{}sender3\PYG{p}{]}\PYG{+WhiteSpace}{ }\PYG{o}{==}\PYG{+WhiteSpace}{ }\PYG{l+m+mDecimal}{0}\PYG{p}{);}
+
+\PYG{+WhiteSpace}{               }declare\PYGZus{}assumption\PYG{p}{(}benefits\PYG{p}{[}msg\PYGZus{}sender1\PYG{p}{]}\PYG{+WhiteSpace}{ }\PYG{o}{==}\PYG{+WhiteSpace}{ }\PYG{l+m+mDecimal}{0}\PYG{p}{);}
+\PYG{+WhiteSpace}{               }declare\PYGZus{}assumption\PYG{p}{(}benefits\PYG{p}{[}msg\PYGZus{}sender2\PYG{p}{]}\PYG{+WhiteSpace}{ }\PYG{o}{==}\PYG{+WhiteSpace}{ }\PYG{l+m+mDecimal}{0}\PYG{p}{);}
+\PYG{+WhiteSpace}{               }declare\PYGZus{}assumption\PYG{p}{(}benefits\PYG{p}{[}msg\PYGZus{}sender3\PYG{p}{]}\PYG{+WhiteSpace}{ }\PYG{o}{==}\PYG{+WhiteSpace}{ }\PYG{l+m+mDecimal}{0}\PYG{p}{);}
+
+\PYG{+WhiteSpace}{               }declare\PYGZus{}assumption\PYG{p}{(}payments\PYG{p}{[}msg\PYGZus{}sender1\PYG{p}{]}\PYG{+WhiteSpace}{ }\PYG{o}{==}\PYG{+WhiteSpace}{ }\PYG{l+m+mDecimal}{0}\PYG{p}{);}
+\PYG{+WhiteSpace}{               }declare\PYGZus{}assumption\PYG{p}{(}payments\PYG{p}{[}msg\PYGZus{}sender2\PYG{p}{]}\PYG{+WhiteSpace}{ }\PYG{o}{==}\PYG{+WhiteSpace}{ }\PYG{l+m+mDecimal}{0}\PYG{p}{);}
+\PYG{+WhiteSpace}{               }declare\PYGZus{}assumption\PYG{p}{(}payments\PYG{p}{[}msg\PYGZus{}sender3\PYG{p}{]}\PYG{+WhiteSpace}{ }\PYG{o}{==}\PYG{+WhiteSpace}{ }\PYG{l+m+mDecimal}{0}\PYG{p}{);}
+
+\PYG{+WhiteSpace}{                }declare\PYGZus{}type\PYG{p}{(}\PYG{l+m+mDecimal}{0}\PYG{p}{);}
+\PYG{+WhiteSpace}{                }declare\PYGZus{}bidder\PYG{p}{(}msg\PYGZus{}sender1\PYG{p}{,}\PYG{+WhiteSpace}{ }msg\PYGZus{}value1\PYG{p}{,}\PYG{+WhiteSpace}{ }p1\PYG{p}{);}
+\PYG{+WhiteSpace}{                }declare\PYGZus{}bidder\PYG{p}{(}msg\PYGZus{}sender2\PYG{p}{,}\PYG{+WhiteSpace}{ }msg\PYGZus{}value2\PYG{p}{,}\PYG{+WhiteSpace}{ }p2\PYG{p}{);}
+\PYG{+WhiteSpace}{                }declare\PYGZus{}bidder\PYG{p}{(}msg\PYGZus{}sender3\PYG{p}{,}\PYG{+WhiteSpace}{ }msg\PYGZus{}value3\PYG{p}{,}\PYG{+WhiteSpace}{ }p3\PYG{p}{);}
+
+\PYG{+WhiteSpace}{               }\PYG{c+c1}{// each role claims the 'bid' action.}
+\PYG{+WhiteSpace}{                }bid\PYG{p}{(}msg\PYGZus{}sender1\PYG{p}{,}msg\PYGZus{}value1\PYG{p}{,}msg\PYGZus{}gas1\PYG{p}{,}block\PYGZus{}timestamp1\PYG{p}{);}
+\PYG{+WhiteSpace}{                }bid\PYG{p}{(}msg\PYGZus{}sender2\PYG{p}{,}msg\PYGZus{}value2\PYG{p}{,}msg\PYGZus{}gas2\PYG{p}{,}block\PYGZus{}timestamp2\PYG{p}{);}
+\PYG{+WhiteSpace}{                }bid\PYG{p}{(}msg\PYGZus{}sender3\PYG{p}{,}msg\PYGZus{}value3\PYG{p}{,}msg\PYGZus{}gas3\PYG{p}{,}block\PYGZus{}timestamp3\PYG{p}{);}
+
+\PYG{+WhiteSpace}{                }declare\PYGZus{}allocation\PYG{p}{(}highestBidder\PYG{p}{);}
+\PYG{+WhiteSpace}{                }declare\PYGZus{}clearprice\PYG{p}{(}highestBid\PYG{p}{);}
+
+\PYG{+WhiteSpace}{                }declare\PYGZus{}utility\PYG{p}{(}msg\PYGZus{}sender1\PYG{p}{,}\PYG{+WhiteSpace}{ }p1\PYG{o}{\PYGZhy{}}highestBid\PYG{p}{);}
+\PYG{+WhiteSpace}{                }declare\PYGZus{}utility\PYG{p}{(}msg\PYGZus{}sender2\PYG{p}{,}\PYG{+WhiteSpace}{ }p2\PYG{o}{\PYGZhy{}}highestBid\PYG{p}{);}
+\PYG{+WhiteSpace}{                }declare\PYGZus{}utility\PYG{p}{(}msg\PYGZus{}sender3\PYG{p}{,}\PYG{+WhiteSpace}{ }p3\PYG{o}{\PYGZhy{}}highestBid\PYG{p}{);}
+
+\PYG{+WhiteSpace}{                }declare\PYGZus{}check\PYG{p}{(}\PYG{l+m+mDecimal}{0}\PYG{p}{);}
+\PYG{+WhiteSpace}{                }declare\PYGZus{}check\PYG{p}{(}\PYG{l+m+mDecimal}{1}\PYG{p}{);}
+\PYG{+WhiteSpace}{                }declare\PYGZus{}check\PYG{p}{(}\PYG{l+m+mDecimal}{2}\PYG{p}{);}
+\PYG{+WhiteSpace}{                }declare\PYGZus{}check\PYG{p}{(}\PYG{l+m+mDecimal}{3}\PYG{p}{);}
+\PYG{+WhiteSpace}{          }\PYG{p}{\PYGZcb{}}
+\PYG{+WhiteSpace}{    }\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
