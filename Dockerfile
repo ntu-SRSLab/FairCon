@@ -59,30 +59,27 @@ RUN \
 
 WORKDIR /home/fairness
 RUN \
-    git clone https://github.com/Franklinliu/Artifacts.git &&\
-    cp -rf Artifacts/fse2020-fairness/program program &&\
-    cp -rf Artifacts/fse2020-fairness/smartcontract smartcontract &&\
-    cp -rf Artifacts/fse2020-fairness/script script &&\
-    cp -rf Artifacts/fse2020-fairness/source source &&\
-    rm -rf Artifacts
+    git clone https://github.com/Franklinliu/FairCon.git &&\
+    cp -rf FairCon/contracts contract &&\
+    cp -rf FairCon/script script &&\
+    cp -rf FairCon/src source &&\
+    rm -rf FairCon 
 
 RUN \
-   cd source/faircon &&\
+   cd source &&\
    mkdir -p build && cd build &&\
    rm -rf * &&\
    cmake .. && make &&\
-   ln -s /home/fairness/source/faircon/build/solse/faircon /usr/bin/faircon 
-  
-# remove preinstalled softwares
+   ln -s /home/fairness/source/build/solse/faircon /usr/bin/faircon 
+
+# minimize the docker image size
+FROM ubuntu:bionic
+
+COPY --from=0 /home/fairness /home/fairness
 RUN \
-   apt -y purge \
-          vim \
-          pwgen \
-          unzip \
-          git-core \
-          make  \
-	  gcc \
-          g++ \
-          python 
+   ln -s /home/fairness/source/build/solse/faircon /usr/bin/faircon &&\
+   rm -rf /home/fairness/source
+
 #entrypoint
 CMD ["bash", "./script/demo.sh"]
+
