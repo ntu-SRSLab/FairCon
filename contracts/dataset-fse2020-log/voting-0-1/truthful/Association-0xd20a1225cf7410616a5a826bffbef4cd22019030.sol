@@ -268,10 +268,9 @@ pragma solidity >=0.4.16;
 //         // Fire Events
 //         emit ProposalTallied(proposalNumber, yea - nay, quorum, p.proposalPassed);
 //     }
-
-   
 // }
 
+/* Simplified based on above */
 contract Rewrite{
     struct Vote {
         bool inSupport;

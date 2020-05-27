@@ -148,6 +148,7 @@ pragma solidity >=0.4.22 <0.7.0;
 //         winnerName_ = proposals[winningProposal()].name;
 //     }
 
+
 // }
 
 /* Simplified based on above */
@@ -217,8 +218,8 @@ contract Rewrite{
     function sse_minimize(uint a) public view {}
     function sse_truthful_violate_check(uint u, bool a, bool b) public view {}
     function sse_collusion_violate_check(uint u12, bool v1, bool v_1, bool v2, bool v_2) public view{}
-    function sse_efficient_expectation_register(bool allocation, bool other_allocation, uint benefit) public view {}
-    function sse_efficient_violate_check(uint benefit, bool allocation, bool other_allocation) public view {}
+    function sse_efficient_expectation_register(address allocation, address player, uint benefit) public view {}
+    function sse_efficient_violate_check(uint benefit, address allocation, address other_allocation) public view {}
     function sse_optimal_violate_check(uint benefit, address allocation, address other_allocation) public view {}
     function _Main_(address payable msg_sender1, bool p1, uint p1_value, uint p1_rv_value, bool msg_value1,
      address payable msg_sender2, bool p2, uint p2_value, uint p2_rv_value, bool msg_value2, 
@@ -229,11 +230,11 @@ contract Rewrite{
            require(!(msg_sender1==msg_sender4 || msg_sender2 == msg_sender4 || msg_sender3 == msg_sender4));
            require(!(msg_sender1==msg_sender5 || msg_sender2 == msg_sender5 || msg_sender3 == msg_sender5));
            require(!(msg_sender4==msg_sender5));
-           require(p1_value==1&&p1_value > p1_rv_value && p1_rv_value ==0);
-           require(p2_value==1&&p2_value > p2_rv_value && p2_rv_value ==0);
-           require(p3_value==1&&p3_value > p3_rv_value && p3_rv_value ==0);
-           require(p4_value==1&&p4_value > p4_rv_value && p4_rv_value ==0);
-           require(p5_value==1&&p5_value > p5_rv_value && p5_rv_value ==0);
+           require(p1_value > p1_rv_value && p1_rv_value > 0);
+           require(p2_value > p2_rv_value && p2_rv_value > 0);
+           require(p3_value > p3_rv_value && p3_rv_value > 0);
+           require(p4_value > p4_rv_value && p4_rv_value > 0);
+           require(p5_value > p5_rv_value && p5_rv_value > 0);
         
            uint winner;
            require(winner==100);
@@ -264,10 +265,10 @@ contract Rewrite{
         
         
         //    require(msg_value1!=p1);
-        //    require(msg_value2==p2);
-        //    require(msg_value3==p3);
-        //    require(msg_value4==p4);
-        //    require(msg_value5==p5);
+           require(msg_value2==p2);
+           require(msg_value3==p3);
+           require(msg_value4==p4);
+           require(msg_value5==p5);
 
            // new proposal first
            newProposal(2);
@@ -299,19 +300,12 @@ contract Rewrite{
             //execute Proposal
             winner = winningProposal();     
 
-            uint g_false;
-            require(g_false==0);
+
             if ((winner==1) == msg_value1){
                 if (msg_value1 == p1){
                     utilities[msg_sender1]  = p1_value;
                 }else{
                     utilities[msg_sender1]  = p1_rv_value;
-                }
-            }else{
-                if (msg_value1 == p1){
-                    g_false  =  g_false + p1_value;
-                }else{
-                    g_false  =  g_false + p1_rv_value;
                 }
             }
             if ((winner==1)  == msg_value2){
@@ -320,24 +314,12 @@ contract Rewrite{
                 }else{
                     utilities[msg_sender2]  = p2_rv_value;
                 }
-            }else{
-                if (msg_value2 == p2){
-                    g_false  =  g_false + p2_value;
-                }else{
-                    g_false  =  g_false + p2_rv_value;
-                }
             }
             if ((winner==1)  == msg_value3){
                 if (msg_value3 == p3){
                     utilities[msg_sender3]  = p3_value;
                 }else{
                     utilities[msg_sender3]  = p3_rv_value;
-                }
-            }else{
-                if (msg_value3 == p3){
-                    g_false  =  g_false + p3_value;
-                }else{
-                    g_false  =  g_false + p3_rv_value;
                 }
             }
             if ((winner==1)  == msg_value4){
@@ -346,24 +328,12 @@ contract Rewrite{
                 }else{
                     utilities[msg_sender4]  = p4_rv_value;
                 }
-            }else{
-                if (msg_value4 == p4){
-                    g_false  =  g_false + p4_value;
-                }else{
-                    g_false  =  g_false + p4_rv_value;
-                }
             }
             if ((winner==1)  == msg_value5){
                 if (msg_value5 == p5){
                     utilities[msg_sender5]  = p5_value;
                 }else{
                     utilities[msg_sender5]  = p5_rv_value;
-                }
-            }else{
-                if (msg_value5 == p5){
-                    g_false  =  g_false + p5_value;
-                }else{
-                    g_false  =  g_false + p5_rv_value;
                 }
             }
             sse_utility(utilities[msg_sender1]);
@@ -372,13 +342,7 @@ contract Rewrite{
             sse_utility(utilities[msg_sender4]);
             sse_utility(utilities[msg_sender5]);
 
-            sse_efficient_expectation_register((winner==1), !(winner==1), g_false);
-
-
-            sse_efficient_violate_check(utilities[msg_sender1] +
-                                        utilities[msg_sender2] + utilities[msg_sender3] + 
-                                        utilities[msg_sender4] + utilities[msg_sender5], 
-                                   (winner==1), !(winner==1));
+            sse_truthful_violate_check(utilities[msg_sender1],msg_value1, p1);
 
      }
 }

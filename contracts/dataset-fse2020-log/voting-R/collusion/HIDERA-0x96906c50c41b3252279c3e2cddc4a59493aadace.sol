@@ -842,7 +842,7 @@ contract Rewrite{
     function sse_maximize(uint a) public view {}
     function sse_minimize(uint a) public view {}
     function sse_truthful_violate_check(uint u, bool a, bool b) public view {}
-    function sse_collusion_violate_check(uint u12, uint v1, uint v_1, uint v2, uint v_2) public view{}
+    function sse_collusion_violate_check(uint u12, bool v1, bool v_1, bool v2, bool v_2) public view{}
     function sse_efficient_expectation_register(address allocation, address player, uint benefit) public view {}
     function sse_efficient_violate_check(uint benefit, address allocation, address other_allocation) public view {}
     function sse_optimal_violate_check(uint benefit, address allocation, address other_allocation) public view {}
@@ -855,12 +855,11 @@ contract Rewrite{
            require(!(msg_sender1==msg_sender4 || msg_sender2 == msg_sender4 || msg_sender3 == msg_sender4));
            require(!(msg_sender1==msg_sender5 || msg_sender2 == msg_sender5 || msg_sender3 == msg_sender5));
            require(!(msg_sender4==msg_sender5));
-           require(p1_value==1&&p1_value > p1_rv_value && p1_rv_value ==0);
-           require(p2_value==1&&p2_value > p2_rv_value && p2_rv_value ==0);
-           require(p3_value==1&&p3_value > p3_rv_value && p3_rv_value ==0);
-           require(p4_value==1&&p4_value > p4_rv_value && p4_rv_value ==0);
-           require(p5_value==1&&p5_value > p5_rv_value && p5_rv_value ==0);
-
+           require(p1_value > p1_rv_value && p1_rv_value > 0);
+           require(p2_value > p2_rv_value && p2_rv_value > 0);
+           require(p3_value > p3_rv_value && p3_rv_value > 0);
+           require(p4_value > p4_rv_value && p4_rv_value > 0);
+           require(p5_value > p5_rv_value && p5_rv_value > 0);
 
            // new proposal first
            int winner;
@@ -873,7 +872,7 @@ contract Rewrite{
            require(utilities[msg_sender5] == 0);
         
         //    require(msg_value1!=p1);
-           require(msg_value2==p2);
+        //    require(msg_value2==p2);
            require(msg_value3==p3);
            require(msg_value4==p4);
            require(msg_value5==p5);
@@ -945,6 +944,6 @@ contract Rewrite{
             sse_utility(utilities[msg_sender4]);
             sse_utility(utilities[msg_sender5]);
 
-            sse_truthful_violate_check(utilities[msg_sender1],msg_value1, p1);
+            sse_collusion_violate_check(utilities[msg_sender1],msg_value1, p1,msg_value2, p2);
     }
 }

@@ -605,7 +605,7 @@
 
 // }
 
-
+/* Simplified based on above */
 contract Rewrite{
   uint256 minPrice;
   uint256 highestBid;

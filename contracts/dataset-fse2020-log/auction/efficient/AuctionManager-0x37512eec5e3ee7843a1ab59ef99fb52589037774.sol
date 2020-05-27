@@ -1261,7 +1261,7 @@ pragma solidity >=0.4.21;
 //         }
 // }
 
-
+/* Simplified based on above */
 contract Rewrite{
     bool ended;
     uint256 percentageBidIncrease;

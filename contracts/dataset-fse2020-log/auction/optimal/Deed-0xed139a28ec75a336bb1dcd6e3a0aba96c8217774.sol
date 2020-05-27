@@ -605,7 +605,7 @@
 
 // }
 
-
+/* Simplified based on above */
 contract Rewrite{
   uint256 minPrice;
   uint256 highestBid;
@@ -725,51 +725,4 @@ contract Rewrite{
             sse_optimal_violate_check(payments[msg_sender1]+payments[msg_sender2]+payments[msg_sender3],winner,msg_sender2);
             sse_optimal_violate_check(payments[msg_sender1]+payments[msg_sender2]+payments[msg_sender3],winner,msg_sender3);
    }
-
-//   function unsealBid(bytes32 _hash, uint _value, bytes32 _salt) {
-//         bytes32 seal = shaBid(_hash, msg.sender, _value, _salt);
-//         Deed bid = sealedBids[msg.sender][seal];
-//         if (address(bid) == 0 ) throw;
-//         sealedBids[msg.sender][seal] = Deed(0);
-//         entry h = _entries[_hash];
-//         uint value = min(_value, bid.value());
-//         bid.setBalance(value, true);
-
-//         var auctionState = state(_hash);
-//         if(auctionState == Mode.Owned) {
-//             // Too late! Bidder loses their bid. Get's 0.5% back.
-//             bid.closeDeed(5);
-//             BidRevealed(_hash, msg.sender, value, 1);
-//         } else if(auctionState != Mode.Reveal) {
-//             // Invalid phase
-//             throw;
-//         } else if (value < minPrice || bid.creationDate() > h.registrationDate - revealPeriod) {
-//             // Bid too low or too late, refund 99.5%
-//             bid.closeDeed(995);
-//             BidRevealed(_hash, msg.sender, value, 0);
-//         } else if (value > h.highestBid) {
-//             // new winner
-//             // cancel the other bid, refund 99.5%
-//             if(address(h.deed) != 0) {
-//                 Deed previousWinner = h.deed;
-//                 previousWinner.closeDeed(995);
-//             }
-
-//             // set new winner
-//             // per the rules of a vickery auction, the value becomes the previous highestBid
-//             h.value = h.highestBid;  // will be zero if there's only 1 bidder
-//             h.highestBid = value;
-//             h.deed = bid;
-//             BidRevealed(_hash, msg.sender, value, 2);
-//         } else if (value > h.value) {
-//             // not winner, but affects second place
-//             h.value = value;
-//             bid.closeDeed(995);
-//             BidRevealed(_hash, msg.sender, value, 3);
-//         } else {
-//             // bid doesn't affect auction
-//             bid.closeDeed(995);
-//             BidRevealed(_hash, msg.sender, value, 4);
-//         }
-//     }
 }

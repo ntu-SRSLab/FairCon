@@ -312,7 +312,7 @@
 //         }
 //     }
 // }
-
+/* Simplified based on above */
 contract Rewrite{
   mapping(address=>uint256) userEtherOf;
   uint256 price;

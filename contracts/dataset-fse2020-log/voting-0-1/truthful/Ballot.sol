@@ -151,6 +151,7 @@ pragma solidity >=0.4.22 <0.7.0;
 
 // }
 
+/* Simplified based on above */
 contract Rewrite{
      // This declares a new complex type which will
     // be used for variables later.

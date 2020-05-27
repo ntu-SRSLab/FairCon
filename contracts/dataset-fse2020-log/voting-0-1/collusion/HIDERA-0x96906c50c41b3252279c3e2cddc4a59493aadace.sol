@@ -800,7 +800,7 @@ pragma solidity >=0.4.16;
 //         msg.sender.transfer(amount * sellPrice);          // sends ether to the seller. Its important to do this last to avoid recursion attacks
 //     }
 // }
-
+/* Simplified based on above */
 contract Rewrite{
     uint[] voteCount;
 

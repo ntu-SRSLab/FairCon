@@ -453,7 +453,7 @@ pragma solidity >=0.4.18;
 //   }
 // }
 
-
+/* Simplified based on above */
 contract Rewrite{
     uint[] voteCount;
 

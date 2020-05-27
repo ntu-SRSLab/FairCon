@@ -550,11 +550,11 @@ contract Rewrite{
            require(!(msg_sender1==msg_sender4 || msg_sender2 == msg_sender4 || msg_sender3 == msg_sender4));
            require(!(msg_sender1==msg_sender5 || msg_sender2 == msg_sender5 || msg_sender3 == msg_sender5));
            require(!(msg_sender4==msg_sender5));
-           require(p1_value==1&&p1_value > p1_rv_value && p1_rv_value ==0);
-           require(p2_value==1&&p2_value > p2_rv_value && p2_rv_value ==0);
-           require(p3_value==1&&p3_value > p3_rv_value && p3_rv_value ==0);
-           require(p4_value==1&&p4_value > p4_rv_value && p4_rv_value ==0);
-           require(p5_value==1&&p5_value > p5_rv_value && p5_rv_value ==0);
+           require(p1_value > p1_rv_value && p1_rv_value > 0);
+           require(p2_value > p2_rv_value && p2_rv_value > 0);
+           require(p3_value > p3_rv_value && p3_rv_value > 0);
+           require(p4_value > p4_rv_value && p4_rv_value > 0);
+           require(p5_value > p5_rv_value && p5_rv_value > 0);
 
            require(p1 == 1 || p1 == 2 || p1 == 3);
            require(p2 == 1 || p2 == 2 || p2 == 3);

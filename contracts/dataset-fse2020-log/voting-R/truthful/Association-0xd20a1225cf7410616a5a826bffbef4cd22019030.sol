@@ -268,8 +268,10 @@ pragma solidity >=0.4.16;
 //         // Fire Events
 //         emit ProposalTallied(proposalNumber, yea - nay, quorum, p.proposalPassed);
 //     }
- // }
- 
+
+   
+// }
+
 /* Simplified based on above */
 contract Rewrite{
     struct Vote {
@@ -296,13 +298,16 @@ contract Rewrite{
         proposal.votes[voteCount].inSupport =  supportsProposal;
         proposal.votes[voteCount].voter = msg_sender;
         proposal.voted[msg_sender] = true;
-        proposal.numberOfVotes = ++voteCount;
+        voteCount = voteCount + 1;
+        proposal.numberOfVotes = voteCount;
     }
     function executeProposal() public {
         uint quorum = 0;
         uint yea = 0;
         uint nay = 0;
-
+        require( quorum == 0);
+        require( yea == 0);
+        require( nay == 0);
         for (uint i = 0; i <  voteCount; ++i) {
             uint voteWeight = 1;
             quorum += voteWeight;
@@ -323,15 +328,15 @@ contract Rewrite{
     }
     mapping(address=>uint) utilities;
     mapping(address=>uint) benefits;
-    function sse_winner(address a) public view {}
+    function sse_winner(bool a) public view {}
     function sse_revenue(uint a) public view {}
     function sse_utility(uint a) public view {}
     function sse_maximize(uint a) public view {}
     function sse_minimize(uint a) public view {}
     function sse_truthful_violate_check(uint u, bool a, bool b) public view {}
-    function sse_collusion_violate_check(uint u12, bool v1, bool v_1, bool v2, bool v_2) public view{}
-    function sse_efficient_expectation_register(bool allocation, bool new_allocation, uint benefit) public view {}
-    function sse_efficient_violate_check(uint benefit, bool allocation, bool other_allocation) public view {}
+    function sse_collusion_violate_check(uint u12, uint v1, uint v_1, uint v2, uint v_2) public view{}
+    function sse_efficient_expectation_register(address allocation, address player, uint benefit) public view {}
+    function sse_efficient_violate_check(uint benefit, address allocation, address other_allocation) public view {}
     function sse_optimal_violate_check(uint benefit, address allocation, address other_allocation) public view {}
     function _Main_(address payable msg_sender1, bool p1, uint p1_value, uint p1_rv_value, bool msg_value1,
      address payable msg_sender2, bool p2, uint p2_value, uint p2_rv_value, bool msg_value2, 
@@ -342,12 +347,12 @@ contract Rewrite{
            require(!(msg_sender1==msg_sender4 || msg_sender2 == msg_sender4 || msg_sender3 == msg_sender4));
            require(!(msg_sender1==msg_sender5 || msg_sender2 == msg_sender5 || msg_sender3 == msg_sender5));
            require(!(msg_sender4==msg_sender5));
-           require(p1_value==1&&p1_value > p1_rv_value && p1_rv_value ==0);
-           require(p2_value==1&&p2_value > p2_rv_value && p2_rv_value ==0);
-           require(p3_value==1&&p3_value > p3_rv_value && p3_rv_value ==0);
-           require(p4_value==1&&p4_value > p4_rv_value && p4_rv_value ==0);
-           require(p5_value==1&&p5_value > p5_rv_value && p5_rv_value ==0);
-           
+           require(p1_value > p1_rv_value && p1_rv_value > 0);
+           require(p2_value > p2_rv_value && p2_rv_value > 0);
+           require(p3_value > p3_rv_value && p3_rv_value > 0);
+           require(p4_value > p4_rv_value && p4_rv_value > 0);
+           require(p5_value > p5_rv_value && p5_rv_value > 0);
+         
            require(voteCount==0);
            require(proposal.executed  == false);
 
@@ -360,14 +365,39 @@ contract Rewrite{
         
         
         //    require(msg_value1!=p1);
-        //    require(msg_value2==p2);
-        //    require(msg_value3==p3);
-        //    require(msg_value4==p4);
-        //    require(msg_value5==p5);
+           require(msg_value2==p2);
+           require(msg_value3==p3);
+           require(msg_value4==p4);
+           require(msg_value5==p5);
 
            // new proposal first
            newProposal();
            // votes
+        //    if (msg_value1==false){
+        //         vote(msg_sender1, false);
+        //    }else{
+        //         vote(msg_sender1, true);
+        //    }
+        //    if (msg_value2==false){
+        //         vote(msg_sender2, false);
+        //    }else{
+        //         vote(msg_sender2, true);
+        //    }
+        //    if (msg_value3==false){
+        //         vote(msg_sender3, false);
+        //    }else{
+        //         vote(msg_sender3, true);
+        //    }
+        //    if (msg_value4==false){
+        //         vote(msg_sender4, false);
+        //    }else{
+        //         vote(msg_sender4, true);
+        //    }
+        //    if (msg_value5==false){
+        //         vote(msg_sender5, false);
+        //    }else{
+        //         vote(msg_sender5, true);
+        //    }
            vote(msg_sender1, msg_value1);
            vote(msg_sender2, msg_value2);
            vote(msg_sender3, msg_value3);
@@ -375,11 +405,11 @@ contract Rewrite{
            vote(msg_sender5, msg_value5);  
            //execute Proposal
            executeProposal();     
+                  
+           assert(proposal.executed  == true);
 
-            
-            assert(proposal.executed  == true);
-
-            if (proposal.proposalPassed == msg_value1){
+       
+          if ((proposal.proposalPassed==true) == msg_value1){
                 if (msg_value1 == p1){
                     utilities[msg_sender1]  = p1_value;
                 }else{
@@ -400,14 +430,14 @@ contract Rewrite{
                     utilities[msg_sender3]  = p3_rv_value;
                 }
             }
-            if (proposal.proposalPassed == msg_value1){
+            if (proposal.proposalPassed == msg_value4){
                 if (msg_value1 == p4){
                     utilities[msg_sender4]  = p4_value;
                 }else{
                     utilities[msg_sender4]  = p4_rv_value;
                 }
             }
-            if (proposal.proposalPassed == msg_value1){
+            if (proposal.proposalPassed == msg_value5){
                 if (msg_value5 == p5){
                     utilities[msg_sender5]  = p5_value;
                 }else{
@@ -419,83 +449,9 @@ contract Rewrite{
             sse_utility(utilities[msg_sender3]);
             sse_utility(utilities[msg_sender4]);
             sse_utility(utilities[msg_sender5]);
+            sse_winner(proposal.proposalPassed);
 
-            uint g_true;
-            uint g_false;
-            require(g_true == 0);
-            require(g_false == 0);
-            if (proposal.proposalPassed == msg_value1){
-                if (msg_value1 == p1){
-                    g_true  = g_true + p1_value;
-                }else{
-                    g_true  = g_true + p1_value;
-                }
-            }else{
-                if (msg_value1 == p1){
-                    g_false  = g_false + p1_value;
-                }else{
-                    g_false  = g_false + p1_rv_value;
-                }
-            }
-            if (proposal.proposalPassed == msg_value2){
-                if (msg_value2 == p2){
-                    g_true  = g_true + p2_value;
-                }else{
-                    g_true  = g_true + p2_rv_value;
-                }
-            }else{
-                if (msg_value2 == p2){
-                    g_false  = g_false + p2_value;
-                }else{
-                    g_false  = g_false + p2_rv_value;
-                }
-            }
-            if (proposal.proposalPassed == msg_value3){
-                if (msg_value1 == p3){
-                    g_true  = g_true +  p3_value;
-                }else{
-                    g_true  = g_true +  p3_rv_value;
-                }
-            }else{
-                if (msg_value3 == p3){
-                    g_false  = g_false + p3_value;
-                }else{
-                    g_false  = g_false + p3_rv_value;
-                }
-            }
-            if (proposal.proposalPassed == msg_value1){
-                if (msg_value1 == p4){
-                    g_true  = g_true +  p4_value;
-                }else{
-                    g_true  = g_true +  p4_rv_value;
-                }
-            }else{
-                if (msg_value4 == p4){
-                    g_false  = g_false + p4_value;
-                }else{
-                    g_false  = g_false + p4_rv_value;
-                }
-            }
-            if (proposal.proposalPassed == msg_value1){
-                if (msg_value5 == p5){
-                    g_true  = g_true +  p5_value;
-                }else{
-                    g_true  = g_true +  p5_rv_value;
-                }
-            }else{
-                if (msg_value5 == p5){
-                    g_false  = g_false + p5_value;
-                }else{
-                    g_false  = g_false + p5_rv_value;
-                }
-            }
-            sse_efficient_expectation_register(proposal.proposalPassed, !proposal.proposalPassed, g_false);
-
-
-            sse_efficient_violate_check(utilities[msg_sender1] +
-                                        utilities[msg_sender2] + utilities[msg_sender3] + 
-                                        utilities[msg_sender4] + utilities[msg_sender5], 
-                                    proposal.proposalPassed, !proposal.proposalPassed);
+            sse_truthful_violate_check(utilities[msg_sender1],msg_value1, p1);
 
      }
 }

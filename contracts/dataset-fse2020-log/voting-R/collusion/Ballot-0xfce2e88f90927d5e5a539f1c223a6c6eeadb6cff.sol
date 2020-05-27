@@ -9,7 +9,8 @@ contract Ballot {
     }
     struct Proposal {
         uint voteCount;
-    } 
+    }
+
     address chairperson;
     mapping(address => Voter) voters;
     Proposal[] proposals;
@@ -86,11 +87,11 @@ contract Ballot {
            require(!(msg_sender1==msg_sender4 || msg_sender2 == msg_sender4 || msg_sender3 == msg_sender4));
            require(!(msg_sender1==msg_sender5 || msg_sender2 == msg_sender5 || msg_sender3 == msg_sender5));
            require(!(msg_sender4==msg_sender5));
-           require(p1_value==1&&p1_value > p1_rv_value && p1_rv_value ==0);
-           require(p2_value==1&&p2_value > p2_rv_value && p2_rv_value ==0);
-           require(p3_value==1&&p3_value > p3_rv_value && p3_rv_value ==0);
-           require(p4_value==1&&p4_value > p4_rv_value && p4_rv_value ==0);
-           require(p5_value==1&&p5_value > p5_rv_value && p5_rv_value ==0);
+           require(p1_value > p1_rv_value && p1_rv_value > 0);
+           require(p2_value > p2_rv_value && p2_rv_value > 0);
+           require(p3_value > p3_rv_value && p3_rv_value > 0);
+           require(p4_value > p4_rv_value && p4_rv_value > 0);
+           require(p5_value > p5_rv_value && p5_rv_value > 0);
 
            require(p1 ==0||p1==1);
            require(p2 ==0||p2==1);
@@ -113,22 +114,19 @@ contract Ballot {
            require(utilities[msg_sender4] == 0);
            require(utilities[msg_sender5] == 0);
         
-        
            require(voters[msg_sender1].weight == 1);
            require(voters[msg_sender2].weight == 1);
            require(voters[msg_sender3].weight == 1);
            require(voters[msg_sender4].weight == 1);
            require(voters[msg_sender5].weight == 1);
-
            require(voters[msg_sender1].voted == false);
            require(voters[msg_sender2].voted == false);
            require(voters[msg_sender3].voted == false);
            require(voters[msg_sender4].voted == false);
            require(voters[msg_sender5].voted == false);
-
+        
         //    require(msg_value1!=p1);
-        //    require(msg_value2==p2);
-           require(msg_value3==p3);
+       //    require(msg_value2==p2); require(msg_value3==p3);
            require(msg_value4==p4);
            require(msg_value5==p5);
 
@@ -190,8 +188,6 @@ contract Ballot {
             sse_utility(utilities[msg_sender4]);
             sse_utility(utilities[msg_sender5]);
             sse_winner(winner);
-
-            sse_collusion_violate_check(utilities[msg_sender1],msg_value1, p1, msg_value2, p2);
-
+            sse_collusion_violate_check(utilities[msg_sender1]+utilities[msg_sender2],msg_value1, p1, msg_value2, p2);
      }
 }

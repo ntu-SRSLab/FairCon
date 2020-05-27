@@ -350,7 +350,7 @@ contract AuctionMultipleGuaranteed is AuctionMultiple {
   }
 }
 */
-
+/* Simplified based on above */
 contract Rewrite{
     bool initialPrice;
     uint256 timestampEnd;
