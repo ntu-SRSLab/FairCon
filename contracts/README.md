@@ -24,10 +24,10 @@
 | |Ballot-doc                | [Solidity Official Documentation](https://solidity.readthedocs.io/en/v0.6.3/solidity-by-example.html#voting)     others    
 
 
-#### 2 Dataset description
+#### 2 Contracts description
 
-```
-contracts
-            > dataset-fse2020-log           (the dataset used in experiments presented in fse2020, containing test cases and runtime log)
-            > experiment                            (contain the test cases )
-```
+📦contracts
+ ┣ 📂dataset-fse2020-log　(__the dataset used  in fse2020, containing test cases and  log__)
+ ┃ ┗ 📜README.md
+ ┣ 📂experiment　　　    (__contain the test cases__ )
+ ┗ 📜README.md
