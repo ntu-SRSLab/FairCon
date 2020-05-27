@@ -4,8 +4,7 @@
 
 
 #### 1. Directory tree description
-
-
+```
 📦dataset-fse2020-log
  ┣ 📂auction
  ┃ ┣ 📂collusion
@@ -79,6 +78,7 @@
  ┃ ┃ ┣ 📜Association-0xd20a1225cf7410616a5a826bffbef4cd22019030.sol
  ┃ ┃ ┗ 📜....sol
  ┗ 📜README.md
+ ```
 
 | directrory | function | description|
 |---------|----------|-----------|
