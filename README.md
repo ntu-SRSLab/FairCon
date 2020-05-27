@@ -20,7 +20,7 @@ docker run --name faircon -it liuyedocker/fse2020-faircon
 ```
 docker run --name faircon -it liuyedocker/fse2020-faircon bash scripts/run_experiment.sh
 ```
-
+<!-- 
 ###  Customization
 
 #### 1. build docker image
@@ -40,7 +40,7 @@ docker run --name faircon -it fse2020-faircon
 
 ```
 docker run --name faircon -it fse2020-faircon bash scripts/run_experiment.sh
-```
+``` -->
 
 ###  Verification and Validation Process
 
@@ -78,6 +78,7 @@ __truthfulness : NO__
 
 
 __existing  truthful scenario__:
+
 | bidder   |    bid      | valuation    | utility  | price        | allocation |
 |----|----|----|----|--|---|
 |""  | 100000000001 | 100000000001 | 0       | 100000000001 | true       |
