@@ -75,14 +75,14 @@
  ┗ 📜 README.md
  ```
 
-| Directrory | Functions | Descriptions|
+| Directrories | Purposes | Descriptions |
 |---------|----------|-----------|
-| auction |  __property check__ on auctions | including cases and results|
-|invariant_auction|  __invariant testing__ on auctions| including cases|
-|performance_auction| __performance testing__ on auction |  including cases and results|
-|voting-R|  __property check__ on voting with __R__ valuation| including cases and results|
-|voting-0-1| __property check__ on voting with __0-1__ valuation | including cases and results|
-| result | __summary  experiment results__ | including raw result and its summary|
+| auction | Evaluate __property checking__ on auctions | Including cases and results|
+|invariant_auction| Evaluate __invariant testing__ on auctions| Including cases|
+|performance_auction| __Performance evaluation__ on auction |  Including cases and results|
+|voting-R|  Evaluate __property checking__ on voting with __R__ valuation | Including cases and results|
+|voting-0-1| Evaluate __property checking__ on voting with __0-1__ valuation | Including cases and results|
+| result | __Experiment results__ | Including raw result and summary|
 
 
 #### 2. Result Summaries
