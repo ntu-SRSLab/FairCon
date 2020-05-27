@@ -95,7 +95,7 @@
 Eg. __performance testing__ on CryptoRomeAuction
 |name                  |construction_time|checking_time|total_time|total|T  |C  |O  |E  |
 |----------------------|-----------------|-------------|----------|-----|---|---|---|---|
-|CryptoRomeAuction3.sol|8.10             |0.08         |8.18      |18   |1  |0  |1  |1  |
+|CryptoRomeAuction3.sol|8.10             |0.08         |8.18      |18   |1  |1  |1  |1  |
 |CryptoRomeAuction4.sol|29.59            |0.10         |29.69     |54   |1  |1  |1  |1  |
 |CryptoRomeAuction5.sol|106.34           |0.12         |106.46    |162  |1  |1  |1  |1  |
 |CryptoRomeAuction6.sol|378.10           |0.17         |378.27    |486  |1  |1  |1  |1  |
