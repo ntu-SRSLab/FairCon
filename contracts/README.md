@@ -1,10 +1,7 @@
-
-# README
-
-#### 1. Smart contract used on the experiment 
+#### 1. Smart contracts used in the experiment 
 
 
-| type                      | contract                  | Ethereum address & other           |
+| Type                      | Contract names                 | Retrived from           |
 | ------------------------- | ----------------------------------------------------------- | -------------------------------- |
 | Auction                   | Auction1   |                                                                                                               [0x5b566b473bb0ea8dc0fc6047dd623e5fa3b42307](https://etherscan.io/address/0x5b566b473bb0ea8dc0fc6047dd623e5fa3b42307#code) |
 |  |Auction2                  | [0x64cc1a7dfe15f69b2b5dbe80b4e40a51aaa7917c](https://etherscan.io/address/0x64cc1a7dfe15f69b2b5dbe80b4e40a51aaa7917c#code) |
@@ -24,11 +21,11 @@
 | |Ballot-doc                | [Solidity Official Documentation](https://solidity.readthedocs.io/en/v0.6.3/solidity-by-example.html#voting)     others    
 
 
-#### 2 Contracts description
+#### 2. Directory structures
 ```
-📦contracts
- ┣ 📂dataset-fse2020-log　(__the dataset used  in fse2020, containing test cases and  log__)
- ┃ ┗ 📜README.md
- ┣ 📂experiment　　　    (__contain the test cases__ )
- ┗ 📜README.md
+📦 contracts
+ ┣ 📂 dataset-fse2020-log　(dataset used in the FSE'20 paper, containing smart contracts and console logs)
+ ┃ ┗ 📜 README.md
+ ┣ 📂 experiment　　　      (subject smart contracts)
+ ┗ 📜 README.md
 ```
