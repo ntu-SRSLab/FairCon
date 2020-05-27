@@ -1,4 +1,4 @@
-#### 1. Directory tree description
+#### 1. Directory Structures
 ```
 📦 dataset-fse2020-log
  ┣ 📂 auction
