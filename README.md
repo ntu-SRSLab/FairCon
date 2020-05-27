@@ -249,14 +249,14 @@ variables
 * *Is the contract truthful?* **NO**
     * Reason: *bidder "\x01" can get more utility by not acting truthfully in the auction.*
 
-|Bidder|Truthful bid|Truthful utility|Untruthful bid|Untruthful utility|
-|----------------------|-----------------|-------------|----------|---------|
-|"\x01"| 100000000001| 0| 100000000000| 1|
+|Bidder |Truthful bid  |Truthful utility |Untruthful bid |Untruthful utility |
+|-------|--------------|-----------------|---------------|-------------------|
+|"\x01" | 100000000001 |               0 | 100000000000  |                 1 |
 
 * In contrast, a truthful bid look like this:
 
-| Bidder   |    Bid      | Valuation    | Utility  | Price        | Allocation |
-|----|----|----|----|--|---|
-|"\x01"  | 100000000001 | 100000000001 | 0       | 100000000001 | true       |
-|"\x10" | 109999999999 | 109999999999 |  0       | 100000000001 | false      |
-| "\x00" | 109999999999 | 109999999999 | 0       | 100000000001 | false   |
+| Bidder   |    Bid        | Valuation    | Utility | Price        | Allocation |
+|----------|---------------|--------------|---------|--------------|------------|
+| "\x01"   | 100000000001  | 100000000001 | 0       | 100000000001 | true       |
+| "\x10"   | 109999999999  | 109999999999 | 0       | 100000000001 | false      |
+| "\x00"   | 109999999999  | 109999999999 | 0       | 100000000001 | false      |
