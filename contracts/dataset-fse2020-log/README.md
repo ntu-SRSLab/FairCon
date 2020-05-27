@@ -87,9 +87,9 @@
 
 #### 2. Result Summaries
 
-For example, __performance testing__ on CryptoRomeAuction
+For example, the result of __performance testing__ on CryptoRomeAuction shows:
 
-|Contract Name         |Construction time|Checking time|Total time|Total|T  |C  |O  |E  |
+|Contract Names        |Construction time|Checking time|Total time|Total|T  |C  |O  |E  |
 |----------------------|-----------------|-------------|----------|-----|---|---|---|---|
 |CryptoRomeAuction3.sol|8.10             |0.08         |8.18      |18   |1  |1  |1  |1  |
 |CryptoRomeAuction4.sol|29.59            |0.10         |29.69     |54   |1  |1  |1  |1  |
