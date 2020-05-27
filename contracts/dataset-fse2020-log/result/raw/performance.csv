@@ -2,7 +2,7 @@ name,construction_time,checking_time,total_time,total,truth_violate,collusion_vi
 "/home/liuye/fairness/performance/CryptoRomeAuction3.sol
 ",8.087s,0.083s,8.17s,18,1,0,0,0
 "/home/liuye/fairness/performance/CryptoRomeAuction3.sol
-",8.064s,0.084s,8.148s,18,1,0,0,0
+",8.064s,0.084s,8.148s,18,0,1,0,0
 "/home/liuye/fairness/performance/CryptoRomeAuction3.sol
 ",8.091s,0.084s,8.175s,18,0,0,0,1
 "/home/liuye/fairness/performance/CryptoRomeAuction3.sol

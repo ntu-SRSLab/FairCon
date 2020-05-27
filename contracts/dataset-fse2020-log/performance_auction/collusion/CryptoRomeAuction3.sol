@@ -97,7 +97,7 @@ contract CryptoRomeAuction {
            require(payments[msg_sender3] == 0);
 
         //    require(msg_value1!=p1);
-           require(msg_value2==p2);
+        //    require(msg_value2==p2);
            require(msg_value3==p3);
 
            // each role claims the 'bid' action.
@@ -130,9 +130,7 @@ contract CryptoRomeAuction {
                         benefits[msg_sender3]  = p3;
             }
             sse_utility(utilities[msg_sender3]);
-
-            sse_truthful_violate_check(utilities[msg_sender1],msg_value1, p1);
-
+            sse_collusion_violate_check(utilities[msg_sender1] + utilities[msg_sender2], msg_value1, p1, msg_value2, p2);
             // sse_maximize(utilities[msg_sender1]+utilities[msg_sender2] + highestBid*winners_count);
             // sse_maximize(utilities[msg_sender1]+utilities[msg_sender2]);
             // sse_revenue(highestBid*winners_count);
