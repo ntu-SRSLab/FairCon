@@ -75,26 +75,26 @@
  ┗ 📜 README.md
  ```
 
-| Directrories | Purposes | Descriptions |
-|---------|----------|-----------|
-| auction | Evaluate __property checking__ on auctions | Including cases and results|
-|invariant_auction| Evaluate __invariant testing__ on auctions| Including cases|
-|performance_auction| __Performance evaluation__ on auction |  Including cases and results|
-|voting-R|  Evaluate __property checking__ on voting with __R__ valuation | Including cases and results|
-|voting-0-1| Evaluate __property checking__ on voting with __0-1__ valuation | Including cases and results|
-| result | __Experiment results__ | Including raw result and summary|
+| Directrories        | Purposes                                                        | Descriptions                     |
+|---------------------|-----------------------------------------------------------------|----------------------------------|
+| auction             | Evaluate __property checking__ on auctions                      | Including cases and results      |
+| invariant_auction   | Evaluate __invariant testing__ on auctions                      | Including cases                  |
+| performance_auction | __Performance evaluation__ on auction                           | Including cases and results      |
+| voting-R            | Evaluate __property checking__ on voting with __R__ valuation   | Including cases and results      |
+| voting-0-1          | Evaluate __property checking__ on voting with __0-1__ valuation | Including cases and results      |
+| result              | __Experiment results__                                          | Including raw result and summary |
 
 
 #### 2. Result Summaries
 
 For example, the result of __performance testing__ on CryptoRomeAuction shows:
 
-|Contract Names        |Construction time|Checking time|Total time|Total|T  |C  |O  |E  |
-|----------------------|-----------------|-------------|----------|-----|---|---|---|---|
-|CryptoRomeAuction3.sol|8.10             |0.08         |8.18      |18   |1  |1  |1  |1  |
-|CryptoRomeAuction4.sol|29.59            |0.10         |29.69     |54   |1  |1  |1  |1  |
-|CryptoRomeAuction5.sol|106.34           |0.12         |106.46    |162  |1  |1  |1  |1  |
-|CryptoRomeAuction6.sol|378.10           |0.17         |378.27    |486  |1  |1  |1  |1  |
-|CryptoRomeAuction7.sol|1262.29          |0.32         |1262.61   |1458 |1  |1  |1  |1  |
-|CryptoRomeAuction8.sol|4301.52          |0.92         |4302.44   |4374 |1  |1  |1  |1  |
-|CryptoRomeAuction9.sol|14708.33         |4.42         |14712.72  |13122|1  |1  |1  |1  |
+| Contract Names         | Construction time | Checking time | Total time | Total | T | C | O | E |
+|------------------------|-------------------|---------------|------------|-------|---|---|---|---|
+| CryptoRomeAuction3.sol | 8.10              | 0.08          | 8.18       | 18    | 1 | 1 | 1 | 1 |
+| CryptoRomeAuction4.sol | 29.59             | 0.10          | 29.69      | 54    | 1 | 1 | 1 | 1 |
+| CryptoRomeAuction5.sol | 106.34            | 0.12          | 106.46     | 162   | 1 | 1 | 1 | 1 |
+| CryptoRomeAuction6.sol | 378.10            | 0.17          | 378.27     | 486   | 1 | 1 | 1 | 1 |
+| CryptoRomeAuction7.sol | 1262.29           | 0.32          | 1262.61    | 1458  | 1 | 1 | 1 | 1 |
+| CryptoRomeAuction8.sol | 4301.52           | 0.92          | 4302.44    | 4374  | 1 | 1 | 1 | 1 |
+| CryptoRomeAuction9.sol | 14708.33          | 4.42          | 14712.72   | 13122 | 1 | 1 | 1 | 1 |
