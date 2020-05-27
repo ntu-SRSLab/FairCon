@@ -56,7 +56,7 @@ to
 
 ![Drag Racing](assets/CryptoRomeInstrumented.png)
 
-#### 2.let's run the demo case.
+#### 2. Run the demo case
 ```bash
 docker run --name faircon -it liuyedocker/fse2020-faircon
 ```
@@ -66,7 +66,7 @@ The log would be :
 
 Aboved shows the sample output: four counterexamples are found against the Truthfulness, Collusion-freeness, Optimality and Efficiency.  The time spent on model extraction and property checking are also included in the report.
 
-#### 3. analyze the truthfulness property shown in log
+#### 3. Analyze the truthfulness property shown in log
 
 __truthfulness : NO__
 ```
