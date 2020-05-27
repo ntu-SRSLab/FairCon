@@ -75,7 +75,7 @@
  ┗ 📜 README.md
  ```
 
-| Directrories        | Purposes                                                        | Descriptions                     |
+| Directories         | Purposes                                                        | Descriptions                     |
 |---------------------|-----------------------------------------------------------------|----------------------------------|
 | auction             | Evaluate __property checking__ on auctions                      | Including cases and results      |
 | invariant_auction   | Evaluate __invariant testing__ on auctions                      | Including cases                  |
