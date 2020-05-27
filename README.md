@@ -1,4 +1,4 @@
-# README
+# FairCon
 
 ### Quick Start
 
