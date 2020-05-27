@@ -115,8 +115,10 @@ contract CryptoRomeAuction {
   function declare_smt_uint(uint n) public{}
  
   function _Main_(address payable msg_sender1, uint p1, uint msg_value1, uint msg_gas1, 
-                  uint block_timestamp1, address payable msg_sender2, uint p2, uint msg_value2, uint msg_gas2, uint
-                  block_timestamp2,address payable msg_sender3, uint p3, uint msg_value3, uint msg_gas3, 
+                  uint block_timestamp1, 
+                  address payable msg_sender2, uint p2, uint msg_value2, uint msg_gas2, 
+                  uint block_timestamp2, 
+                  address payable msg_sender3, uint p3, uint msg_value3, uint msg_gas3, 
                   uint block_timestamp3) public {
     require(!(msg_sender1 == highestBidder || msg_sender2 == highestBidder || msg_sender3 == highestBidder));
     require(!(msg_sender1 == msg_sender2 || msg_sender1 == msg_sender3 || msg_sender2 == msg_sender3));
