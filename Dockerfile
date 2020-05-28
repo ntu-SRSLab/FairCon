@@ -68,7 +68,8 @@ RUN \
     mkdir -p build && cd build &&\
     rm -rf * &&\
     cmake .. && make  &&\
-   ln -s /home/fairness/source/build/solse/faircon /usr/bin/faircon 
+    ln -s /home/fairness/source/build/solse/faircon /usr/bin/faircon &&\
+    rm -rf /home/fairness/source 
 
 #entrypoint
 CMD ["bash", "./scripts/demo.sh"]
