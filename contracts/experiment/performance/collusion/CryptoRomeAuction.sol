@@ -23,11 +23,7 @@ contract CryptoRomeAuction {
     constructor() public {
         // nonFungibleContract = ERC721(_nftAddress);
     }
-    // msg_value < (highestBid+duration)
-    // highestBid = msg_value
-       // highestBid increase pattern 
-    
-    // highestBidder =  msg_sender
+  
      function bid(address payable msg_sender, uint msg_value, uint msg_gas, uint block_timestamp) public payable{
         if (block_timestamp < auctionStart)
             // return;
@@ -37,7 +33,7 @@ contract CryptoRomeAuction {
             revert();
         uint duration = 10000000000;
         // require(msg_value >= (highestBid + duration));
-        if (msg_value < (highestBid + duration)){
+        if (msg_value < (highestBid + 10000000000)){
             return;
             // revert();
         }
@@ -70,8 +66,7 @@ contract CryptoRomeAuction {
     function sse_optimal_payment_register(address allocation, address player, uint payment) public view {}
     function sse_optimal_violate_check(uint benefit, address allocation, address other_allocation) public view {}
 
- 
-   function _Main_(address payable msg_sender1, uint p1, uint msg_value1, uint msg_gas1, uint block_timestamp1, address payable msg_sender2, uint p2, uint msg_value2, uint msg_gas2, uint block_timestamp2,address payable msg_sender3, uint p3, uint msg_value3, uint msg_gas3, uint block_timestamp3) public {
+    function _Main_(address payable msg_sender1, uint p1, uint msg_value1, uint msg_gas1, uint block_timestamp1, address payable msg_sender2, uint p2, uint msg_value2, uint msg_gas2, uint block_timestamp2,address payable msg_sender3, uint p3, uint msg_value3, uint msg_gas3, uint block_timestamp3) public {
            require(!(msg_sender1==highestBidder || msg_sender2 == highestBidder || msg_sender3 == highestBidder));
            require(!(msg_sender1==msg_sender2 || msg_sender1 == msg_sender3 || msg_sender2 == msg_sender3));
            require(extensionTime > 0);
@@ -96,16 +91,17 @@ contract CryptoRomeAuction {
            require(payments[msg_sender2] == 0);
            require(payments[msg_sender3] == 0);
 
-        //    require(msg_value1!=p1);
-           require(msg_value2==p2);
+ 
+           //    require(msg_value1!=p1);
+           //    require(msg_value2!=p2);
            require(msg_value3==p3);
 
-           // each role claims the 'bid' action.
-            bid(msg_sender1,msg_value1,msg_gas1,block_timestamp1);
-            bid(msg_sender2,msg_value2,msg_gas2,block_timestamp2);
-            bid(msg_sender3,msg_value3,msg_gas3,block_timestamp3);
-
-              // assert(msg_sender3 == highestBidder);
+            // each role claims the 'bid' action.
+            bid(msg_sender1, msg_value1,msg_gas1, block_timestamp1);
+            bid(msg_sender2, msg_value2,msg_gas2, block_timestamp2);
+            bid(msg_sender3, msg_value3,msg_gas3, block_timestamp3);
+            
+            // assert(msg_sender3 == highestBidder);
             assert(msg_sender1 == highestBidder || msg_sender2 == highestBidder ||  msg_sender3 == highestBidder );
 
             uint  winners_count = 0;
@@ -131,10 +127,9 @@ contract CryptoRomeAuction {
             }
             sse_utility(utilities[msg_sender3]);
 
-            sse_truthful_violate_check(utilities[msg_sender1],msg_value1, p1);
+            sse_collusion_violate_check(utilities[msg_sender1] + utilities[msg_sender2], msg_value1, p1, msg_value2, p2);
 
-            // sse_maximize(utilities[msg_sender1]+utilities[msg_sender2] + highestBid*winners_count);
-            // sse_maximize(utilities[msg_sender1]+utilities[msg_sender2]);
             // sse_revenue(highestBid*winners_count);
+            // sse_maximize(utilities[msg_sender1]+utilities[msg_sender2]);
       }
 }
