@@ -19,6 +19,17 @@ docker run --name faircon -it liuyedocker/fse2020-faircon
 ```bash
 docker run --name faircon -it liuyedocker/fse2020-faircon bash scripts/run_experiment.sh
 ```
+
+#### 4. Come into the docker container 
+```bash
+docker run -it  liuyedocker/fse2020-faircon bash
+```
+There will be 
+```bash
+   /home/fairness> ls
+     scripts   contracts
+```
+You can have a look about the contracts or customize your scripts maybe even  add your contract datasets.
 <!-- 
 ###  Customization
 
