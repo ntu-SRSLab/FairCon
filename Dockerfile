@@ -62,9 +62,10 @@ RUN \
     git clone https://github.com/Franklinliu/FairCon.git &&\
     cp -rf FairCon/contracts contracts &&\
     cp -rf FairCon/scripts scripts &&\
-    cp -rf FairCon/src source &&\
+    git clone https://github.com/Franklinliu/Solidity-SEE.git &&\
+    mv Solidity-SEE source  &&\
     rm -rf FairCon &&\
-    cd source &&\
+    cd source && git checkout sse-develop &&\
     mkdir -p build && cd build &&\
     rm -rf * &&\
     cmake .. && make  &&\
