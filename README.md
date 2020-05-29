@@ -11,13 +11,13 @@ docker pull liuyedocker/fse2020-faircon
 #### 2. Run demo case
 
 ```bash
-docker run --name faircon -it liuyedocker/fse2020-faircon
+docker run --name faircon_demo -it liuyedocker/fse2020-faircon
 ```
 
 #### 3. Run experiments for all cases
 
 ```bash
-docker run --name faircon -it liuyedocker/fse2020-faircon bash scripts/run_experiment.sh
+docker run --name faircon_all -it liuyedocker/fse2020-faircon bash scripts/run_experiment.sh
 ```
 
 #### 4. Bash into the Docker container 
