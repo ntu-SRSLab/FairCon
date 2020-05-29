@@ -1,0 +1,6 @@
+[submodule "build/thirddd-party/libfort"]
+	path = build/thirddd-party/libfort
+	url = https://github.com/seleznevae/libfort.git
+[submodule "third-party/libfort"]
+	path = third-party/libfort
+	url = https://github.com/seleznevae/libfort.git

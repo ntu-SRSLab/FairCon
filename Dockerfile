@@ -64,7 +64,7 @@ RUN \
     cp -rf FairCon/scripts scripts &&\
     cp -rf FairCon/src source &&\
     rm -rf FairCon &&\
-    cd source && git checkout sse-develop &&\
+    cd source &&\
     mkdir -p build && cd build &&\
     rm -rf * &&\
     cmake .. && make  &&\
