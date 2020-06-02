@@ -1,4 +1,5 @@
 # FairCon
+**FairCon**  is a tool able to check fairness properties including truthfulness, efficiency, optimality, and collusion-freeness for Ethereum smart contracts, based on mechanism design theory and symbolic execution and invariant technique. 
 
 ### Quick Start
 
@@ -8,19 +9,24 @@
 docker pull liuyedocker/fse2020-faircon
 ```
 
-#### 2. Run demo case
+#### 2. Run demo case ( including all properties checking results  )
 
 ```bash
 docker run --name faircon_demo -it liuyedocker/fse2020-faircon
 ```
 
-#### 3. Run experiments for all cases
+#### 3. Run experiments for  checking fairness properties on auction cases ( usually less than 1 hour)
 
 ```bash
-docker run --name faircon_all -it liuyedocker/fse2020-faircon bash scripts/run_experiment.sh
+docker run --name faircon_auction_check  -it liuyedocker/fse2020-faircon bash scripts/run_auction_check_experiment.sh
 ```
 
-#### 4. Bash into the Docker container 
+#### 4. Reproduce experiment results for all cases presented in the paper (about 3 days)
+```bash
+docker run --name faircon_all  -it liuyedocker/fse2020-faircon bash scripts/run_all_experiment.sh
+```
+
+#### 5. Bash into the Docker container 
 ```bash
 docker run -it  liuyedocker/fse2020-faircon bash
 ```
