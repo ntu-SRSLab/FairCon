@@ -19,12 +19,13 @@ docker run --name faircon_demo -it liuyedocker/fse2020-faircon
 ```
 
 #### 3. Run experiments for checking fairness properties on auction cases (usually less than 1 hour)
-
+(specs: Ubuntu 18.04.3 LTS desktop equipped with Intel Corei7 16-core and 32GB memory.)
 ```bash
 docker run --name faircon_auction_check  -it liuyedocker/fse2020-faircon bash scripts/run_auction_check_experiment.sh
 ```
 
 #### 4. Reproduce experiment results for all cases presented in the paper (about 3 days)
+(specs: Ubuntu 18.04.3 LTS desktop equipped with Intel Corei7 16-core and 32GB memory.)
 ```bash
 docker run --name faircon_all  -it liuyedocker/fse2020-faircon bash scripts/run_all_experiment.sh
 ```
