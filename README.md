@@ -4,6 +4,17 @@
 Ethereum smart contracts. It is based on the mechanism design theory and uses symbolic execution to automatically extract 
 models from contract code and generate invariants for property verification. 
 
+If you would like to use FairCon in your research, please cite our FSE'20 paper.
+```tex
+@inproceedings{Liu2020TAV,
+  author = {Liu, Ye and Li, Yi and Lin, Shang-Wei and Zhao, Rong},
+  booktitle = {Proceedings of the 28th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (FSE)},
+  month = nov,
+  title = {Towards Automated Verification of Smart Contract Fairness},
+  year = {2020}
+}
+```
+
 ### Quick Start
 
 #### 1. Pull from docker registry
