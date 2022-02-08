@@ -1,6 +1,4 @@
-#include <solse/SolidityExprTranslator.h>
-#include <solse/SymExecEngine.h>
-
+#include "SymExecEngine.h"
 #include <unordered_map>
 
 using namespace dev::solidity;
@@ -650,8 +648,8 @@ translate(MemberAccess const* memAccExp, ContextInfo& ctxInfo) {
     }
 
     z3::expr resultExpr(z3_ctx);
-
-    if(std::shared_ptr<StructType const> structType = std::dynamic_pointer_cast<StructType const>(expType)){
+    if(CAST_POINTER(structType, StructType, expType)){
+    // if(std::shared_ptr<StructType const> structType = std::dynamic_pointer_cast<StructType const>(expType)){
         std::string structName = structType->structDefinition().name();
 
         //std::cerr<<"Struct Type: "<<structName<<std::endl;

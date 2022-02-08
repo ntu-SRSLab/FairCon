@@ -1,11 +1,24 @@
-#include <solse/SymExecEngine.h>
 #include <boost/algorithm/string.hpp>
+#ifdef SOLC_0_5_0
+#include <libevmasm/SourceLocation.h>
+typedef dev::SourceLocation SourceLocation;
+#else 
 #include <liblangutil/SourceLocation.h>
-#include "mechanism.h"
 using namespace langutil;
+#endif 
+
+#ifdef SOLC_0_5_0
+#include <libsolidity/parsing/Scanner.h>
+#define _Scaner_ Scanner
+#endif 
+
+
+#include "../solse/SymExecEngine.h"
+#include "mechanism.h"
 using namespace dev::solidity;
 
 #include<chrono>
+
 uint64_t timeSinceEpochMillisec() {
   using namespace std::chrono;
   return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
@@ -32,9 +45,6 @@ bool checkCondPass(ContextInfo& cond){
         }
         else
             return true;
-}
-std::string nodeString(Expression const & a) {
-    return a.location().source->source().substr(a.location().start, a.location().end-a.location().start);
 }
 // record global utility and global revenue 
 std::vector<z3::expr> g_utilities;
@@ -913,7 +923,9 @@ visit(VariableDeclaration const& _node) {
             std::pair<std::string, z3::expr> initPair(varFullName, varValueExpr);
             stateVarValuesZ3ExprMap.insert(initPair);
             // std::cout<< "varFullName" << varFullName <<std::endl;
-            if(std::shared_ptr<ArrayType const> arrayType = std::dynamic_pointer_cast<ArrayType const>(typePtr)){
+          
+            if(CAST_POINTER(arrayType, ArrayType, typePtr)){
+            // if(std::shared_ptr<ArrayType const> arrayType = std::dynamic_pointer_cast<ArrayType const>(typePtr)){
                 // std::cout<<"Length in arrayType:"<<varFullName+".length"<<std::endl;
                 z3::expr length_of_arr = z3_ctx.constant((varInitName+".length").c_str(),z3_ctx.int_sort());
                 stateVarValuesZ3ExprMap.insert(std::make_pair(varFullName+".length", length_of_arr));
@@ -941,8 +953,8 @@ visit(VariableDeclaration const& _node) {
             z3::expr varValueExpr = z3_ctx.constant(varInitName.c_str(), typeSort);
             std::pair<std::string, z3::expr> initPair(varFullName, varValueExpr);
             localVarValuesZ3ExprMap.insert(initPair);
-
-            if(std::shared_ptr<ArrayType const> arrayType = std::dynamic_pointer_cast<ArrayType const>(typePtr)){
+            if(CAST_POINTER(arrayType, ArrayType, typePtr)){
+            // if(std::shared_ptr<ArrayType const> arrayType = std::dynamic_pointer_cast<ArrayType const>(typePtr)){
                 z3::expr length_of_arr = z3_ctx.constant((varInitName+".length").c_str(),z3_ctx.int_sort());
                 stateVarValuesZ3ExprMap.insert(std::make_pair(varFullName+".length", length_of_arr));
             }
@@ -1617,7 +1629,7 @@ strongestPostcondition(ExpressionStatement const* stmt, ContextInfo& preCond) {
 	    z3::expr var = solExprTranslator->translate(&expr,preCond);
 	    postCondVec.push_back(preCond);
 	    postCondVec[postCondVec.size()-1].mechanism.variables_smt.emplace_back(var);
-        postCondVec[postCondVec.size()-1].mechanism.variables_smt_str.emplace_back(expr.location().source->source().substr(expr.location().start, expr.location().end - expr.location().start));
+        postCondVec[postCondVec.size()-1].mechanism.variables_smt_str.emplace_back(nodeString(expr));
 
  	}
 	else if(funcName.find("declare_variable")!=std::string::npos){
@@ -1627,7 +1639,7 @@ strongestPostcondition(ExpressionStatement const* stmt, ContextInfo& preCond) {
 	    z3::expr var = solExprTranslator->translate(&expr,preCond);
 	    postCondVec.push_back(preCond);
 	    postCondVec[postCondVec.size()-1].mechanism.variables.emplace_back(var);
-        postCondVec[postCondVec.size()-1].mechanism.variables_str.emplace_back(expr.location().source->source().substr(expr.location().start, expr.location().end - expr.location().start));
+        postCondVec[postCondVec.size()-1].mechanism.variables_str.emplace_back(nodeString(expr));
 	}
 	else if(funcName.compare("declare_type")==0){
             std::vector<ASTPointer<Expression const>> argumentsExp = funcCallExpr->arguments();
@@ -2570,14 +2582,16 @@ strongestPostcondition(ForStatement const* stmt, ContextInfo& preCond) {
 z3::sort SymExecEngine::
 typeSortInZ3(TypePointer const typePtr){
     z3::sort typeSort(z3_ctx);
-
-    if(std::shared_ptr<IntegerType const> intTypeExpr = std::dynamic_pointer_cast<IntegerType const>(typePtr)){
+    if(CAST_POINTER(intTypeExpr, IntegerType, typePtr)){
+    // if(std::shared_ptr<IntegerType const> intTypeExpr = std::dynamic_pointer_cast<IntegerType const>(typePtr)){
         typeSort = z3_ctx.int_sort();
     }
-    else if(std::shared_ptr<BoolType const> boolType = std::dynamic_pointer_cast<BoolType const>(typePtr)){
+    else if(CAST_POINTER(boolType, BoolType, typePtr)){
+    // else if(std::shared_ptr<BoolType const> boolType = std::dynamic_pointer_cast<BoolType const>(typePtr)){
         typeSort = z3_ctx.bool_sort();
     }
-    else if(std::shared_ptr<ArrayType const> arrayType = std::dynamic_pointer_cast<ArrayType const>(typePtr)){
+    else if(CAST_POINTER(arrayType, ArrayType, typePtr)){
+    // else if(std::shared_ptr<ArrayType const> arrayType = std::dynamic_pointer_cast<ArrayType const>(typePtr)){
         if(arrayType->isString()){
             typeSort = z3_ctx.string_sort();
         }
@@ -2589,10 +2603,12 @@ typeSortInZ3(TypePointer const typePtr){
             typeSort = z3_ctx.array_sort(z3_ctx.int_sort(), baseSort);
         }
     }
-    else if(std::shared_ptr<FixedBytesType const> fixedBytesType = std::dynamic_pointer_cast<FixedBytesType const>(typePtr)){
+    else if(CAST_POINTER(fixedBytesType, FixedBytesType, typePtr)){
+    // else if(std::shared_ptr<FixedBytesType const> fixedBytesType = std::dynamic_pointer_cast<FixedBytesType const>(typePtr)){
         typeSort = z3_ctx.array_sort(z3_ctx.int_sort(), z3_ctx.int_sort());
     }
-    else if(std::shared_ptr<MappingType const> mappingType = std::dynamic_pointer_cast<MappingType const>(typePtr)){
+    else if(CAST_POINTER(mappingType, MappingType, typePtr)){
+    // else if(std::shared_ptr<MappingType const> mappingType = std::dynamic_pointer_cast<MappingType const>(typePtr)){
         TypePointer keyType = mappingType->keyType();
 
         z3::sort keyTypeSort(z3_ctx);
@@ -2607,7 +2623,8 @@ typeSortInZ3(TypePointer const typePtr){
 
         typeSort = z3_ctx.array_sort(keyTypeSort, valueTypeSort);
     }
-    else if(std::shared_ptr<StructType const> structType = std::dynamic_pointer_cast<StructType const>(typePtr)){
+    else if(CAST_POINTER(structType, StructType, typePtr)){
+    // else if(std::shared_ptr<StructType const> structType = std::dynamic_pointer_cast<StructType const>(typePtr)){
         std::string structName = structType->structDefinition().name();
         //std::cerr<<"Struct Type: "<<structName<<std::endl;
 
@@ -2621,7 +2638,8 @@ typeSortInZ3(TypePointer const typePtr){
             assert(false);
         }
     }
-    else if(std::shared_ptr<AddressType const> addressType = std::dynamic_pointer_cast<AddressType const>(typePtr)){
+    else if(CAST_POINTER(addressType, AddressType, typePtr)){
+    // else if(std::shared_ptr<AddressType const> addressType = std::dynamic_pointer_cast<AddressType const>(typePtr)){
         typeSort = z3_ctx.string_sort();
     }
     // else if (std::shared_ptr<ContractType const> contractType = std::dynamic_pointer_cast<ContractType const>(typePtr)){
@@ -2724,7 +2742,7 @@ updateContextInfo(Expression const* exp, z3::expr rightExpr, ContextInfo& preCon
         }
 
         if(debugMode) {
-            std::cerr<<"baseExp:" << baseExp.location().source->source().substr(baseExp.location().start, baseExp.location().end-baseExp.location().start) <<std::endl; 
+            std::cerr<<"baseExp:" <<  nodeString(baseExp) <<std::endl; 
             std::cerr<<"baseExpr: "<<baseExpr<<std::endl;
         }
 
@@ -2750,7 +2768,8 @@ updateContextInfo(Expression const* exp, z3::expr rightExpr, ContextInfo& preCon
 
             TypePointer expType = Exp.annotation().type;
 
-            std::shared_ptr<StructType const> structType = std::dynamic_pointer_cast<StructType const>(expType);
+            CAST_POINTER(structType, StructType, expType);
+            // std::shared_ptr<StructType const> structType = std::dynamic_pointer_cast<StructType const>(expType);
 
             std::string structName = structType->structDefinition().name();
 
@@ -2881,7 +2900,8 @@ updateContextInfo(Expression const* exp, z3::expr rightExpr, ContextInfo& preCon
 
         TypePointer expType = Exp.annotation().type;
 
-        std::shared_ptr<StructType const> structType = std::dynamic_pointer_cast<StructType const>(expType);
+        CAST_POINTER(structType, StructType, expType);
+        // std::shared_ptr<StructType const> structType = std::dynamic_pointer_cast<StructType const>(expType);
 
         std::string structName = structType->structDefinition().name();
 

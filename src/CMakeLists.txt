@@ -1,7 +1,13 @@
 cmake_minimum_required(VERSION 3.0.0)
-
+set(PROJECT_VERSION "0.1.0")
+project(FairCon VERSION ${PROJECT_VERSION} LANGUAGES CXX)
 set(ETH_CMAKE_DIR   "${CMAKE_CURRENT_LIST_DIR}/cmake"   CACHE PATH "The the path to the cmake directory")
 list(APPEND CMAKE_MODULE_PATH ${ETH_CMAKE_DIR})
+
+option(SOLC_0_5_0 "mount symbolic execution engine on solc==0.5.0" OFF)
+option(SOLC_0_5_10 "mount symbolic execution engine on solc==0.5.10" ON)
+
+include(solidity)
 
 include(EthToolchains)
 
@@ -9,63 +15,38 @@ include(EthToolchains)
 include(EthPolicy)
 eth_policy()
 
-# project name and version should be set after cmake_policy CMP0048
-set(PROJECT_VERSION "0.5.5")
-project(solidity VERSION ${PROJECT_VERSION} LANGUAGES CXX)
+include(EthCompilerSettings)
 
-option(LLL "Build LLL" OFF)
-option(SOLC_LINK_STATIC "Link solc executable statically on supported platforms" OFF)
-option(LLLC_LINK_STATIC "Link lllc executable statically on supported platforms" OFF)
-option(INSTALL_LLLC "Include lllc executable in installation" ${LLL})
-
-# Setup cccache.
+# # Setup cccache.
 include(EthCcache)
 
-# Let's find our dependencies
+# # Let's find our dependencies
 include(EthDependencies)
-include(jsoncpp)
-include_directories(SYSTEM ${JSONCPP_INCLUDE_DIR})
 
 find_package(Threads)
 
-# Figure out what compiler and system are we using
+# # Figure out what compiler and system are we using
 include(EthCompilerSettings)
 
-# Include utils
+# # Include utils
 include(EthUtils)
 
-# Create license.h from LICENSE.txt and template
-# Converting to char array is required due to MSVC's string size limit.
-file(READ ${CMAKE_SOURCE_DIR}/LICENSE.txt LICENSE_TEXT HEX)
-string(REGEX MATCHALL ".." LICENSE_TEXT "${LICENSE_TEXT}")
-string(REGEX REPLACE ";" ",\n\t0x" LICENSE_TEXT "${LICENSE_TEXT}")
-set(LICENSE_TEXT "0x${LICENSE_TEXT}")
 
-configure_file("${CMAKE_SOURCE_DIR}/cmake/templates/license.h.in" include/license.h)
-
+# configure_file("${CMAKE_SOURCE_DIR}/cmake/templates/license.h.in" include/license.h)
 include(EthOptions)
-configure_project(TESTS)
+# configure_project(TESTS)
 
-#add libfort to format text table
-# Disable building tests and examples in libfort project
-set(FORT_ENABLE_TESTING OFF CACHE INTERNAL "")
+# #add libfort to format text table
 add_subdirectory(third-party/libfort)
 
-add_subdirectory(libdevcore)
-add_subdirectory(liblangutil)
-add_subdirectory(libevmasm)
-add_subdirectory(libyul)
-add_subdirectory(libsolidity)
+find_package(Z3 4.6.0)
+if (${Z3_FOUND})
+  add_definitions(-DHAVE_Z3)
+  message("Z3 SMT solver found. This enables optional SMT checking with Z3.")
+  set(z3_SRCS formal/Z3Interface.cpp formal/Z3Interface.h)
+else()
+  set(z3_SRCS)
+endif()
+
 add_subdirectory(solse)
 
-# if (NOT EMSCRIPTEN)
-# 	add_subdirectory(solc)
-# 	if (LLL)
-# 		add_subdirectory(liblll)
-# 		add_subdirectory(lllc)
-# 	endif()
-# endif()
-
-# if (TESTS AND NOT EMSCRIPTEN)
-#	 add_subdirectory(test)
-# endif()

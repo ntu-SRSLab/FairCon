@@ -23,6 +23,12 @@ endif()
 
 eth_add_cxx_compiler_flag_if_supported(-Wimplicit-fallthrough)
 
+if (SOLC_0_5_0)
+	add_compile_definitions(SOLC_0_5_0)
+elseif (SOLC_0_5_10)
+	add_compile_definitions(SOLC_0_5_10)
+endif ()
+
 if (("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU") OR ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang"))
 	# Enables all the warnings about constructions that some users consider questionable,
 	# and that are easy to avoid.  Also enable some extra warning flags that are not
@@ -31,6 +37,9 @@ if (("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU") OR ("${CMAKE_CXX_COMPILER_ID}" MA
 	add_compile_options(-Wall)
 	add_compile_options(-Wextra)
 	add_compile_options(-Werror)
+	add_compile_options(-Wno-error=redundant-move)
+	add_compile_options(-Wno-error=deprecated-copy)
+	add_compile_options(-Wno-error=unused-variable)
 
 	# Configuration-specific compiler settings.
 	set(CMAKE_CXX_FLAGS_DEBUG          "-O0 -g -DETH_DEBUG")
@@ -65,6 +74,8 @@ if (("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU") OR ("${CMAKE_CXX_COMPILER_ID}" MA
 
 			# Tell Boost that we're using Clang's libc++.   Not sure exactly why we need to do.
 			add_definitions(-DBOOST_ASIO_HAS_CLANG_LIBCXX)
+			
+			
 
 			# Use fancy colors in the compiler diagnostics
 			add_compile_options(-fcolor-diagnostics)

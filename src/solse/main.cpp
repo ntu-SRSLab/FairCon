@@ -4,23 +4,19 @@
 #include <string>
 #include <memory>
 
-#include <libsolidity/parsing/Parser.h>
-#include <libsolidity/ast/ASTForward.h>
-#include <libsolidity/ast/ASTPrinter.h>
-#include <libsolidity/interface/ReadFile.h>
-#include <libsolidity/interface/ReadFile.h>
+// #include <libsolidity/parsing/Parser.h>
+// #include <libsolidity/interface/ReadFile.h>
+// #include <libsolidity/interface/ReadFile.h>
 #include <libsolidity/interface/CompilerStack.h>
-#include <libsolidity/formal/SMTChecker.h>
-#include <libdevcore/Exceptions.h>
-#include <liblangutil/SourceReferenceFormatterHuman.h>
-#include <libsolidity/analysis/ControlFlowGraph.h>
-#include <libsolidity/analysis/ControlFlowPrinter.h>
-#include <liblangutil/ErrorReporter.h>
+// #include <libsolidity/formal/SMTChecker.h>
+#include <json/json.h>
+
 
 #include "SymExecEngine.h"
+using namespace dev::solidity;
 
-#include <z3.h>
-#include <z3++.h>
+// #include <z3.h>
+// #include <z3++.h>
 
 using namespace std;
 
@@ -61,57 +57,53 @@ int main(int argc, char **argv){
     ss<<inputFile.rdbuf();
     std::string source=ss.str();
 
+   
+    CompilerStack compilerStack(readInputFile);
+    
+    #ifdef SOLC_0_5_0
     ReadCallback::Result readResult = readInputFile(arg2);
-
     if(!readResult.success){
         std::cerr<<readResult.responseOrErrorMessage<<std::endl;
         return -1;
     }
-
-    CompilerStack compilerStack(readInputFile);
-
-
     compilerStack.addSource(arg2, readResult.responseOrErrorMessage);
+    #endif
+
+    #ifdef SOLC_0_5_10
+    auto infile = boost::filesystem::path(arg2);
+   	std::map<std::string, std::string> sources;
+    sources[infile.generic_string()] = dev::readFileAsString(infile.string());
+    compilerStack.setSources(sources);
+    #endif
 
     bool successful = compilerStack.parseAndAnalyze();
 
     if(!successful){
         std::cerr<<"parsing error!!"<<std::endl;
 
-        unique_ptr<langutil::SourceReferenceFormatter> formatter;
+        // unique_ptr<SourceReferenceFormatter> formatter;
 
-        formatter = make_unique<langutil::SourceReferenceFormatterHuman>(cerr, true);
+        // #ifdef SOLC_0_5_0
+		// auto scannerFromSourceName = [&](string const& _sourceName) -> dev::solidity::Scanner const& { return compilerStack.scanner(_sourceName); };
+		// formatter = make_unique<SourceReferenceFormatter>(cerr, scannerFromSourceName);
+		// #else 
+		// formatter = make_unique<SourceReferenceFormatterHuman>(cerr, true);
+		// #endif 
 
-        for (auto const& error: compilerStack.errors()) {
+        // for (auto const& error: compilerStack.errors()) {
 
-			formatter->printExceptionInformation(
-				*error,
-				(error->type() == langutil::Error::Type::Warning) ? "Warning" : "Error"
-			);
-		}
+		// 	formatter->printExceptionInformation(
+		// 		*error,
+		// 		(error->type() == Error::Type::Warning) ? "Warning" : "Error"
+		// 	);
+		// }
 
         return -1;
     }
 
     SourceUnit const& srcUnit = compilerStack.ast(arg2);
 
-	if(arg1.compare("-ast") == 0){
-        ASTPrinter astPrinter(srcUnit);
-
-        astPrinter.print(std::cout);
-    }
-    else if(arg1.compare("-cfg") == 0){
-        langutil::ErrorList errorList;
-
-        langutil::ErrorReporter errorReporter(errorList);
-
-        dev::solidity::CFG cfg(errorReporter);
-
-        cfg.constructFlow(srcUnit);
-        ControlFlowPrinter cfgPrinter(cfg);
-        cfgPrinter.print(std::cout);
-    }
-    else if(arg1.compare("-test") == 0){
+    if(arg1.compare("-test") == 0){
         stringZ3Test();
         tupleZ3Test();
         arrayZ3Test();
@@ -161,7 +153,6 @@ int main(int argc, char **argv){
 
 ReadCallback::Result readInputFile(std::string const& _path){
     //std::cout<<"readInputFile() is called!"<<std::endl;
-
     try {
         auto path = boost::filesystem::path(_path);
 
@@ -180,8 +171,13 @@ ReadCallback::Result readInputFile(std::string const& _path){
             return ReadCallback::Result{true, contents};
         }
     }
+    #ifdef SOLC_0_5_0 
     catch (dev::Exception const& _exception) {
-        return ReadCallback::Result{false, "Exception in read callback: " + boost::diagnostic_information(_exception)};
+    #else 
+    catch (dev::Exception const& _exception) {
+    #endif 
+        // return ReadCallback::Result{false, "Exception in read callback: " + boost::diagnostic_information(_exception)};
+        return ReadCallback::Result{false, "Exception in read callback: "};
     }
     catch (boost::filesystem::filesystem_error& e) {
         return ReadCallback::Result{false, "cannot open the file."};
