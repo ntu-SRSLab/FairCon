@@ -13,7 +13,7 @@
        std::shared_ptr<_Type const> _var = std::dynamic_pointer_cast<_Type const>(_pointer) 
 #endif
 
-#ifdef SOLC_0_5_10
+#if defined(SOLC_0_5_10) || defined(SOLC_0_5_17)
 #define CAST_POINTER(_var, _Type, _pointer) \
        _Type const* _var = dynamic_cast<_Type const*>(_pointer) 
 #endif 

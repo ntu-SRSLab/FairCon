@@ -4,20 +4,10 @@
 #include <string>
 #include <memory>
 
-// #include <libsolidity/parsing/Parser.h>
-// #include <libsolidity/interface/ReadFile.h>
-// #include <libsolidity/interface/ReadFile.h>
 #include <libsolidity/interface/CompilerStack.h>
-// #include <libsolidity/formal/SMTChecker.h>
 #include <json/json.h>
-
-
 #include "SymExecEngine.h"
 using namespace dev::solidity;
-
-// #include <z3.h>
-// #include <z3++.h>
-
 using namespace std;
 
 ReadCallback::Result readInputFile(std::string const& _path);
@@ -69,7 +59,7 @@ int main(int argc, char **argv){
     compilerStack.addSource(arg2, readResult.responseOrErrorMessage);
     #endif
 
-    #ifdef SOLC_0_5_10
+    #if defined(SOLC_0_5_10) || defined(SOLC_0_5_17)
     auto infile = boost::filesystem::path(arg2);
    	std::map<std::string, std::string> sources;
     sources[infile.generic_string()] = dev::readFileAsString(infile.string());

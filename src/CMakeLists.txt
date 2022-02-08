@@ -1,11 +1,14 @@
 cmake_minimum_required(VERSION 3.0.0)
 set(PROJECT_VERSION "0.1.0")
 project(FairCon VERSION ${PROJECT_VERSION} LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+
 set(ETH_CMAKE_DIR   "${CMAKE_CURRENT_LIST_DIR}/cmake"   CACHE PATH "The the path to the cmake directory")
 list(APPEND CMAKE_MODULE_PATH ${ETH_CMAKE_DIR})
 
-option(SOLC_0_5_0 "mount symbolic execution engine on solc==0.5.0" OFF)
-option(SOLC_0_5_10 "mount symbolic execution engine on solc==0.5.10" ON)
+option(SOLC_0_5_0 "mount symbolic execution engine on solc==0.5.0" ON)
+option(SOLC_0_5_10 "mount symbolic execution engine on solc==0.5.10" OFF)
+option(SOLC_0_5_17 "mount symbolic execution engine on solc==0.5.17" OFF)
 
 include(solidity)
 

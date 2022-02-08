@@ -27,6 +27,8 @@ if (SOLC_0_5_0)
 	set(Solidity_GIT_TAG v0.5.0)
 elseif (SOLC_0_5_10)
     set(Solidity_GIT_TAG v0.5.10)
+elseif (SOLC_0_5_17)
+    set(Solidity_GIT_TAG v0.5.17)
 endif ()
 
 ExternalProject_Add(solidity-project
@@ -68,7 +70,7 @@ set_property(TARGET devcore PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${SOLIDITY_IN
 add_dependencies(devcore solidity-project)
 
 
-if (SOLC_0_5_10)
+if (SOLC_0_5_10 OR SOLC_0_5_17)
     set(LANGUTIL_LIBRARY "${prefix}/src/solidity-project-build/liblangutil/${CMAKE_STATIC_LIBRARY_PREFIX}langutil${CMAKE_STATIC_LIBRARY_SUFFIX}")
     add_library(langutil STATIC IMPORTED)
     set_property(TARGET langutil PROPERTY IMPORTED_LOCATION ${LANGUTIL_LIBRARY})
@@ -93,5 +95,3 @@ set_property(TARGET jsoncpp PROPERTY IMPORTED_LOCATION ${JSONCPP_LIBRARY})
 set_property(TARGET jsoncpp PROPERTY INTERFACE_SYSTEM_INCLUDE_DIRECTORIES ${JSONCPP_INCLUDE_DIR})
 set_property(TARGET jsoncpp PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${JSONCPP_INCLUDE_DIR})
 add_dependencies(jsoncpp jsoncpp-project)
-
-

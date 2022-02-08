@@ -27,6 +27,8 @@ if (SOLC_0_5_0)
 	add_compile_definitions(SOLC_0_5_0)
 elseif (SOLC_0_5_10)
 	add_compile_definitions(SOLC_0_5_10)
+elseif (SOLC_0_5_17)
+	add_compile_definitions(SOLC_0_5_17)
 endif ()
 
 if (("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU") OR ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang"))
