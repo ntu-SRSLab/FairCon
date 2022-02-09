@@ -1,24 +1,25 @@
 #include <boost/algorithm/string.hpp>
-#ifdef SOLC_0_5_0
-#include <libevmasm/SourceLocation.h>
-typedef dev::SourceLocation SourceLocation;
-#else 
-#include <liblangutil/SourceLocation.h>
-using namespace langutil;
-#endif 
-
-#ifdef SOLC_0_5_0
-#include <libsolidity/parsing/Scanner.h>
-#define _Scaner_ Scanner
-#endif 
-
 
 #include "../solse/SymExecEngine.h"
 #include "mechanism.h"
+#if defined(SOLC_0_6_10) || defined(SOLC_0_7_6)  || defined(SOLC_0_8_11)
+using namespace solidity::frontend;
+#else 
 using namespace dev::solidity;
+#endif 
 
 #include<chrono>
-
+#ifdef SOLC_0_5_0
+#include <libevmasm/SourceLocation.h>
+using namespace dev;
+#else 
+#include <liblangutil/SourceLocation.h>
+#if defined(SOLC_0_6_10) || defined(SOLC_0_7_6)  || defined(SOLC_0_8_11)
+using namespace solidity::langutil;
+#else 
+using namespace langutil;
+#endif 
+#endif 
 uint64_t timeSinceEpochMillisec() {
   using namespace std::chrono;
   return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
@@ -106,7 +107,6 @@ void SymExecEngine::synthesis(std::vector<ContextInfo>& contexts ){
     for (unsigned i=0;i<size;i++){
         efficient_assertions.emplace_back(z3_ctx.bool_val(true));
     }
-    
 
     for (unsigned i=0; i<contexts.size(); i++){
         auto& context = contexts[i];
@@ -1067,7 +1067,7 @@ endVisit(StructDefinition const&) {
 }
 
 void SymExecEngine::
-endVisit(dev::solidity::FunctionDefinition const&){
+endVisit(FunctionDefinition const&){
     currentFuncDef = NULL;
 }
 
@@ -1582,7 +1582,7 @@ strongestPostcondition(UnaryOperation const* stmt, ContextInfo& preCond) {
             updateContextInfo(idOperand, updatedExpr, preCond);
         }
         else {
-            std::string opstring = dev::solidity::TokenTraits::toString(opToken);
+            std::string opstring = TokenTraits::toString(opToken);
             std::cerr<<"["<<opstring<<"]"<<": this unary operation is not supported yet!"<<std::endl;
             assert(false);
         }
@@ -2661,7 +2661,7 @@ typeSortInZ3(TypePointer const typePtr){
 }
 
 std::string SymExecEngine::
-getArrayName(dev::solidity::Expression const* aExpr, ContextInfo& ctxInfo) {
+getArrayName(Expression const* aExpr, ContextInfo& ctxInfo) {
     if(Identifier const* idExp = dynamic_cast<Identifier const*>(aExpr)){
         std::string varFullName = getVarFullName(idExp, ctxInfo);
 
@@ -3066,7 +3066,7 @@ checkSatisfiability(z3::expr property, ContextInfo& ctxInfo) {
 }
 
 std::string SymExecEngine::
-getVarFullName(dev::solidity::Identifier const* idExp, ContextInfo& ctxInfo) {
+getVarFullName(Identifier const* idExp, ContextInfo& ctxInfo) {
     std::string fullName;
 
     std::string varName = idExp->name();
@@ -3107,7 +3107,7 @@ getVarFullName(dev::solidity::Identifier const* idExp, ContextInfo& ctxInfo) {
 }
 
 std::string SymExecEngine::
-getVarFullName(dev::solidity::VariableDeclaration const* varDec, ContextInfo& ctxInfo) {
+getVarFullName(VariableDeclaration const* varDec, ContextInfo& ctxInfo) {
     std::string fullName;
 
     std::string varName = varDec->name();

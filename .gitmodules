@@ -1,0 +1,3 @@
+[submodule "FYP_smart_contract_fairness"]
+	path = FYP_smart_contract_fairness
+	url = git@github.com:tjeremiahhh/FYP_smart_contract_fairness.git

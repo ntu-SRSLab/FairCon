@@ -65,7 +65,7 @@ public:
  public:
     void print_model(z3::model& model, std::string desc){
       fort::char_table table;
-      table.set_border_style(FT_FRAME_STYLE);
+      table.set_border_style(FT_DOUBLE2_STYLE);
       table.column(0).set_cell_text_align(fort::text_align::center);
       table.column(1).set_cell_text_align(fort::text_align::center);
 

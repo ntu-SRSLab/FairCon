@@ -6,19 +6,26 @@
 #include <libsolidity/ast/ASTVisitor.h>
 #include <libsolidity/ast/Types.h>
 #include <unordered_map>
+
 #include "mechanism.h"
+
 
 #ifdef SOLC_0_5_0
 #define CAST_POINTER(_var, _Type, _pointer) \
        std::shared_ptr<_Type const> _var = std::dynamic_pointer_cast<_Type const>(_pointer) 
 #endif
 
-#if defined(SOLC_0_5_10) || defined(SOLC_0_5_17)
+#if defined(SOLC_0_5_10) || defined(SOLC_0_5_17) || defined(SOLC_0_6_0) || defined(SOLC_0_6_10) || defined(SOLC_0_7_6)  || defined(SOLC_0_8_11)
 #define CAST_POINTER(_var, _Type, _pointer) \
        _Type const* _var = dynamic_cast<_Type const*>(_pointer) 
 #endif 
 
+#if defined(SOLC_0_6_10) || defined(SOLC_0_7_6)  || defined(SOLC_0_8_11)
+using namespace solidity::frontend;
+#else 
 using namespace dev::solidity;
+#endif 
+
 // #include "../solse/SolidityExprTranslator.h"
 
 
@@ -132,7 +139,7 @@ public:
  
     std::map<std::string, z3::expr> z3_validate_outcome_postconditions;
 
-    dev::solidity::FunctionDefinition const* funcScope = nullptr;
+    FunctionDefinition const* funcScope = nullptr;
     bool goHead = true;
     TerminationCode  abnormalTerminationCode = NONE;
     std::unordered_map<std::string, int> funcCallDepthMap;
@@ -188,68 +195,68 @@ private:
 
 class SolidityExprTranslator;
 
-class SymExecEngine: public dev::solidity::ASTConstVisitor {
+class SymExecEngine: public ASTConstVisitor {
 public:
-    SymExecEngine(std::string source, dev::solidity::ASTNode const& _node, bool mode, bool onlyExeMain, z3::context& _z3_ctx);
+    SymExecEngine(std::string source, ASTNode const& _node, bool mode, bool onlyExeMain, z3::context& _z3_ctx);
     ~SymExecEngine();
 
     void symbolicExecution();
 
-    bool visit(dev::solidity::ContractDefinition const&) override;
-    bool visit(dev::solidity::Literal const&) override;
-    bool visit(dev::solidity::FunctionDefinition const&) override;
-    bool visit(dev::solidity::VariableDeclaration const&) override;
-    bool visit(dev::solidity::StructDefinition const&) override;
+    bool visit(ContractDefinition const&) override;
+    bool visit(Literal const&) override;
+    bool visit(FunctionDefinition const&) override;
+    bool visit(VariableDeclaration const&) override;
+    bool visit(StructDefinition const&) override;
 
-    bool visit(dev::solidity::BinaryOperation const& _node) override;
+    bool visit(BinaryOperation const& _node) override;
 
-    void endVisit(dev::solidity::StructDefinition const&) override;
-    void endVisit(dev::solidity::FunctionDefinition const&) override;
-    void endVisit(dev::solidity::ContractDefinition const&) override;
+    void endVisit(StructDefinition const&) override;
+    void endVisit(FunctionDefinition const&) override;
+    void endVisit(ContractDefinition const&) override;
 
-    std::vector<ContextInfo> strongestPostcondition(dev::solidity::Statement const* stmt, std::vector<ContextInfo>);
+    std::vector<ContextInfo> strongestPostcondition(Statement const* stmt, std::vector<ContextInfo>);
 
-    std::vector<ContextInfo> strongestPostcondition(dev::solidity::FunctionDefinition const* funcDef, ContextInfo& preCond);
-    std::vector<ContextInfo> strongestPostcondition(dev::solidity::FunctionCall const* funCall, ContextInfo& preCond);
-    std::vector<ContextInfo> strongestPostcondition(dev::solidity::Statement const* stmt, ContextInfo& preCond);
-    std::vector<ContextInfo> strongestPostcondition(dev::solidity::Block const *stmt, ContextInfo& preCond);
-    std::vector<ContextInfo> strongestPostcondition(dev::solidity::UnaryOperation const* stmt, ContextInfo& preCond);
-    std::vector<ContextInfo> strongestPostcondition(dev::solidity::ExpressionStatement const* stmt, ContextInfo& preCond);
-    std::vector<ContextInfo> strongestPostcondition(dev::solidity::Assignment const* stmt, ContextInfo& preCond);
+    std::vector<ContextInfo> strongestPostcondition(FunctionDefinition const* funcDef, ContextInfo& preCond);
+    std::vector<ContextInfo> strongestPostcondition(FunctionCall const* funCall, ContextInfo& preCond);
+    std::vector<ContextInfo> strongestPostcondition(Statement const* stmt, ContextInfo& preCond);
+    std::vector<ContextInfo> strongestPostcondition(Block const *stmt, ContextInfo& preCond);
+    std::vector<ContextInfo> strongestPostcondition(UnaryOperation const* stmt, ContextInfo& preCond);
+    std::vector<ContextInfo> strongestPostcondition(ExpressionStatement const* stmt, ContextInfo& preCond);
+    std::vector<ContextInfo> strongestPostcondition(Assignment const* stmt, ContextInfo& preCond);
     
-    std::vector<ContextInfo> strongestPostcondition(dev::solidity::Break const* stmt, ContextInfo& preCond);
-    std::vector<ContextInfo> strongestPostcondition(dev::solidity::Continue const* stmt, ContextInfo& preCond);
-    std::vector<ContextInfo> strongestPostcondition(dev::solidity::Return const* stmt, ContextInfo& preCond);
-    std::vector<ContextInfo> strongestPostcondition(dev::solidity::Throw const* stmt, ContextInfo& preCond);
-    std::vector<ContextInfo> strongestPostcondition(dev::solidity::VariableDeclarationStatement const* stmt, ContextInfo& preCond);
-    std::vector<ContextInfo> strongestPostcondition(dev::solidity::IfStatement const* stmt, ContextInfo& preCond);
-    std::vector<ContextInfo> strongestPostcondition(dev::solidity::WhileStatement const* stmt, ContextInfo& preCond);
-    std::vector<ContextInfo> strongestPostcondition(dev::solidity::ForStatement const* stmt, ContextInfo& preCond);
+    std::vector<ContextInfo> strongestPostcondition(Break const* stmt, ContextInfo& preCond);
+    std::vector<ContextInfo> strongestPostcondition(Continue const* stmt, ContextInfo& preCond);
+    std::vector<ContextInfo> strongestPostcondition(Return const* stmt, ContextInfo& preCond);
+    std::vector<ContextInfo> strongestPostcondition(Throw const* stmt, ContextInfo& preCond);
+    std::vector<ContextInfo> strongestPostcondition(VariableDeclarationStatement const* stmt, ContextInfo& preCond);
+    std::vector<ContextInfo> strongestPostcondition(IfStatement const* stmt, ContextInfo& preCond);
+    std::vector<ContextInfo> strongestPostcondition(WhileStatement const* stmt, ContextInfo& preCond);
+    std::vector<ContextInfo> strongestPostcondition(ForStatement const* stmt, ContextInfo& preCond);
 
-    // std::vector<ContextInfo> strongestPostcondition(dev::solidity::IfStatement const* stmt, ContextInfo& preCond, bool& success);
-    // std::vector<ContextInfo> strongestPostcondition(dev::solidity::WhileStatement const* stmt, ContextInfo& preCond, bool& success);
-    // std::vector<ContextInfo> strongestPostcondition(dev::solidity::ForStatement const* stmt, ContextInfo& preCond, bool& success);
+    // std::vector<ContextInfo> strongestPostcondition(IfStatement const* stmt, ContextInfo& preCond, bool& success);
+    // std::vector<ContextInfo> strongestPostcondition(WhileStatement const* stmt, ContextInfo& preCond, bool& success);
+    // std::vector<ContextInfo> strongestPostcondition(ForStatement const* stmt, ContextInfo& preCond, bool& success);
 
     void print_model(z3::model, ContextInfo&,  std::string);
 
     void synthesis(std::vector<ContextInfo>& contexts);
 
 protected:
-    z3::sort typeSortInZ3(dev::solidity::TypePointer const typePtr);
+    z3::sort typeSortInZ3(TypePointer const typePtr);
 
-    std::string getArrayName(dev::solidity::Expression const* aExpr, ContextInfo& ctxInfo);
+    std::string getArrayName(Expression const* aExpr, ContextInfo& ctxInfo);
 
-    dev::solidity::FunctionDefinition const* getFuncDefinition(std::string funcName);
+    FunctionDefinition const* getFuncDefinition(std::string funcName);
 
-    void updateContextInfo(dev::solidity::Expression const* exp, z3::expr rightExpr, ContextInfo& preCond);
+    void updateContextInfo(Expression const* exp, z3::expr rightExpr, ContextInfo& preCond);
 
     bool checkValidity(z3::expr property, ContextInfo& ctxInfo);
     bool checkSatisfiability(z3::expr property, ContextInfo& ctxInfo);
 
-    std::string getVarFullName(dev::solidity::Identifier const* idExp, ContextInfo& ctxInfo);
-    std::string getVarFullName(dev::solidity::VariableDeclaration const* varDec, ContextInfo& ctxInfo);
+    std::string getVarFullName(Identifier const* idExp, ContextInfo& ctxInfo);
+    std::string getVarFullName(VariableDeclaration const* varDec, ContextInfo& ctxInfo);
 
-    std::string getRealFuncCallName(dev::solidity::Expression const* funcCall);
+    std::string getRealFuncCallName(Expression const* funcCall);
     std::string nodeString(Expression const & a) {
         return m_source.substr(a.location().start, a.location().end-a.location().start);
         // return a.location().source->source().substr(a.location().start, a.location().end-a.location().start);
@@ -260,7 +267,7 @@ private:
     z3::context& z3_ctx;
     SolidityExprTranslator* solExprTranslator;
 
-    std::vector<dev::solidity::FunctionDefinition const*> funcVec;
+    std::vector<FunctionDefinition const*> funcVec;
     std::unordered_map<std::string, z3::expr> stateVarZ3ExprMap;
     std::unordered_map<std::string, z3::expr> stateVarValuesZ3ExprMap;
     std::unordered_map<std::string, z3::expr> localVarZ3ExprMap;
@@ -268,7 +275,7 @@ private:
     std::unordered_map<std::string, std::shared_ptr<StructInfo>> structsMap;
 
     // typedef struct{
-    //     std::vector<dev::solidity::FunctionDefinition const*> funcVec;
+    //     std::vector<FunctionDefinition const*> funcVec;
     //     std::unordered_map<std::string, z3::expr> stateVarZ3ExprMap;
     //     std::unordered_map<std::string, z3::expr> stateVarValuesZ3ExprMap;
     //     std::unordered_map<std::string, z3::expr> localVarZ3ExprMap;
@@ -285,7 +292,7 @@ private:
 
 
     bool isInStructDefinition;
-    dev::solidity::ASTNode const& root;
+    ASTNode const& root;
 
     bool debugMode;
     bool onlyExecuteMain;
@@ -294,7 +301,7 @@ private:
 
     unsigned int visitNumber;
 
-    dev::solidity::FunctionDefinition const* currentFuncDef;
+    FunctionDefinition const* currentFuncDef;
     static const std::string initSuffix;
     static const std::string nameSeparator;
     static const std::string scopeSpecifier;
@@ -310,15 +317,15 @@ public:
 
     void setDebugMode(bool mode);
 
-    z3::expr translate(dev::solidity::Expression const* aExpr, ContextInfo& ctxInfo);
-    z3::expr translate(dev::solidity::Identifier const* idExpr, ContextInfo& ctxInfo);
-    z3::expr translate(dev::solidity::Literal const* litExpr, ContextInfo& ctxInfo);
-    z3::expr translate(dev::solidity::UnaryOperation const* unaryExp, ContextInfo& ctxInfo);
-    z3::expr translate(dev::solidity::BinaryOperation const* binaryExp, ContextInfo& ctxInfo);
-    z3::expr translate(dev::solidity::FunctionCall const* functioncallExp, ContextInfo& ctxInfo);
-    z3::expr translate(dev::solidity::MemberAccess const* memAccExp, ContextInfo& ctxInfo);
-    z3::expr translate(dev::solidity::IndexAccess const* indexAccessExp, ContextInfo& ctxInfo);
-    z3::expr translate(dev::solidity::TupleExpression const* tupleExp, ContextInfo& ctxInfo);
+    z3::expr translate(Expression const* aExpr, ContextInfo& ctxInfo);
+    z3::expr translate(Identifier const* idExpr, ContextInfo& ctxInfo);
+    z3::expr translate(Literal const* litExpr, ContextInfo& ctxInfo);
+    z3::expr translate(UnaryOperation const* unaryExp, ContextInfo& ctxInfo);
+    z3::expr translate(BinaryOperation const* binaryExp, ContextInfo& ctxInfo);
+    z3::expr translate(FunctionCall const* functioncallExp, ContextInfo& ctxInfo);
+    z3::expr translate(MemberAccess const* memAccExp, ContextInfo& ctxInfo);
+    z3::expr translate(IndexAccess const* indexAccessExp, ContextInfo& ctxInfo);
+    z3::expr translate(TupleExpression const* tupleExp, ContextInfo& ctxInfo);
 
 private:
     z3::context& z3_ctx;

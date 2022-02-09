@@ -289,7 +289,7 @@ bool Mechanism::check_2ndPrice(z3::solver& solver)
 		return false;
 	}
 	//select first two bidder
-         auto bid1 = bidders.at(0).at(1);
+     auto bid1 = bidders.at(0).at(1);
 	 auto bidder_id1 = bidders.at(0).at(0);	 
 	 auto TopBidder = bidder_id1;
 	 auto TopBid = bid1;

@@ -6,10 +6,13 @@ set(CMAKE_CXX_STANDARD 17)
 set(ETH_CMAKE_DIR   "${CMAKE_CURRENT_LIST_DIR}/cmake"   CACHE PATH "The the path to the cmake directory")
 list(APPEND CMAKE_MODULE_PATH ${ETH_CMAKE_DIR})
 
-option(SOLC_0_5_0 "mount symbolic execution engine on solc==0.5.0" ON)
+option(SOLC_0_5_0 "mount symbolic execution engine on solc==0.5.0" OFF)
 option(SOLC_0_5_10 "mount symbolic execution engine on solc==0.5.10" OFF)
 option(SOLC_0_5_17 "mount symbolic execution engine on solc==0.5.17" OFF)
-
+option(SOLC_0_6_0 "mount symbolic execution engine on solc==0.6.0" OFF)
+option(SOLC_0_6_10 "mount symbolic execution engine on solc==0.6.10" OFF)
+option(SOLC_0_7_6 "mount symbolic execution engine on solc==0.7.6" OFF)
+option(SOLC_0_8_11 "mount symbolic execution engine on solc==0.8.11" ON)
 include(solidity)
 
 include(EthToolchains)
@@ -52,4 +55,3 @@ else()
 endif()
 
 add_subdirectory(solse)
-

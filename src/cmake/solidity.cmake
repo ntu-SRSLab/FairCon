@@ -29,6 +29,14 @@ elseif (SOLC_0_5_10)
     set(Solidity_GIT_TAG v0.5.10)
 elseif (SOLC_0_5_17)
     set(Solidity_GIT_TAG v0.5.17)
+elseif (SOLC_0_6_0)
+    set(Solidity_GIT_TAG v0.6.0)
+elseif (SOLC_0_6_10)
+    set(Solidity_GIT_TAG v0.6.10)
+elseif (SOLC_0_7_6)
+    set(Solidity_GIT_TAG v0.7.6)
+elseif (SOLC_0_8_11)
+    set(Solidity_GIT_TAG v0.8.3)
 endif ()
 
 ExternalProject_Add(solidity-project
@@ -41,7 +49,14 @@ ExternalProject_Add(solidity-project
 
 set(SOLIDITY_LIBRARY "${prefix}/src/solidity-project-build/libsolidity/${CMAKE_STATIC_LIBRARY_PREFIX}solidity${CMAKE_STATIC_LIBRARY_SUFFIX}")
 set(SOLIDITY_INCLUDE_DIR "${prefix}/src/solidity-project")
+
+if (SOLC_0_6_10 OR SOLC_0_7_6 OR SOLC_0_8_11)
+set(DEVCORE_LIBRARY "${prefix}/src/solidity-project-build/libsolutil/${CMAKE_STATIC_LIBRARY_PREFIX}solutil${CMAKE_STATIC_LIBRARY_SUFFIX}")
+else ()
 set(DEVCORE_LIBRARY "${prefix}/src/solidity-project-build/libdevcore/${CMAKE_STATIC_LIBRARY_PREFIX}devcore${CMAKE_STATIC_LIBRARY_SUFFIX}")
+endif ()
+
+
 set(EVMASM_LIBRARY "${prefix}/src/solidity-project-build/libevmasm/${CMAKE_STATIC_LIBRARY_PREFIX}evmasm${CMAKE_STATIC_LIBRARY_SUFFIX}")
 
 
@@ -70,7 +85,7 @@ set_property(TARGET devcore PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${SOLIDITY_IN
 add_dependencies(devcore solidity-project)
 
 
-if (SOLC_0_5_10 OR SOLC_0_5_17)
+if (SOLC_0_5_10 OR SOLC_0_5_17 OR SOLC_0_6_0 OR SOLC_0_6_10 OR SOLC_0_7_6 OR SOLC_0_8_11)
     set(LANGUTIL_LIBRARY "${prefix}/src/solidity-project-build/liblangutil/${CMAKE_STATIC_LIBRARY_PREFIX}langutil${CMAKE_STATIC_LIBRARY_SUFFIX}")
     add_library(langutil STATIC IMPORTED)
     set_property(TARGET langutil PROPERTY IMPORTED_LOCATION ${LANGUTIL_LIBRARY})
@@ -85,6 +100,15 @@ if (SOLC_0_5_10 OR SOLC_0_5_17)
     set_property(TARGET yul PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${SOLIDITY_INCLUDE_DIR} ${prefix}/src/solidity-project-build/include ${prefix}/src/solidity-project-build/deps/include)
     add_dependencies(yul solidity-project)
 endif ()
+
+if (SOLC_0_6_10 OR SOLC_0_7_6 OR SOLC_0_8_11)
+    set(SMTUTIL_LIBRARY "${prefix}/src/solidity-project-build/libsmtutil/${CMAKE_STATIC_LIBRARY_PREFIX}smtutil${CMAKE_STATIC_LIBRARY_SUFFIX}")
+    add_library(smtutil STATIC IMPORTED)
+    set_property(TARGET smtutil PROPERTY IMPORTED_LOCATION ${SMTUTIL_LIBRARY})
+    set_property(TARGET smtutil PROPERTY INTERFACE_SYSTEM_INCLUDE_DIRECTORIES ${SOLIDITY_INCLUDE_DIR} ${prefix}/src/solidity-project-build/include ${prefix}/src/solidity-project-build/deps/include)
+    set_property(TARGET smtutil PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${SOLIDITY_INCLUDE_DIR} ${prefix}/src/solidity-project-build/include ${prefix}/src/solidity-project-build/deps/include)
+    add_dependencies(smtutil solidity-project)
+endif () 
 
 set(JSON_prefix "${prefix}/src/solidity-project-build/deps")
 set(JSONCPP_LIBRARY "${JSON_prefix}/lib/${CMAKE_STATIC_LIBRARY_PREFIX}jsoncpp${CMAKE_STATIC_LIBRARY_SUFFIX}")

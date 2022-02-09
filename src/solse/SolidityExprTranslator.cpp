@@ -1,7 +1,6 @@
 #include "SymExecEngine.h"
 #include <unordered_map>
 
-using namespace dev::solidity;
 void ContextInfo::collectContext(std::unordered_map<std::string, std::vector<std::string>>& state_variable_records,
     std::unordered_map<std::string, std::vector<std::string>>& local_variable_records){
 
